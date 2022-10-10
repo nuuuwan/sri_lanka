@@ -1,6 +1,6 @@
 import { ENT } from "../../nonview/base/Ents";
 
-const N_DISPLAY_REGIONS = 10;
+const N_DISPLAY_REGIONS = 20;
 export default class EntsForMaps {
   static getEntTypeForZoom(zoom) {
     if (zoom <= 10) {
