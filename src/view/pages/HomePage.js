@@ -8,6 +8,7 @@ import Ents from "../../nonview/base/Ents";
 import EntsForMaps from "../../nonview/core/EntsForMaps";
 
 import CustomBottomNavigation from "../../view/molecules/CustomBottomNavigation";
+import LayerDrawerInner from "../../view/molecules/LayerDrawerInner";
 import GeoMap from "../organisms/GeoMap";
 import RegionGeo from "../organisms/RegionGeo";
 
@@ -74,7 +75,11 @@ export default class HomePage extends Component {
             anchor={"right"}
             open={this.state.isLayerDrawerOpen}
             onClose={this.handleCloseLayerDrawer.bind(this)}
-          />
+          >
+            <LayerDrawerInner
+              handleCloseLayerDrawer={this.handleCloseLayerDrawer.bind(this)}
+            />
+          </Drawer>
         </Paper>
         <Paper sx={STYLE_FOOTER}>
           <CustomBottomNavigation
