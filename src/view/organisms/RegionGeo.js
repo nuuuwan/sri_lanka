@@ -7,7 +7,7 @@ import GeoData from "../../nonview/base/GeoData.js";
 const DEFAULT_STYLE_GEOJSON = {
   color: "white",
   fillColor: "red",
-  fillOpacity: 0.2,
+  fillOpacity: 0.4,
   weight: 1,
 };
 
