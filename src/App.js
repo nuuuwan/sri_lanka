@@ -1,5 +1,36 @@
-import HomePage from "./view/pages/HomePage";
+import React, { Component } from "react";
 
-export default function App() {
-  return <HomePage />;
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+
+import HomePage from "./view/pages/HomePage.js";
+
+const THEME = createTheme({
+  palette: {
+    primary: {
+      main: "#c00",
+    },
+    secondary: {
+      main: "#f80",
+    },
+    success: {
+      main: "#080",
+    },
+    info: {
+      main: "#cc0",
+    },
+  },
+  typography: {
+    fontFamily: ["Ubuntu", "sans-serif"].join(","),
+    fontSize: 14,
+  },
+});
+
+export default class App extends Component {
+  render() {
+    return (
+      <ThemeProvider theme={THEME}>
+        <HomePage />
+      </ThemeProvider>
+    );
+  }
 }
