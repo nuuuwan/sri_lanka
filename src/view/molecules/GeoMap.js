@@ -6,7 +6,7 @@ import "./GeoMap.css";
 const URL_FORMAT = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
 
 const DEFAULT_ZOOM = 16;
-const DEFAULT_CENTER = [6.917292580380246, 79.86478752005965]; // Townhall 
+const DEFAULT_CENTER = [6.917292580380246, 79.86478752005965]; // Townhall
 
 export default class GeoMap extends Component {
   render() {
