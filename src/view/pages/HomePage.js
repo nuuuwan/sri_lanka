@@ -37,12 +37,16 @@ const STYLE_DRAWER_INNER = {
   maxWidth: "80%",
 };
 
+const DEFAULT_SELECTED_LAYER_TABLE_NAME =
+  "regions.2012_census.ethnicity_of_population";
+const DEFAULT_SELECTED_REGION_ID = "LK-11";
+
 export default class HomePage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedLayerTableName: null,
-      selectedRegionID: null,
+      selectedLayerTableName: DEFAULT_SELECTED_LAYER_TABLE_NAME,
+      selectedRegionID: DEFAULT_SELECTED_REGION_ID,
       showLayerDrawer: false,
       allEntIndex: null,
     };
