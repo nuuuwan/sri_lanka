@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/sri_lanka/static/css/main.ddb43d24.css",
-    "main.js": "/sri_lanka/static/js/main.654d710a.js",
+    "main.css": "/sri_lanka/static/css/main.4e3fa7e9.css",
+    "main.js": "/sri_lanka/static/js/main.adea67a1.js",
     "static/js/787.b6d41174.chunk.js": "/sri_lanka/static/js/787.b6d41174.chunk.js",
     "index.html": "/sri_lanka/index.html",
-    "main.ddb43d24.css.map": "/sri_lanka/static/css/main.ddb43d24.css.map",
-    "main.654d710a.js.map": "/sri_lanka/static/js/main.654d710a.js.map",
+    "main.4e3fa7e9.css.map": "/sri_lanka/static/css/main.4e3fa7e9.css.map",
+    "main.adea67a1.js.map": "/sri_lanka/static/js/main.adea67a1.js.map",
     "787.b6d41174.chunk.js.map": "/sri_lanka/static/js/787.b6d41174.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.ddb43d24.css",
-    "static/js/main.654d710a.js"
+    "static/css/main.4e3fa7e9.css",
+    "static/js/main.adea67a1.js"
   ]
 }
