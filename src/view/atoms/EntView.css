@@ -1,15 +1,15 @@
 .div-ent-id {
-	color: black;
+  color: black;
 }
 
 .div-ent-type {
-	margin-bottom: 4px;
-	color: gray;
-	font-weight: 300;
-	font-size: 70%;
+  margin-bottom: 4px;
+  color: gray;
+  font-weight: 300;
+  font-size: 70%;
 }
 
 .div-ent-name {
-	color: black;
-	font-weight: 800;
+  color: black;
+  font-weight: 800;
 }

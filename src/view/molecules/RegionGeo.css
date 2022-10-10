@@ -1,26 +1,26 @@
 .div-region-name-geojson {
-	padding-right: 3px;
-	font-weight: 800;
+  padding-right: 3px;
+  font-weight: 800;
 }
 
 .div-region-type-geojson {
-	font-weight: 400;
+  font-weight: 400;
 }
 
 .td-value {
-	padding: 3px;
-	text-align: right;
+  padding: 3px;
+  text-align: right;
 }
 
 .div-show {
-	color: lightgray;
+  color: lightgray;
 }
 
 .div-show:hover {
-	color: orange;
+  color: orange;
 }
 
 .leaflet-tile-pane {
-	filter: grayscale(100%);
-	filter: grayscale(100%);
+  filter: grayscale(100%);
+  filter: grayscale(100%);
 }

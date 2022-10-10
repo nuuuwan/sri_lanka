@@ -1,10 +1,5 @@
-import GeoMap from "./view/molecules/GeoMap";
-import RegionGeo from "./view/molecules/RegionGeo";
+import HomePage from "./view/pages/HomePage";
 
 export default function App() {
-  return (
-      <GeoMap>
-        <RegionGeo regionID="LK-1127" />
-      </GeoMap>
-  );
+  return <HomePage />;
 }
