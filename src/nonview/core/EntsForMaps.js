@@ -1,15 +1,15 @@
 import { ENT } from "../../nonview/base/Ents";
 
-const N_DISPLAY_REGIONS = 20;
+const N_DISPLAY_REGIONS = 30;
 export default class EntsForMaps {
   static getEntTypeForZoom(zoom) {
-    if (zoom <= 8) {
+    if (zoom <= 7) {
       return ENT.PROVINCE;
     }
-    if (zoom <= 10) {
+    if (zoom <= 11) {
       return ENT.DISTRICT;
     }
-    if (zoom <= 15) {
+    if (zoom <= 14) {
       return ENT.DSD;
     }
     return ENT.GND;
@@ -18,8 +18,8 @@ export default class EntsForMaps {
   static getDistance([latCenter, lngCenter], { centroid }) {
     const [lat, lng] = JSON.parse(centroid);
     const [dlat, dlng] = [lat - latCenter, lng - lngCenter];
-    const d = Math.sqrt(dlat * dlat + dlng * dlng);
-    return d;
+    const r = window.screen.height / window.screen.width;
+    return Math.abs(dlat) * r + Math.abs(dlng);
   }
 
   static getDisplayRegionIDs(allEntIndex, center, zoom) {
