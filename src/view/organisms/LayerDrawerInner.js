@@ -13,7 +13,9 @@ export default class LayerDrawInner extends Component {
   }
 
   async componentDidMount() {
-    const metaData = await GIG2.getMetaData();
+    const metaData = (await GIG2.getMetaData()).filter(function (metaDatum) {
+      return metaDatum.table_name.substring(0, 6) === "region";
+    });
     this.setState({ metaData });
   }
 
