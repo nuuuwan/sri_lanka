@@ -1,21 +1,42 @@
 import Avatar from "@mui/material/Avatar";
-import ListItem from "@mui/material/ListItem";
+import Box from "@mui/material/Box";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
-import ListItemText from "@mui/material/ListItemText";
+import ListItemButton from "@mui/material/ListItemButton";
+import Typography from "@mui/material/Typography";
 import LayersIcon from "@mui/icons-material/Layers";
 
-export default function LayerView({ layerData }) {
-  const tokens = layerData.table_name.split(".");
+export default function LayerView({
+  layerData,
+  selectedLayerTableName,
+  setSelectedLayerTableName,
+}) {
+  const tableName = layerData.table_name;
+  const tokens = tableName.split(".");
   const sourceName = tokens[2].replaceAll("_", " ");
   const source2Name = tokens[1].replaceAll("_", " ");
+
+  const selected = selectedLayerTableName === tableName;
+
+  function onClick() {
+    setSelectedLayerTableName(tableName);
+  }
+
+  let style = { color: "lightgray" };
+  if (selected) {
+    style.color = "primary";
+  }
+
   return (
-    <ListItem>
+    <ListItemButton selected={selected} onClick={onClick}>
       <ListItemAvatar>
         <Avatar>
           <LayersIcon />
         </Avatar>
       </ListItemAvatar>
-      <ListItemText primary={sourceName} secondary={source2Name} />
-    </ListItem>
+      <Box sx={style}>
+        <Typography variant="caption">{source2Name}</Typography>
+        <Typography variant="subtitle1">{sourceName}</Typography>
+      </Box>
+    </ListItemButton>
   );
 }
