@@ -115,7 +115,12 @@ export default class HomePage extends Component {
   renderDrawerInner() {
     const { selectedRegionID, selectedLayerTableName } = this.state;
     if (this.state.selectedRegionID !== null) {
-      return <RegionDrawerInner selectedRegionID={selectedRegionID} />;
+      return (
+        <RegionDrawerInner
+          selectedRegionID={selectedRegionID}
+          selectedLayerTableName={selectedLayerTableName}
+        />
+      );
     }
 
     if (this.state.showLayerDrawer) {
