@@ -9,8 +9,6 @@ import Ents, {
 
 import EntView from "../atoms/EntView.js";
 
-import "./RegionGeo.css";
-
 const DEFAULT_STYLE_GEOJSON = {
   color: "white",
   fillColor: "red",
