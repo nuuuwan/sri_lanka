@@ -87,7 +87,7 @@ export default class HomePage extends Component {
   }
 
   renderGeoMapChildren(center, zoom) {
-    const { allEntIndex } = this.state;
+    const { allEntIndex, selectedRegionID } = this.state;
     if (!allEntIndex) {
       return null;
     }
@@ -105,6 +105,7 @@ export default class HomePage extends Component {
           <RegionGeo
             key={key}
             regionID={regionID}
+            selectedRegionID={selectedRegionID}
             setSelectedRegion={this.setSelectedRegion.bind(this)}
           />
         );

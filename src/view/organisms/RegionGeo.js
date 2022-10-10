@@ -43,7 +43,7 @@ export default class RegionGeo extends Component {
       return "...";
     }
 
-    const { regionID, setSelectedRegion } = this.props;
+    const { regionID, selectedRegionID, setSelectedRegion } = this.props;
 
     const geoJsonData = {
       type: "MultiPolygon",
@@ -56,6 +56,10 @@ export default class RegionGeo extends Component {
     }
     if (this.props.opacity) {
       style.fillOpacity = this.props.opacity;
+    }
+
+    if (regionID === selectedRegionID) {
+      style.fillColor = "blue";
     }
 
     function onClickRegionInner() {
