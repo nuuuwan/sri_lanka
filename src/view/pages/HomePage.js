@@ -1,6 +1,8 @@
 import { Component } from "react";
 
 import Box from "@mui/material/Box";
+import Drawer from "@mui/material/Drawer";
+import Paper from "@mui/material/Paper";
 
 import Ents from "../../nonview/base/Ents";
 import EntsForMaps from "../../nonview/core/EntsForMaps";
@@ -9,19 +11,35 @@ import CustomBottomNavigation from "../../view/molecules/CustomBottomNavigation"
 import GeoMap from "../molecules/GeoMap";
 import RegionGeo from "../molecules/RegionGeo";
 
-const STYLE_BODY = { position: "fixed", bottom: 0, top: 0, left: 0, right: 0 };
-const STYLE_FOOTER = {
+const FOOTER_HEIGHT = 60;
+const STYLE_BOX = {};
+const STYLE_BODY = {
   position: "fixed",
-  bottom: -50,
-  height: 100,
+  bottom: FOOTER_HEIGHT,
+  top: 0,
   left: 0,
   right: 0,
+};
+const STYLE_FOOTER = {
+  position: "fixed",
+  bottom: 0,
+  left: 0,
+  right: 0,
+  height: FOOTER_HEIGHT,
 };
 
 export default class HomePage extends Component {
   constructor(props) {
     super(props);
-    this.state = { allEntIndex: undefined };
+    this.state = { isLayerDrawerOpen: false, allEntIndex: undefined };
+  }
+
+  handleCloseLayerDrawer() {
+    this.setState({ isLayerDrawerOpen: false });
+  }
+
+  handleOpenLayerDrawer() {
+    this.setState({ isLayerDrawerOpen: true });
   }
 
   async componentDidMount() {
@@ -49,14 +67,21 @@ export default class HomePage extends Component {
 
   render() {
     return (
-      <>
-        <Box sx={STYLE_BODY}>
+      <Box sx={STYLE_BOX}>
+        <Paper sx={STYLE_BODY}>
           <GeoMap renderChildren={this.renderGeoMapChildren.bind(this)} />
-        </Box>
-        <Box sx={STYLE_FOOTER}>
-          <CustomBottomNavigation />
-        </Box>
-      </>
+          <Drawer
+            anchor={"right"}
+            open={this.state.isLayerDrawerOpen}
+            onClose={this.handleCloseLayerDrawer.bind(this)}
+          />
+        </Paper>
+        <Paper sx={STYLE_FOOTER}>
+          <CustomBottomNavigation
+            handleClickOpenLayer={this.handleOpenLayerDrawer.bind(this)}
+          />
+        </Paper>
+      </Box>
     );
   }
 }
