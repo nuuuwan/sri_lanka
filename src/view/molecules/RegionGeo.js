@@ -1,11 +1,11 @@
 import { Component } from "react";
 import { GeoJSON, Popup } from "react-leaflet";
 
-import GeoData from "../../base/GeoData.js";
+import GeoData from "../../nonview/base/GeoData.js";
 import Ents, {
   ENT_TYPE_TO_LONG_NAME,
   PARENT_TO_CHILD,
-} from "../../base/Ents.js";
+} from "../../nonview/base/Ents.js";
 
 import EntView from "../atoms/EntView.js";
 

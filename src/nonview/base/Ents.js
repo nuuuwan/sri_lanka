@@ -82,7 +82,7 @@ export default class Ents {
     return ENT_TYPE_TO_LONG_NAME[regionType];
   }
   static async getEntsByType(entType) {
-    const url = `/metaverse/data/ents/${entType}.tsv`;
+    const url = `/sri_lanka/data/ents/${entType}.tsv`;
     return await WWW.tsv(url);
   }
 

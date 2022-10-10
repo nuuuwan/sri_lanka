@@ -1,5 +1,5 @@
 import { Component } from "react";
-import Ents from "../../base/Ents.js";
+import Ents from "../../nonview/base/Ents.js";
 
 import "./EntView.css";
 

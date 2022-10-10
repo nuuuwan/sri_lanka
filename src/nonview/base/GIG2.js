@@ -9,11 +9,11 @@ const ID_FIELD_KEY = "entity_id";
 
 export default class GIG2 {
   static async getMetaData() {
-    return await WWW.tsv("/metaverse/data/gig2/_metadata.tsv");
+    return await WWW.tsv("/sri_lanka/data/gig2/_metadata.tsv");
   }
 
   static async getTable(tableName) {
-    const url = `/metaverse/data/gig2/${tableName}.tsv`;
+    const url = `/sri_lanka/data/gig2/${tableName}.tsv`;
     return await WWW.tsv(url);
   }
 
