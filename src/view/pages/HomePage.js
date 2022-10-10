@@ -6,8 +6,8 @@ import IconButton from "@mui/material/IconButton";
 import Paper from "@mui/material/Paper";
 import CloseIcon from "@mui/icons-material/Close";
 
-import GIG2 from "../../nonview/base/GIG2";
 import Ents from "../../nonview/base/Ents";
+import GIG2 from "../../nonview/base/GIG2";
 import EntsForMaps from "../../nonview/core/EntsForMaps";
 
 import CustomBottomNavigation from "../../view/molecules/CustomBottomNavigation";
@@ -54,8 +54,9 @@ export default class HomePage extends Component {
     };
   }
 
-  setSelectedLayerTableName(selectedLayerTableName) {
-    this.setState({ selectedLayerTableName });
+  async setSelectedLayerTableName(selectedLayerTableName) {
+    const tableIndex = await GIG2.getTableIndex(selectedLayerTableName);
+    this.setState({ tableIndex, selectedLayerTableName });
   }
 
   unsetSelectedLayerTableName() {
@@ -88,12 +89,16 @@ export default class HomePage extends Component {
 
     const allEntIndex = await Ents.getAllEntIndex();
     const tableIndex = await GIG2.getTableIndex(selectedLayerTableName);
-
     this.setState({ allEntIndex, tableIndex });
   }
 
   renderGeoMapChildren(center, zoom) {
-    const { allEntIndex, selectedRegionID, tableIndex } = this.state;
+    const {
+      allEntIndex,
+      selectedRegionID,
+      tableIndex,
+      selectedLayerTableName,
+    } = this.state;
     if (!allEntIndex || !tableIndex) {
       return null;
     }
@@ -106,7 +111,7 @@ export default class HomePage extends Component {
 
     return displayRegionIDs.map(
       function (regionID) {
-        const key = `region-geo-${regionID}`;
+        const key = `region-geo-${selectedLayerTableName}-${regionID}`;
         const tableRow = tableIndex[regionID];
         const color = GIG2.getTableRowColor(tableRow);
         return (
@@ -147,10 +152,14 @@ export default class HomePage extends Component {
 
   render() {
     let drawerInner = this.renderDrawerInner();
+    const { selectedLayerTableName, selectedRegionID } = this.state;
     return (
       <Box sx={STYLE_BOX}>
         <Paper sx={STYLE_BODY}>
-          <GeoMap renderChildren={this.renderGeoMapChildren.bind(this)} />
+          <GeoMap
+            key={`geo-map-${selectedLayerTableName}-${selectedRegionID}`}
+            renderChildren={this.renderGeoMapChildren.bind(this)}
+          />
           <Drawer
             anchor={"right"}
             open={drawerInner !== null}
