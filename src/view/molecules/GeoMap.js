@@ -5,8 +5,9 @@ import "./GeoMap.css";
 
 const URL_FORMAT = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
 
-const DEFAULT_ZOOM = 8;
-const DEFAULT_CENTER = [6.917292580380246, 79.86478752005965]; // Townhall
+const DEFAULT_ZOOM = 7;
+const DEFAULT_CENTER = [7.8742, 80.6511]; // Dambulla
+// const DEFAULT_CENTER = [6.9157, 79.8636]; // Townhall Colombo
 
 function EventComponent({ setCenterAndZoom }) {
   useMapEvents({
