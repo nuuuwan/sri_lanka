@@ -2,7 +2,9 @@ import { Component } from "react";
 
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
+import IconButton from "@mui/material/IconButton";
 import Paper from "@mui/material/Paper";
+import CloseIcon from "@mui/icons-material/Close";
 
 import Ents from "../../nonview/base/Ents";
 import EntsForMaps from "../../nonview/core/EntsForMaps";
@@ -10,6 +12,7 @@ import EntsForMaps from "../../nonview/core/EntsForMaps";
 import CustomBottomNavigation from "../../view/molecules/CustomBottomNavigation";
 import LayerDrawerInner from "../../view/molecules/LayerDrawerInner";
 import GeoMap from "../organisms/GeoMap";
+import RegionDrawerInner from "../../view/organisms/RegionDrawerInner";
 import RegionGeo from "../organisms/RegionGeo";
 
 const FOOTER_HEIGHT = 60;
@@ -29,18 +32,39 @@ const STYLE_FOOTER = {
   height: FOOTER_HEIGHT,
 };
 
+const STYLE_DRAWER_INNER = {
+  width: 320,
+  maxWidth: "80%",
+};
+
 export default class HomePage extends Component {
   constructor(props) {
     super(props);
-    this.state = { isLayerDrawerOpen: false, allEntIndex: undefined };
-  }
-
-  handleCloseLayerDrawer() {
-    this.setState({ isLayerDrawerOpen: false });
+    this.state = {
+      showLayerDrawer: false,
+      selectedRegionID: null,
+      allEntIndex: null,
+    };
   }
 
   handleOpenLayerDrawer() {
-    this.setState({ isLayerDrawerOpen: true });
+    this.setState({ showLayerDrawer: true });
+  }
+
+  handleCloseLayerDrawer() {
+    this.setState({ showLayerDrawer: false });
+  }
+
+  setSelectedRegion(regionID) {
+    this.setState({ selectedRegionID: regionID });
+  }
+  unsetSelectedRegion() {
+    this.setState({ selectedRegionID: null });
+  }
+
+  handleCloseDrawer() {
+    this.handleCloseLayerDrawer();
+    this.unsetSelectedRegion();
   }
 
   async componentDidMount() {
@@ -60,30 +84,58 @@ export default class HomePage extends Component {
       zoom
     );
 
-    return displayRegionIDs.map(function (regionID) {
-      const key = `region-geo-${regionID}`;
-      return <RegionGeo key={key} regionID={regionID} />;
-    });
+    return displayRegionIDs.map(
+      function (regionID) {
+        const key = `region-geo-${regionID}`;
+        return (
+          <RegionGeo
+            key={key}
+            regionID={regionID}
+            setSelectedRegion={this.setSelectedRegion.bind(this)}
+          />
+        );
+      }.bind(this)
+    );
+  }
+
+  renderDrawerInner() {
+    if (this.state.selectedRegionID !== null) {
+      return (
+        <RegionDrawerInner selectedRegionID={this.state.selectedRegionID} />
+      );
+    }
+
+    if (this.state.showLayerDrawer) {
+      return <LayerDrawerInner />;
+    }
+
+    return null;
   }
 
   render() {
+    let drawerInner = this.renderDrawerInner();
     return (
       <Box sx={STYLE_BOX}>
         <Paper sx={STYLE_BODY}>
           <GeoMap renderChildren={this.renderGeoMapChildren.bind(this)} />
           <Drawer
             anchor={"right"}
-            open={this.state.isLayerDrawerOpen}
-            onClose={this.handleCloseLayerDrawer.bind(this)}
+            open={drawerInner !== null}
+            onClose={this.handleCloseDrawer.bind(this)}
           >
-            <LayerDrawerInner
-              handleCloseLayerDrawer={this.handleCloseLayerDrawer.bind(this)}
-            />
+            <Box sx={STYLE_DRAWER_INNER}>
+              <Box>
+                <IconButton onClick={this.handleCloseDrawer.bind(this)}>
+                  <CloseIcon />
+                </IconButton>
+              </Box>
+              <Box>{drawerInner}</Box>
+            </Box>
           </Drawer>
         </Paper>
         <Paper sx={STYLE_FOOTER}>
           <CustomBottomNavigation
-            handleClickOpenLayer={this.handleOpenLayerDrawer.bind(this)}
+            handleOpenLayerDrawer={this.handleOpenLayerDrawer.bind(this)}
           />
         </Paper>
       </Box>
