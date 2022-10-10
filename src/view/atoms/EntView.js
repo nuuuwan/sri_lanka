@@ -1,7 +1,9 @@
 import { Component } from "react";
-import Ents from "../../nonview/base/Ents.js";
 
-import "./EntView.css";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+
+import Ents from "../../nonview/base/Ents.js";
 
 export default class EntView extends Component {
   constructor(props) {
@@ -20,13 +22,15 @@ export default class EntView extends Component {
     const { ent } = this.state;
     const entType = Ents.getEntType(entID);
     if (!ent) {
-      return <div className="div-ent-id">{entID}</div>;
+      return <Box>{entID}</Box>;
     }
     return (
-      <div className="div-ent-name">
-        <div className="div-ent-type">{Ents.getEntTypeLongName(entType)}</div>
-        <div className="div-ent-name">{ent.name}</div>
-      </div>
+      <Box>
+        <Typography variant="caption">
+          {Ents.getEntTypeLongName(entType)}
+        </Typography>
+        <Typography variant="h6">{ent.name}</Typography>
+      </Box>
     );
   }
 }
