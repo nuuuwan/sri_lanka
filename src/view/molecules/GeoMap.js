@@ -1,10 +1,5 @@
 import { Component } from "react";
-import {
-  MapContainer,
-  TileLayer,
-  ZoomControl,
-  useMapEvents,
-} from "react-leaflet";
+import { MapContainer, TileLayer, useMapEvents } from "react-leaflet";
 
 import "./GeoMap.css";
 
@@ -48,7 +43,6 @@ export default class GeoMap extends Component {
       <MapContainer center={center} zoom={zoom} zoomControl={false}>
         <EventComponent setCenterAndZoom={this.setCenterAndZoom.bind(this)} />
         <TileLayer url={URL_FORMAT} />
-        <ZoomControl zoom={zoom} position="bottomright" />
         {this.props.renderChildren(center, zoom)}
       </MapContainer>
     );
