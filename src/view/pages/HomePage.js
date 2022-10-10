@@ -41,10 +41,27 @@ export default class HomePage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      showLayerDrawer: false,
+      selectedLayerTableName: null,
       selectedRegionID: null,
+      showLayerDrawer: false,
       allEntIndex: null,
     };
+  }
+
+  setSelectedLayerTableName(selectedLayerTableName) {
+    this.setState({ selectedLayerTableName });
+  }
+
+  unsetSelectedLayerTableName() {
+    this.setState({ selectedRegionID: null });
+  }
+
+  setSelectedRegion(selectedRegionID) {
+    this.setState({ selectedRegionID });
+  }
+
+  unsetSelectedRegion() {
+    this.setState({ selectedRegionID: null });
   }
 
   handleOpenLayerDrawer() {
@@ -53,13 +70,6 @@ export default class HomePage extends Component {
 
   handleCloseLayerDrawer() {
     this.setState({ showLayerDrawer: false });
-  }
-
-  setSelectedRegion(regionID) {
-    this.setState({ selectedRegionID: regionID });
-  }
-  unsetSelectedRegion() {
-    this.setState({ selectedRegionID: null });
   }
 
   handleCloseDrawer() {
@@ -99,14 +109,18 @@ export default class HomePage extends Component {
   }
 
   renderDrawerInner() {
+    const { selectedRegionID, selectedLayerTableName } = this.state;
     if (this.state.selectedRegionID !== null) {
-      return (
-        <RegionDrawerInner selectedRegionID={this.state.selectedRegionID} />
-      );
+      return <RegionDrawerInner selectedRegionID={selectedRegionID} />;
     }
 
     if (this.state.showLayerDrawer) {
-      return <LayerDrawerInner />;
+      return (
+        <LayerDrawerInner
+          selectedLayerTableName={selectedLayerTableName}
+          setSelectedLayerTableName={this.setSelectedLayerTableName.bind(this)}
+        />
+      );
     }
 
     return null;
