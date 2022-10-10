@@ -1,27 +1,34 @@
 import { Component } from "react";
+
+import Ents from "../../nonview/base/Ents";
+import EntsForMaps from "../../nonview/core/EntsForMaps";
+
 import GeoMap from "../molecules/GeoMap";
 import RegionGeo from "../molecules/RegionGeo";
-import Ents, { ENT } from "../../nonview/base/Ents";
 
 export default class HomePage extends Component {
   constructor(props) {
     super(props);
-    this.state = { displayRegionIDs: [] };
+    this.state = { allEntIndex: undefined };
   }
 
   async componentDidMount() {
-    const entIndex = await Ents.getEntIndexByType(ENT.DSD);
-    const filteredEnts = Object.values(entIndex).filter(function (ent) {
-      const [lat, lng] = JSON.parse(ent.centroid);
-      return 6.8 < lat && lat < 7.0 && 79.8 < lng && lng < 80.0;
-    });
-    const displayRegionIDs = filteredEnts.map((ent) => ent.id);
-    console.debug("displayRegionIDs.length", displayRegionIDs.length);
-    this.setState({ displayRegionIDs });
+    const allEntIndex = await Ents.getAllEntIndex();
+    this.setState({ allEntIndex });
   }
 
-  renderInner() {
-    const { displayRegionIDs } = this.state;
+  renderGeoMapChildren(center, zoom) {
+    const { allEntIndex } = this.state;
+    if (!allEntIndex) {
+      return null;
+    }
+
+    const displayRegionIDs = EntsForMaps.getDisplayRegionIDs(
+      allEntIndex,
+      center,
+      zoom
+    );
+
     return displayRegionIDs.map(function (regionID) {
       const key = `region-geo-${regionID}`;
       return <RegionGeo key={key} regionID={regionID} />;
@@ -29,6 +36,6 @@ export default class HomePage extends Component {
   }
 
   render() {
-    return <GeoMap>{this.renderInner()}</GeoMap>;
+    return <GeoMap renderChildren={this.renderGeoMapChildren.bind(this)} />;
   }
 }
