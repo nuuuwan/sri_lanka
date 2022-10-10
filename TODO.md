@@ -1,5 +1,4 @@
 # Diff Plan
 
-* [feat] Filter Geos for Visible Map Area
-* [feat] Show Minimal Version of Map
-* [feat] Add New Data Sources
+[feat] Layers
+[feat] Bottom Navigation
