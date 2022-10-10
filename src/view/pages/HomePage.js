@@ -8,8 +8,8 @@ import Ents from "../../nonview/base/Ents";
 import EntsForMaps from "../../nonview/core/EntsForMaps";
 
 import CustomBottomNavigation from "../../view/molecules/CustomBottomNavigation";
-import GeoMap from "../molecules/GeoMap";
-import RegionGeo from "../molecules/RegionGeo";
+import GeoMap from "../organisms/GeoMap";
+import RegionGeo from "../organisms/RegionGeo";
 
 const FOOTER_HEIGHT = 60;
 const STYLE_BOX = {};
