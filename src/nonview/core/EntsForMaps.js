@@ -3,10 +3,10 @@ import { ENT } from "../../nonview/base/Ents";
 const N_DISPLAY_REGIONS = 20;
 export default class EntsForMaps {
   static getEntTypeForZoom(zoom) {
-    if (zoom <= 10) {
+    if (zoom <= 8) {
       return ENT.PROVINCE;
     }
-    if (zoom <= 12) {
+    if (zoom <= 10) {
       return ENT.DISTRICT;
     }
     if (zoom <= 15) {
