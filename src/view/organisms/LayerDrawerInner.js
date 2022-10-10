@@ -23,11 +23,20 @@ export default class LayerDrawInner extends Component {
       return "Loading...";
     }
 
+    const { selectedLayerTableName, setSelectedLayerTableName } = this.props;
+
     return (
       <List>
         {metaData.map(function (layerData, iLayer) {
           const key = "layer-" + iLayer;
-          return <LayerView key={key} layerData={layerData} />;
+          return (
+            <LayerView
+              key={key}
+              layerData={layerData}
+              selectedLayerTableName={selectedLayerTableName}
+              setSelectedLayerTableName={setSelectedLayerTableName}
+            />
+          );
         })}
       </List>
     );
