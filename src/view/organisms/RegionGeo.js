@@ -1,13 +1,8 @@
 import { Component } from "react";
-import { GeoJSON, Popup } from "react-leaflet";
+import { GeoJSON } from "react-leaflet";
 
+import Ents from "../../nonview/base/Ents.js";
 import GeoData from "../../nonview/base/GeoData.js";
-import Ents, {
-  ENT_TYPE_TO_LONG_NAME,
-  PARENT_TO_CHILD,
-} from "../../nonview/base/Ents.js";
-
-import EntView from "../atoms/EntView.js";
 
 const DEFAULT_STYLE_GEOJSON = {
   color: "white",
@@ -43,31 +38,17 @@ export default class RegionGeo extends Component {
 
   render() {
     const { geoData } = this.state;
+
     if (!geoData) {
       return "...";
     }
 
-    const { regionType, regionID, onClick, renderCustom, iRegion } = this.props;
+    const { regionID, setSelectedRegion } = this.props;
 
     const geoJsonData = {
       type: "MultiPolygon",
       coordinates: geoData,
     };
-
-    let buttonShow = null;
-    const subRegionType = PARENT_TO_CHILD[regionType];
-    if (subRegionType) {
-      const subRegionTypeName = ENT_TYPE_TO_LONG_NAME[subRegionType];
-      const onClickInner = function () {
-        onClick(regionType, regionID);
-      };
-      buttonShow = (
-        <div className="div-show" onClick={onClickInner}>
-          Show
-          <strong>{` ${subRegionTypeName}s`}</strong>
-        </div>
-      );
-    }
 
     let style = dumbCopy(DEFAULT_STYLE_GEOJSON);
     if (this.props.color) {
@@ -77,33 +58,20 @@ export default class RegionGeo extends Component {
       style.fillOpacity = this.props.opacity;
     }
 
-    let styleDummy = dumbCopy(DEFAULT_STYLE_GEOJSON);
-    styleDummy.fillColor = "white";
+    function onClickRegionInner() {
+      setSelectedRegion(regionID);
+    }
 
     return (
-      <>
-        <GeoJSON
-          className="geojson"
-          key={`geojson-${regionID}-dummy`}
-          data={geoJsonData}
-          style={styleDummy}
-        />
-        <GeoJSON
-          className="geojson"
-          key={`geojson-${regionID}`}
-          data={geoJsonData}
-          style={style}
-        >
-          <Popup>
-            <h2>
-              <EntView entID={regionID} />
-            </h2>
-            {buttonShow}
-            <hr />
-            {renderCustom ? renderCustom(regionID, iRegion) : null}
-          </Popup>
-        </GeoJSON>
-      </>
+      <GeoJSON
+        className="geojson"
+        key={`geojson-${regionID}`}
+        data={geoJsonData}
+        style={style}
+        eventHandlers={{
+          click: onClickRegionInner,
+        }}
+      />
     );
   }
 }
