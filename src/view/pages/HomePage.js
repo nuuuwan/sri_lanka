@@ -1,10 +1,22 @@
 import { Component } from "react";
 
+import Box from "@mui/material/Box";
+
 import Ents from "../../nonview/base/Ents";
 import EntsForMaps from "../../nonview/core/EntsForMaps";
 
+import CustomBottomNavigation from "../../view/molecules/CustomBottomNavigation";
 import GeoMap from "../molecules/GeoMap";
 import RegionGeo from "../molecules/RegionGeo";
+
+const STYLE_BODY = { position: "fixed", bottom: 0, top: 0, left: 0, right: 0 };
+const STYLE_FOOTER = {
+  position: "fixed",
+  bottom: -50,
+  height: 100,
+  left: 0,
+  right: 0,
+};
 
 export default class HomePage extends Component {
   constructor(props) {
@@ -36,6 +48,15 @@ export default class HomePage extends Component {
   }
 
   render() {
-    return <GeoMap renderChildren={this.renderGeoMapChildren.bind(this)} />;
+    return (
+      <>
+        <Box sx={STYLE_BODY}>
+          <GeoMap renderChildren={this.renderGeoMapChildren.bind(this)} />
+        </Box>
+        <Box sx={STYLE_FOOTER}>
+          <CustomBottomNavigation />
+        </Box>
+      </>
+    );
   }
 }
