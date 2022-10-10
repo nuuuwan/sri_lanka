@@ -6,6 +6,7 @@ import IconButton from "@mui/material/IconButton";
 import Paper from "@mui/material/Paper";
 import CloseIcon from "@mui/icons-material/Close";
 
+import GIG2 from "../../nonview/base/GIG2";
 import Ents from "../../nonview/base/Ents";
 import EntsForMaps from "../../nonview/core/EntsForMaps";
 
@@ -39,7 +40,7 @@ const STYLE_DRAWER_INNER = {
 
 const DEFAULT_SELECTED_LAYER_TABLE_NAME =
   "regions.2012_census.ethnicity_of_population";
-const DEFAULT_SELECTED_REGION_ID = "LK-11";
+const DEFAULT_SELECTED_REGION_ID = null;
 
 export default class HomePage extends Component {
   constructor(props) {
@@ -49,6 +50,7 @@ export default class HomePage extends Component {
       selectedRegionID: DEFAULT_SELECTED_REGION_ID,
       showLayerDrawer: false,
       allEntIndex: null,
+      tableIndex: null,
     };
   }
 
@@ -57,7 +59,7 @@ export default class HomePage extends Component {
   }
 
   unsetSelectedLayerTableName() {
-    this.setState({ selectedRegionID: null });
+    this.setState({ selectedLayerTableName: null });
   }
 
   setSelectedRegion(selectedRegionID) {
@@ -82,13 +84,17 @@ export default class HomePage extends Component {
   }
 
   async componentDidMount() {
+    const { selectedLayerTableName } = this.state;
+
     const allEntIndex = await Ents.getAllEntIndex();
-    this.setState({ allEntIndex });
+    const tableIndex = await GIG2.getTableIndex(selectedLayerTableName);
+
+    this.setState({ allEntIndex, tableIndex });
   }
 
   renderGeoMapChildren(center, zoom) {
-    const { allEntIndex, selectedRegionID } = this.state;
-    if (!allEntIndex) {
+    const { allEntIndex, selectedRegionID, tableIndex } = this.state;
+    if (!allEntIndex || !tableIndex) {
       return null;
     }
 
@@ -101,12 +107,15 @@ export default class HomePage extends Component {
     return displayRegionIDs.map(
       function (regionID) {
         const key = `region-geo-${regionID}`;
+        const tableRow = tableIndex[regionID];
+        const color = GIG2.getTableRowColor(tableRow);
         return (
           <RegionGeo
             key={key}
             regionID={regionID}
             selectedRegionID={selectedRegionID}
             setSelectedRegion={this.setSelectedRegion.bind(this)}
+            color={color}
           />
         );
       }.bind(this)
