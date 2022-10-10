@@ -10,8 +10,8 @@ import Ents from "../../nonview/base/Ents";
 import EntsForMaps from "../../nonview/core/EntsForMaps";
 
 import CustomBottomNavigation from "../../view/molecules/CustomBottomNavigation";
-import LayerDrawerInner from "../../view/molecules/LayerDrawerInner";
 import GeoMap from "../organisms/GeoMap";
+import LayerDrawerInner from "../../view/organisms/LayerDrawerInner";
 import RegionDrawerInner from "../../view/organisms/RegionDrawerInner";
 import RegionGeo from "../organisms/RegionGeo";
 
