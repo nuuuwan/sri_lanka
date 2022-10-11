@@ -1,15 +1,20 @@
 import { Component } from "react";
 
 import Box from "@mui/material/Box";
+import Grid from "@mui/material/Grid";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import Typography from "@mui/material/Typography";
 
 import GIG2 from "../../nonview/base/GIG2";
+import StringX from "../../nonview/base/StringX";
 
 import EntView from "../../view/atoms/EntView";
 
 export default class RegionDrawerInner extends Component {
   constructor(props) {
     super(props);
-    this.state = { table: undefined };
+    this.state = { tableRow: undefined };
   }
 
   async componentDidMount() {
@@ -19,20 +24,71 @@ export default class RegionDrawerInner extends Component {
     }
 
     const tableIndex = await GIG2.getTableIndex(selectedLayerTableName);
-    const table = tableIndex[selectedRegionID];
-    this.setState({ table });
+    const tableRow = tableIndex[selectedRegionID];
+    this.setState({ tableRow });
   }
 
-  render() {
-    const { table } = this.state;
-    if (!table) {
+  renderTableRow() {
+    const { tableRow } = this.state;
+    if (!tableRow) {
       return "Loading...";
     }
 
+    const valueKeys = GIG2.filterValueCellKeys(tableRow);
+    const sortedKeysAndValues = valueKeys
+      .map((k) => [k, tableRow[k]])
+      .sort(function (a, b) {
+        return b[1] - a[1];
+      });
+    const MAX_NON_OTHER = 4;
+    const otherValue = sortedKeysAndValues
+      .slice(MAX_NON_OTHER)
+      .reduce(function (otherValue, [k, v]) {
+        return otherValue + v;
+      }, 0);
+    const totalValue = sortedKeysAndValues.reduce(function (
+      totalValue,
+      [k, v]
+    ) {
+      return totalValue + v;
+    },
+    0);
+    const displayKeysAndValues = [].concat(
+      sortedKeysAndValues.slice(0, MAX_NON_OTHER),
+      [["Others", otherValue]]
+    );
+    console.debug(displayKeysAndValues);
+
+    return (
+      <List>
+        {displayKeysAndValues.map(function ([k, v]) {
+          return (
+            <ListItem>
+              <Grid container spacing={2}>
+                <Grid item xs={6}>
+                  <Typography>{k}</Typography>
+                </Grid>
+                <Grid item xs={3} align="right">
+                  <Typography>{StringX.formatInt(v)}</Typography>
+                </Grid>
+                <Grid item xs={3} align="right">
+                  <Typography>
+                    {StringX.formatPercent(v, totalValue)}
+                  </Typography>
+                </Grid>
+              </Grid>
+            </ListItem>
+          );
+        })}
+      </List>
+    );
+  }
+
+  render() {
     return (
       <Box>
         <EntView entID={this.props.selectedRegionID} />
-        {JSON.stringify(table)}
+        {this.renderTableRow()}
       </Box>
     );
   }
