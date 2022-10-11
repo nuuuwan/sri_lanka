@@ -16,6 +16,10 @@ import LayerDrawerInner from "../../view/organisms/LayerDrawerInner";
 import RegionDrawerInner from "../../view/organisms/RegionDrawerInner";
 import RegionGeo from "../organisms/RegionGeo";
 
+const DEFAULT_ZOOM = 7;
+const DEFAULT_CENTER = [7.8742, 80.6511]; // Dambulla
+// const DEFAULT_CENTER = [6.9157, 79.8636]; // Townhall Colombo
+
 const FOOTER_HEIGHT = 60;
 const STYLE_BOX = {};
 const STYLE_BODY = {
@@ -51,7 +55,13 @@ export default class HomePage extends Component {
       showLayerDrawer: false,
       allEntIndex: null,
       tableIndex: null,
+      zoom: DEFAULT_ZOOM,
+      center: DEFAULT_CENTER,
     };
+  }
+
+  setCenterAndZoom(center, zoom) {
+    this.setState({ center, zoom });
   }
 
   async setSelectedLayerTableName(selectedLayerTableName) {
@@ -152,12 +162,13 @@ export default class HomePage extends Component {
 
   render() {
     let drawerInner = this.renderDrawerInner();
-    const { selectedLayerTableName, selectedRegionID } = this.state;
     return (
       <Box sx={STYLE_BOX}>
         <Paper sx={STYLE_BODY}>
           <GeoMap
-            key={`geo-map-${selectedLayerTableName}-${selectedRegionID}`}
+            center={this.state.center}
+            zoom={this.state.zoom}
+            setCenterAndZoom={this.setCenterAndZoom.bind(this)}
             renderChildren={this.renderGeoMapChildren.bind(this)}
           />
           <Drawer
