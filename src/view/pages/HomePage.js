@@ -4,6 +4,7 @@ import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import IconButton from "@mui/material/IconButton";
 import Paper from "@mui/material/Paper";
+import Typography from "@mui/material/Typography";
 import CloseIcon from "@mui/icons-material/Close";
 
 import Ents from "../../nonview/base/Ents";
@@ -40,6 +41,16 @@ const STYLE_FOOTER = {
 const STYLE_DRAWER_INNER = {
   width: 320,
   maxWidth: "80%",
+};
+
+const STYLE_FLOATING_BOX = {
+  position: "fixed",
+  top: "1%",
+  left: "1%",
+  zIndex: 10000,
+  background: "rgba(255,255,255,0.8)",
+  padding: 1,
+  borderRadius: 10,
 };
 
 const DEFAULT_SELECTED_LAYER_TABLE_NAME =
@@ -162,12 +173,18 @@ export default class HomePage extends Component {
 
   render() {
     let drawerInner = this.renderDrawerInner();
+    const { center, zoom, selectedLayerTableName } = this.state;
     return (
       <Box sx={STYLE_BOX}>
         <Paper sx={STYLE_BODY}>
+          <Box sx={STYLE_FLOATING_BOX}>
+            <Typography variant="subtitle1">
+              {selectedLayerTableName}
+            </Typography>
+          </Box>
           <GeoMap
-            center={this.state.center}
-            zoom={this.state.zoom}
+            center={center}
+            zoom={zoom}
             setCenterAndZoom={this.setCenterAndZoom.bind(this)}
             renderChildren={this.renderGeoMapChildren.bind(this)}
           />
