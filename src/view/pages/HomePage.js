@@ -54,7 +54,7 @@ const STYLE_FLOATING_BOX = {
 };
 
 const DEFAULT_SELECTED_LAYER_TABLE_NAME =
-  "regions.2012_census.ethnicity_of_population";
+  "regions_ec.2019_election_presidential.result";
 const DEFAULT_SELECTED_REGION_ID = null;
 
 export default class HomePage extends Component {
@@ -127,7 +127,8 @@ export default class HomePage extends Component {
     const displayRegionIDs = EntsForMaps.getDisplayRegionIDs(
       allEntIndex,
       center,
-      zoom
+      zoom,
+      selectedLayerTableName
     );
 
     return displayRegionIDs.map(

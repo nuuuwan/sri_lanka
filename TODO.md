@@ -5,7 +5,6 @@
 
 * style: Icons for Layers
 * feat: Labels on Areas
-* feat: Render Elections and Other Data
 * feat: Typeahead Search for Layers
 
 * Dorling Cartogram
