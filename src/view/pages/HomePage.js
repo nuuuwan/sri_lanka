@@ -38,7 +38,6 @@ const STYLE_FOOTER = {
 
 const STYLE_DRAWER_INNER = {
   width: 320,
-  maxWidth: "80%",
 };
 
 const STYLE_FLOATING_BOX = {
