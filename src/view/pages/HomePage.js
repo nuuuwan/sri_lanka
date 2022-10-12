@@ -6,7 +6,6 @@ import Paper from "@mui/material/Paper";
 
 import Ents from "../../nonview/base/Ents";
 import GIG2 from "../../nonview/base/GIG2";
-import GIG2TableMetadata from "../../nonview/base/GIG2TableMetadata";
 import GeoLocation from "../../nonview/base/GeoLocation";
 import EntsForMaps from "../../nonview/core/EntsForMaps";
 
@@ -189,16 +188,12 @@ export default class HomePage extends Component {
     let drawerInner = this.renderDrawerInner();
     const { center, zoom, selectedLayerTableName } = this.state;
 
-    const selectedLayerTableMetadata = new GIG2TableMetadata(
-      selectedLayerTableName
-    );
-
     const key = `geo-map-${zoom}-${center}`;
     return (
       <Box sx={STYLE_BOX}>
         <Paper sx={STYLE_BODY}>
           <Box sx={STYLE_FLOATING_BOX}>
-            <TableTitleView tableMetadata={selectedLayerTableMetadata} />
+            <TableTitleView tableName={selectedLayerTableName} />
           </Box>
           <GeoMap
             key={key}
