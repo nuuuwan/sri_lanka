@@ -1,5 +1,6 @@
-import { METADATA_MAP } from "../../nonview/constants/GIG2Constants";
 import StringX from "../../nonview/base/StringX";
+import { METADATA_MAP } from "../../nonview/constants/GIG2Constants";
+
 export default class GIG2TableMetadata {
   constructor(tableName) {
     this.tableName = tableName;
@@ -36,5 +37,17 @@ export default class GIG2TableMetadata {
 
   get time() {
     return StringX.toTitleCase(this.timeID);
+  }
+
+  get dataSource() {
+    if (this.spaceID === "regions") {
+      return "statistics.gov.lk";
+    }
+
+    if (this.spaceID === "regions_ec") {
+      return "elections.gov.lk";
+    }
+
+    return "unknown";
   }
 }
