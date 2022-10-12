@@ -12,6 +12,11 @@ import StringX from "../../nonview/base/StringX";
 
 import EntView from "../../view/atoms/EntView";
 
+const STYLE_BOX = {
+  m: 1,
+  p: 1,
+};
+
 export default class RegionDrawerInner extends Component {
   constructor(props) {
     super(props);
@@ -86,7 +91,7 @@ export default class RegionDrawerInner extends Component {
 
   render() {
     return (
-      <Box>
+      <Box sx={STYLE_BOX}>
         <EntView entID={this.props.selectedRegionID} />
         {this.renderTableRow()}
       </Box>
