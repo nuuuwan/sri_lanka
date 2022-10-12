@@ -64,14 +64,14 @@ export default class RegionDrawerInner extends Component {
           const key = `list-item-${k}`;
           return (
             <ListItem key={key}>
-              <Grid container spacing={2}>
-                <Grid item xs={6}>
+              <Grid container spacing={2} alignItems="center">
+                <Grid item xs={5}>
                   <Typography>{k}</Typography>
                 </Grid>
-                <Grid item xs={3} align="right">
+                <Grid item xs={2} align="right">
                   <Typography>{StringX.formatInt(v)}</Typography>
                 </Grid>
-                <Grid item xs={3} align="right">
+                <Grid item xs={2} align="right">
                   <Typography>
                     {StringX.formatPercent(v, totalValue)}
                   </Typography>
