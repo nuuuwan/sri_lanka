@@ -74,7 +74,11 @@ export default class HomePage extends Component {
 
   async setSelectedLayerTableName(selectedLayerTableName) {
     const tableIndex = await GIG2.getTableIndex(selectedLayerTableName);
-    this.setState({ tableIndex, selectedLayerTableName });
+    this.setState({
+      tableIndex,
+      selectedLayerTableName,
+      showLayerDrawer: false,
+    });
   }
 
   unsetSelectedLayerTableName() {
