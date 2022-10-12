@@ -1,5 +1,10 @@
 const MAX_SIG_DIGITS = 2;
 
+const STRING_REPLACE_LIST = [
+  [" Of ", " of "],
+  ["Election Presidential", "Presidential Election"],
+];
+
 export default class StringX {
   static toTitleCase(str) {
     if (str === str.toUpperCase()) {
@@ -9,7 +14,9 @@ export default class StringX {
     str = str.replace(/\w\S*/g, function (txt) {
       return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
     });
-    str = str.replaceAll(" Of ", " of ");
+    for (let [before, after] of STRING_REPLACE_LIST) {
+      str = str.replaceAll(before, after);
+    }
     return str;
   }
 
