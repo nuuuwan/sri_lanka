@@ -1,5 +1,5 @@
 import { METADATA_MAP } from "../../nonview/constants/GIG2Constants";
-
+import StringX from "../../nonview/base/StringX";
 export default class GIG2TableMetadata {
   constructor(tableName) {
     this.tableName = tableName;
@@ -27,14 +27,14 @@ export default class GIG2TableMetadata {
   }
 
   get attr() {
-    return this.attrID.replaceAll("_", " ");
+    return StringX.toTitleCase(this.attrID);
   }
 
   get space() {
-    return this.spaceID.replaceAll("_", " ");
+    return StringX.toTitleCase(this.spaceID);
   }
 
   get time() {
-    return this.timeID.replaceAll("_", " ");
+    return StringX.toTitleCase(this.timeID);
   }
 }
