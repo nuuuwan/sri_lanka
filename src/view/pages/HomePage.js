@@ -8,7 +8,9 @@ import Typography from "@mui/material/Typography";
 import Ents from "../../nonview/base/Ents";
 import GIG2 from "../../nonview/base/GIG2";
 import EntsForMaps from "../../nonview/core/EntsForMaps";
+import TableTitleView from "../../view/molecules/TableTitleView";
 
+import GIG2TableMetadata from "../../nonview/base/GIG2TableMetadata";
 import CustomBottomNavigation from "../../view/molecules/CustomBottomNavigation";
 import GeoMap from "../organisms/GeoMap";
 import LayerDrawerInner from "../../view/organisms/LayerDrawerInner";
@@ -47,7 +49,7 @@ const STYLE_FLOATING_BOX = {
   zIndex: 10000,
   background: "rgba(255,255,255,0.8)",
   padding: 1,
-  borderRadius: 10,
+  borderRadius: 3,
 };
 
 const STYLE_DRAWER = {
@@ -183,13 +185,14 @@ export default class HomePage extends Component {
   render() {
     let drawerInner = this.renderDrawerInner();
     const { center, zoom, selectedLayerTableName } = this.state;
+    const selectedLayerTableMetadata = new GIG2TableMetadata(
+      selectedLayerTableName
+    );
     return (
       <Box sx={STYLE_BOX}>
         <Paper sx={STYLE_BODY}>
           <Box sx={STYLE_FLOATING_BOX}>
-            <Typography variant="subtitle1">
-              {selectedLayerTableName}
-            </Typography>
+            <TableTitleView tableMetadata={selectedLayerTableMetadata} />
           </Box>
           <GeoMap
             center={center}
