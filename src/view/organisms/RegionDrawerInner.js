@@ -58,8 +58,6 @@ export default class RegionDrawerInner extends Component {
       sortedKeysAndValues.slice(0, MAX_NON_OTHER),
       [["Others", otherValue]]
     );
-    console.debug(displayKeysAndValues);
-
     return (
       <List>
         {displayKeysAndValues.map(function ([k, v]) {

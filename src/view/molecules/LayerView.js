@@ -13,7 +13,6 @@ export default function LayerView({
   setSelectedLayerTableName,
 }) {
   const tableMetadata = new GIG2TableMetadata(tableName);
-  console.debug(tableMetadata.data);
 
   const selected = selectedLayerTableName === tableName;
 
