@@ -1,6 +1,6 @@
 import { ENT } from "../../nonview/base/Ents";
 
-const MAX_DISPLAY_REGIONS = 100;
+const MAX_DISPLAY_REGIONS = 32;
 const K_MAX_DISTANCE = 1500;
 
 export default class EntsForMaps {
