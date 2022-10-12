@@ -94,9 +94,25 @@ export default class GIG2 {
     return adhocValueKeyToColor[valueKey];
   }
 
-  static getTableRowColor(tableRow) {
+  static getOpacityFromP(p) {
+    const P_CUTOFF = 0.5;
+    const q = Math.min(P_CUTOFF, p - P_CUTOFF) / P_CUTOFF;
+    const [MIN_OPACITY, MAX_OPACITY] = [0.1, 0.7];
+    return MIN_OPACITY + q * (MAX_OPACITY - MIN_OPACITY);
+  }
+
+  static getTableRowColorAndOpacity(tableRow) {
     const maxValueKey = GIG2.getMaxValueKey(tableRow);
-    return GIG2.getValueKeyColor(maxValueKey);
+
+    const color = GIG2.getValueKeyColor(maxValueKey);
+
+    const maxValueP = GIG2.getValueKeyP(tableRow, maxValueKey);
+    const opacity = GIG2.getOpacityFromP(maxValueP);
+
+    return {
+      color,
+      opacity,
+    };
   }
 
   static getValuePToRankP(dataList, valueKey) {

@@ -135,7 +135,7 @@ export default class HomePage extends Component {
       function (regionID) {
         const key = `region-geo-${selectedLayerTableName}-${regionID}`;
         const tableRow = tableIndex[regionID];
-        const color = GIG2.getTableRowColor(tableRow);
+        const { color, opacity } = GIG2.getTableRowColorAndOpacity(tableRow);
         return (
           <RegionGeo
             key={key}
@@ -143,6 +143,7 @@ export default class HomePage extends Component {
             selectedRegionID={selectedRegionID}
             setSelectedRegion={this.setSelectedRegion.bind(this)}
             color={color}
+            opacity={opacity}
           />
         );
       }.bind(this)
