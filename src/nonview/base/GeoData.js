@@ -1,5 +1,4 @@
-import Ents from "./Ents.js";
-import { REGION_TYPES } from "./Ents.js";
+import Ents, { REGION_TYPES } from "./Ents.js";
 import WWW from "./WWW.js";
 
 export const DEFAULT_ZOOM = 8;
