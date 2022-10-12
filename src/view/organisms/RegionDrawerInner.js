@@ -6,6 +6,8 @@ import Grid from "@mui/material/Grid";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import Typography from "@mui/material/Typography";
+import TableTitleView from "../../view/molecules/TableTitleView";
+import Paper from "@mui/material/Paper";
 
 import GIG2 from "../../nonview/base/GIG2";
 import StringX from "../../nonview/base/StringX";
@@ -14,6 +16,11 @@ import EntView from "../../view/atoms/EntView";
 
 const STYLE_BOX = {
   m: 1,
+  p: 1,
+};
+
+const STYLE_PAPER = {
+  m: 0.5,
   p: 1,
 };
 
@@ -76,7 +83,7 @@ export default class RegionDrawerInner extends Component {
                 <Grid item xs={3} align="right">
                   <Typography>{StringX.formatInt(v)}</Typography>
                 </Grid>
-                <Grid item xs={2} align="right">
+                <Grid item xs={3} align="right">
                   <Typography>
                     {StringX.formatPercent(v, totalValue)}
                   </Typography>
@@ -90,10 +97,15 @@ export default class RegionDrawerInner extends Component {
   }
 
   render() {
+    const { selectedLayerTableName } = this.props;
+
     return (
       <Box sx={STYLE_BOX}>
         <EntView entID={this.props.selectedRegionID} />
-        {this.renderTableRow()}
+        <Paper sx={STYLE_PAPER}>
+          <TableTitleView tableName={selectedLayerTableName} />
+          {this.renderTableRow()}
+        </Paper>
       </Box>
     );
   }
