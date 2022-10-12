@@ -6,9 +6,11 @@ export default class StringX {
       return str;
     }
     str = str.replaceAll("_", " ");
-    return str.replace(/\w\S*/g, function (txt) {
+    str = str.replace(/\w\S*/g, function (txt) {
       return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
     });
+    str = str.replaceAll(" Of ", " of ");
+    return str;
   }
 
   static formatInt(x) {
