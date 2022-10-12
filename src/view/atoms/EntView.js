@@ -5,10 +5,6 @@ import Typography from "@mui/material/Typography";
 
 import Ents from "../../nonview/base/Ents.js";
 
-const STYLE_BOX = {
-  padding: 1,
-};
-
 export default class EntView extends Component {
   constructor(props) {
     super(props);
