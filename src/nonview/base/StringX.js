@@ -15,13 +15,13 @@ export default class StringX {
     const logBase1000 = Math.log(x) / Math.log(1000);
 
     let numPart, multPart, color;
-    if (x > 1_000_000) {
+    if (x >= 1_000_000) {
       numPart = Number(x / 1_000_000).toLocaleString(undefined, {
         maximumSignificantDigits: MAX_SIG_DIGITS,
       });
       multPart = "M";
       color = "#000";
-    } else if (x > 1_000) {
+    } else if (x >= 1_000) {
       numPart = Number(x / 1_000).toLocaleString(undefined, {
         maximumSignificantDigits: MAX_SIG_DIGITS,
       });
