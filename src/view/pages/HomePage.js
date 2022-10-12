@@ -3,7 +3,7 @@ import { Component } from "react";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import Paper from "@mui/material/Paper";
-
+import GeoLocation from "../../nonview/base/GeoLocation";
 import Ents from "../../nonview/base/Ents";
 import GIG2 from "../../nonview/base/GIG2";
 import GIG2TableMetadata from "../../nonview/base/GIG2TableMetadata";
@@ -16,7 +16,7 @@ import GeoMap from "../organisms/GeoMap";
 import RegionDrawerInner from "../../view/organisms/RegionDrawerInner";
 import RegionGeo from "../organisms/RegionGeo";
 
-const DEFAULT_ZOOM = 7;
+const DEFAULT_ZOOM = 12;
 const DEFAULT_CENTER = [7.8742, 80.6511]; // Dambulla
 // const DEFAULT_CENTER = [6.9157, 79.8636]; // Townhall Colombo
 
@@ -114,11 +114,14 @@ export default class HomePage extends Component {
   }
 
   async componentDidMount() {
-    const { selectedLayerTableName } = this.state;
+    const geoCenter = await GeoLocation.getLatLng();
+    const center = geoCenter ? geoCenter : DEFAULT_CENTER;
 
+    const { selectedLayerTableName } = this.state;
     const allEntIndex = await Ents.getAllEntIndex();
     const tableIndex = await GIG2.getTableIndex(selectedLayerTableName);
-    this.setState({ allEntIndex, tableIndex });
+
+    this.setState({ allEntIndex, tableIndex, center });
   }
 
   renderGeoMapChildren(center, zoom) {
@@ -184,9 +187,12 @@ export default class HomePage extends Component {
   render() {
     let drawerInner = this.renderDrawerInner();
     const { center, zoom, selectedLayerTableName } = this.state;
+
     const selectedLayerTableMetadata = new GIG2TableMetadata(
       selectedLayerTableName
     );
+
+    const key = `geo-map-${zoom}-${center}`;
     return (
       <Box sx={STYLE_BOX}>
         <Paper sx={STYLE_BODY}>
@@ -194,6 +200,7 @@ export default class HomePage extends Component {
             <TableTitleView tableMetadata={selectedLayerTableMetadata} />
           </Box>
           <GeoMap
+            key={key}
             center={center}
             zoom={zoom}
             setCenterAndZoom={this.setCenterAndZoom.bind(this)}
