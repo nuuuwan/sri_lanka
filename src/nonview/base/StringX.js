@@ -20,19 +20,19 @@ export default class StringX {
         maximumSignificantDigits: MAX_SIG_DIGITS,
       });
       multPart = "M";
-      color = "black";
+      color = "#000";
     } else if (x > 1_000) {
       numPart = Number(x / 1_000).toLocaleString(undefined, {
         maximumSignificantDigits: MAX_SIG_DIGITS,
       });
       multPart = "K";
-      color = "gray";
+      color = "#222";
     } else {
       numPart = Number(x).toLocaleString(undefined, {
         maximumSignificantDigits: MAX_SIG_DIGITS,
       });
       multPart = "";
-      color = "lightgray";
+      color = "#444";
     }
 
     const style = {
@@ -60,11 +60,9 @@ export default class StringX {
     let color;
     if (p > 0.1) {
       color = "black";
-      // } else if (p > 0.01) {
-      //   color = "gray";
     } else {
-      color = "lightgray";
-      // numPart = "<1%";
+      color = "#aaa";
+      numPart = "<1%";
     }
 
     const style = {
