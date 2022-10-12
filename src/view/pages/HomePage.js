@@ -3,10 +3,11 @@ import { Component } from "react";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import Paper from "@mui/material/Paper";
-import GeoLocation from "../../nonview/base/GeoLocation";
+
 import Ents from "../../nonview/base/Ents";
 import GIG2 from "../../nonview/base/GIG2";
 import GIG2TableMetadata from "../../nonview/base/GIG2TableMetadata";
+import GeoLocation from "../../nonview/base/GeoLocation";
 import EntsForMaps from "../../nonview/core/EntsForMaps";
 
 import CustomBottomNavigation from "../../view/molecules/CustomBottomNavigation";
