@@ -1,5 +1,5 @@
 import { Component } from "react";
-import { GeoJSON } from "react-leaflet";
+import { GeoJSON, Tooltip } from "react-leaflet";
 
 import Ents from "../../nonview/base/Ents.js";
 import GeoData from "../../nonview/base/GeoData.js";
@@ -71,7 +71,9 @@ export default class RegionGeo extends Component {
         eventHandlers={{
           click: onClickRegionInner,
         }}
-      />
+      >
+        <Tooltip permanent>{regionID}</Tooltip>
+      </GeoJSON>
     );
   }
 }
