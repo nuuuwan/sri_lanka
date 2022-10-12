@@ -5,14 +5,14 @@ import CircularProgress from "@mui/material/CircularProgress";
 import Grid from "@mui/material/Grid";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
-import Typography from "@mui/material/Typography";
-import TableTitleView from "../../view/molecules/TableTitleView";
 import Paper from "@mui/material/Paper";
+import Typography from "@mui/material/Typography";
 
 import GIG2 from "../../nonview/base/GIG2";
 import StringX from "../../nonview/base/StringX";
 
 import EntView from "../../view/atoms/EntView";
+import TableTitleView from "../../view/molecules/TableTitleView";
 
 const STYLE_BOX = {
   m: 1,

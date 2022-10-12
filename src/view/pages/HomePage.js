@@ -16,7 +16,7 @@ import GeoMap from "../organisms/GeoMap";
 import RegionDrawerInner from "../../view/organisms/RegionDrawerInner";
 import RegionGeo from "../organisms/RegionGeo";
 
-const DEFAULT_ZOOM = 12;
+const DEFAULT_ZOOM = 14;
 const DEFAULT_CENTER = [7.8742, 80.6511]; // Dambulla
 // const DEFAULT_CENTER = [6.9157, 79.8636]; // Townhall Colombo
 
@@ -111,6 +111,12 @@ export default class HomePage extends Component {
   handleCloseDrawer() {
     this.handleCloseLayerDrawer();
     this.unsetSelectedRegion();
+  }
+
+  async handleGeoLocation() {
+    const geoCenter = await GeoLocation.getLatLng();
+    const center = geoCenter ? geoCenter : DEFAULT_CENTER;
+    this.setState({ center, zoom: DEFAULT_ZOOM });
   }
 
   async componentDidMount() {
@@ -214,6 +220,7 @@ export default class HomePage extends Component {
         <Paper sx={STYLE_FOOTER}>
           <CustomBottomNavigation
             handleOpenLayerDrawer={this.handleOpenLayerDrawer.bind(this)}
+            handleGeoLocation={this.handleGeoLocation.bind(this)}
           />
         </Paper>
       </Box>
