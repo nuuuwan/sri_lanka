@@ -4,16 +4,16 @@ import ListItemAvatar from "@mui/material/ListItemAvatar";
 import ListItemButton from "@mui/material/ListItemButton";
 import Typography from "@mui/material/Typography";
 import LayersIcon from "@mui/icons-material/Layers";
+import GIG2TableMetadata from "../../nonview/base/GIG2TableMetadata";
+import TableTitleView from "../../view/molecules/TableTitleView";
 
 export default function LayerView({
-  layerData,
+  tableName,
   selectedLayerTableName,
   setSelectedLayerTableName,
 }) {
-  const tableName = layerData.table_name;
-  const tokens = tableName.split(".");
-  const sourceName = tokens[2].replaceAll("_", " ");
-  const source2Name = tokens[1].replaceAll("_", " ");
+  const tableMetadata = new GIG2TableMetadata(tableName);
+  console.debug(tableMetadata.data);
 
   const selected = selectedLayerTableName === tableName;
 
@@ -28,10 +28,7 @@ export default function LayerView({
           <LayersIcon />
         </Avatar>
       </ListItemAvatar>
-      <Box>
-        <Typography variant="caption">{source2Name}</Typography>
-        <Typography variant="subtitle1">{sourceName}</Typography>
-      </Box>
+      <TableTitleView tableMetadata={tableMetadata} />
     </ListItemButton>
   );
 }
