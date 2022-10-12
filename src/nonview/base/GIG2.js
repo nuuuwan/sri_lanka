@@ -2,15 +2,15 @@ import Color from "./Color.js";
 import MathX from "./MathX.js";
 import WWW from "./WWW.js";
 import { FIELD_NAME_TO_COLOR } from "../constants/ColorConstants.js";
-import { TABLE_NAMES } from "../constants/GIG2Constants.js";
+import { GROUP_TO_TABLE_NAMES } from "../constants/GIG2Constants.js";
 
 let adhocValueKeyToColor = {};
 
 const ID_FIELD_KEY = "entity_id";
 
 export default class GIG2 {
-  static getTableNames() {
-    return TABLE_NAMES;
+  static getGroupToTableNames() {
+    return GROUP_TO_TABLE_NAMES;
   }
 
   static async getTable(tableName) {
