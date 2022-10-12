@@ -66,7 +66,7 @@ export default class RegionDrawerInner extends Component {
             <ListItem key={key}>
               <Grid container alignItems="center">
                 <Grid item xs={6}>
-                  <Typography>{k}</Typography>
+                  <Typography>{StringX.toTitleCase(k)}</Typography>
                 </Grid>
                 <Grid item xs={3} align="right">
                   <Typography>{StringX.formatInt(v)}</Typography>
