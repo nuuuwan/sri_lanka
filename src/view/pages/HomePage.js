@@ -2,10 +2,8 @@ import { Component } from "react";
 
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
-import IconButton from "@mui/material/IconButton";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
-import CloseIcon from "@mui/icons-material/Close";
 
 import Ents from "../../nonview/base/Ents";
 import GIG2 from "../../nonview/base/GIG2";
@@ -195,14 +193,7 @@ export default class HomePage extends Component {
             open={drawerInner !== null}
             onClose={this.handleCloseDrawer.bind(this)}
           >
-            <Box sx={STYLE_DRAWER_INNER}>
-              <Box>
-                <IconButton onClick={this.handleCloseDrawer.bind(this)}>
-                  <CloseIcon />
-                </IconButton>
-              </Box>
-              <Box>{drawerInner}</Box>
-            </Box>
+            <Box sx={STYLE_DRAWER_INNER}>{drawerInner}</Box>
           </Drawer>
         </Paper>
         <Paper sx={STYLE_FOOTER}>
