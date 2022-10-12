@@ -2,6 +2,7 @@ import { Component } from "react";
 
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
+import StringX from "../../nonview/base/StringX";
 
 import Ents from "../../nonview/base/Ents.js";
 
@@ -28,8 +29,18 @@ export default class EntView extends Component {
       <Box>
         <Typography variant="caption">{ent.id}</Typography>
         <Typography variant="h6">{ent.name}</Typography>
-        <Typography variant="caption">
+        <Typography variant="subtitle2">
           {Ents.getEntTypeLongName(entType)}
+        </Typography>
+        <Typography variant="caption">
+          {StringX.formatInt(ent.population)}
+          {" pop"}
+        </Typography>
+        <Typography variant="caption">
+          {" · " + ent.area + "km² area"}
+        </Typography>
+        <Typography variant="caption">
+          {" · " + ent.centroid_altitude + "m alt"}
         </Typography>
       </Box>
     );
