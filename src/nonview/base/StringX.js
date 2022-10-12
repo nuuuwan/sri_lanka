@@ -59,7 +59,9 @@ export default class StringX {
 
     let color;
     if (p > 0.1) {
-      color = "black";
+      color = "#000";
+    } else if (p > 0.01) {
+      color = "#555";
     } else {
       color = "#aaa";
       numPart = "<1%";
