@@ -29,11 +29,12 @@ export default class EntView extends Component {
       return <Box>{entID}</Box>;
     }
     return (
-      <Box sx={STYLE_BOX}>
+      <Box>
+        <Typography variant="caption">{ent.id}</Typography>
+        <Typography variant="h5">{ent.name}</Typography>
         <Typography variant="caption">
           {Ents.getEntTypeLongName(entType)}
         </Typography>
-        <Typography variant="h6">{ent.name}</Typography>
       </Box>
     );
   }
