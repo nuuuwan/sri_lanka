@@ -37,7 +37,7 @@ export default class RegionGeo extends Component {
   }
 
   render() {
-    const { geoData } = this.state;
+    const { geoData, ent } = this.state;
 
     if (!geoData) {
       return "...";
@@ -72,7 +72,7 @@ export default class RegionGeo extends Component {
           click: onClickRegionInner,
         }}
       >
-        <Tooltip permanent>{regionID}</Tooltip>
+        <Tooltip permanent>{ent.name}</Tooltip>
       </GeoJSON>
     );
   }
