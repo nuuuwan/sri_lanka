@@ -3,17 +3,16 @@ import { Component } from "react";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import Paper from "@mui/material/Paper";
-import Typography from "@mui/material/Typography";
 
 import Ents from "../../nonview/base/Ents";
 import GIG2 from "../../nonview/base/GIG2";
-import EntsForMaps from "../../nonview/core/EntsForMaps";
-import TableTitleView from "../../view/molecules/TableTitleView";
-
 import GIG2TableMetadata from "../../nonview/base/GIG2TableMetadata";
+import EntsForMaps from "../../nonview/core/EntsForMaps";
+
 import CustomBottomNavigation from "../../view/molecules/CustomBottomNavigation";
+import LayerListView from "../../view/molecules/LayerListView";
+import TableTitleView from "../../view/molecules/TableTitleView";
 import GeoMap from "../organisms/GeoMap";
-import LayerDrawerInner from "../../view/organisms/LayerDrawerInner";
 import RegionDrawerInner from "../../view/organisms/RegionDrawerInner";
 import RegionGeo from "../organisms/RegionGeo";
 
@@ -172,7 +171,7 @@ export default class HomePage extends Component {
 
     if (this.state.showLayerDrawer) {
       return (
-        <LayerDrawerInner
+        <LayerListView
           selectedLayerTableName={selectedLayerTableName}
           setSelectedLayerTableName={this.setSelectedLayerTableName.bind(this)}
         />
