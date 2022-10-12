@@ -1,6 +1,7 @@
 import { Component } from "react";
 
 import Box from "@mui/material/Box";
+import CircularProgress from "@mui/material/CircularProgress";
 import Grid from "@mui/material/Grid";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
@@ -31,7 +32,7 @@ export default class RegionDrawerInner extends Component {
   renderTableRow() {
     const { tableRow } = this.state;
     if (!tableRow) {
-      return "Loading...";
+      return <CircularProgress />;
     }
 
     const valueKeys = GIG2.filterValueCellKeys(tableRow);
