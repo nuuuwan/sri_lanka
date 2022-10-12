@@ -21,11 +21,6 @@ export default function LayerView({
     setSelectedLayerTableName(tableName);
   }
 
-  let style = { color: "lightgray" };
-  if (selected) {
-    style.color = "primary";
-  }
-
   return (
     <ListItemButton selected={selected} onClick={onClick}>
       <ListItemAvatar>
@@ -33,7 +28,7 @@ export default function LayerView({
           <LayersIcon />
         </Avatar>
       </ListItemAvatar>
-      <Box sx={style}>
+      <Box>
         <Typography variant="caption">{source2Name}</Typography>
         <Typography variant="subtitle1">{sourceName}</Typography>
       </Box>
