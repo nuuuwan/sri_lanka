@@ -61,8 +61,9 @@ export default class RegionDrawerInner extends Component {
     return (
       <List>
         {displayKeysAndValues.map(function ([k, v]) {
+          const key = `list-item-${k}`;
           return (
-            <ListItem>
+            <ListItem key={key}>
               <Grid container spacing={2}>
                 <Grid item xs={6}>
                   <Typography>{k}</Typography>
