@@ -1,8 +1,5 @@
 # Diff Plan
 
-* style: progressive coloring
-* style: Transparent Drawer
-* feat: Render Table name more smartly
 * style: Icons for Layers
 * feat: center to geo location
 * feat: Labels on Areas
@@ -14,6 +11,7 @@
 * feat: Typeahead Search for Layers
 * feat: Dorling Cartogram
 * feat: Use atlas taxonomny
+* feat: Add legend
 
 # Design Questions
 
