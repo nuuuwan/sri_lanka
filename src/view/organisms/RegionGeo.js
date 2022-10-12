@@ -8,7 +8,7 @@ const DEFAULT_STYLE_GEOJSON = {
   color: "white",
   fillColor: "red",
   fillOpacity: 0.4,
-  weight: 1,
+  weight: 2,
 };
 
 function dumbCopy(x) {

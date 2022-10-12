@@ -1,6 +1,5 @@
 # Diff Plan
 
-* style: black, darker boundaries
 * style: progressive coloring
 * style: Transparent Drawer
 * feat: Render Table name more smartly
