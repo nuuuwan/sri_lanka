@@ -72,6 +72,7 @@ export default class HomePage extends Component {
       tableIndex: null,
       zoom: DEFAULT_ZOOM,
       center: DEFAULT_CENTER,
+      geoCenter: DEFAULT_CENTER,
     };
   }
 
@@ -116,7 +117,7 @@ export default class HomePage extends Component {
   async handleGeoLocation() {
     const geoCenter = await GeoLocation.getLatLng();
     const center = geoCenter ? geoCenter : DEFAULT_CENTER;
-    this.setState({ center, zoom: DEFAULT_ZOOM });
+    this.setState({ center, geoCenter, zoom: DEFAULT_ZOOM });
   }
 
   async componentDidMount() {
@@ -127,7 +128,7 @@ export default class HomePage extends Component {
     const allEntIndex = await Ents.getAllEntIndex();
     const tableIndex = await GIG2.getTableIndex(selectedLayerTableName);
 
-    this.setState({ allEntIndex, tableIndex, center });
+    this.setState({ allEntIndex, tableIndex, center, geoCenter });
   }
 
   renderGeoMapChildren(center, zoom) {
@@ -192,9 +193,9 @@ export default class HomePage extends Component {
 
   render() {
     let drawerInner = this.renderDrawerInner();
-    const { center, zoom, selectedLayerTableName } = this.state;
+    const { center, zoom, selectedLayerTableName, geoCenter } = this.state;
 
-    const key = `geo-map-${zoom}-${center}`;
+    const key = `geo-map-${zoom}-${geoCenter}`;
     return (
       <Box sx={STYLE_BOX}>
         <Paper sx={STYLE_BODY}>
