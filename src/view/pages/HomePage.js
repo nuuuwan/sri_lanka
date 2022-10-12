@@ -50,6 +50,12 @@ const STYLE_FLOATING_BOX = {
   borderRadius: 10,
 };
 
+const STYLE_DRAWER = {
+  "& .MuiPaper-root": {
+    background: "rgba(255, 255, 255, 0.8)",
+  },
+};
+
 const DEFAULT_SELECTED_LAYER_TABLE_NAME =
   "regions_ec.2019_election_presidential.result";
 const DEFAULT_SELECTED_REGION_ID = null;
@@ -195,6 +201,7 @@ export default class HomePage extends Component {
             anchor={"right"}
             open={drawerInner !== null}
             onClose={this.handleCloseDrawer.bind(this)}
+            sx={STYLE_DRAWER}
           >
             <Box sx={STYLE_DRAWER_INNER}>{drawerInner}</Box>
           </Drawer>
