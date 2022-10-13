@@ -96,9 +96,9 @@ export default class GIG2 {
   }
 
   static getOpacityFromP(p) {
-    const P_CUTOFF = 0.5;
+    const P_CUTOFF = 0.55;
     const q = Math.min(P_CUTOFF, p - P_CUTOFF) / P_CUTOFF;
-    const [MIN_OPACITY, MAX_OPACITY] = [0.1, 0.7];
+    const [MIN_OPACITY, MAX_OPACITY] = [0.4, 1];
     return MIN_OPACITY + q * (MAX_OPACITY - MIN_OPACITY);
   }
 
