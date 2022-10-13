@@ -74,17 +74,26 @@ export default class RegionDrawerInner extends Component {
       <List>
         {displayKeysAndValues.map(function ([k, v]) {
           const key = `list-item-${k}`;
+          const styleBullet = {
+            background: GIG2.getValueKeyColor(k),
+            opacity: GIG2.getOpacityFromP(GIG2.getValueKeyP(tableRow, k)),
+            p: 1,
+            borderRadius: 10,
+          };
           return (
             <ListItem key={key}>
-              <Grid container alignItems="center">
-                <Grid item xs={6}>
+              <Grid container alignItems="center" spacing={2}>
+                <Grid item xs={1}>
+                  <Typography sx={styleBullet}> </Typography>
+                </Grid>
+                <Grid item xs={5}>
                   <Typography>{StringX.toTitleCase(k)}</Typography>
                 </Grid>
-                <Grid item xs={3} align="right">
-                  <Typography>{StringX.formatInt(v)}</Typography>
+                <Grid item xs={3}>
+                  <Typography align="right">{StringX.formatInt(v)}</Typography>
                 </Grid>
-                <Grid item xs={3} align="right">
-                  <Typography>
+                <Grid item xs={3}>
+                  <Typography align="right">
                     {StringX.formatPercent(v, totalValue)}
                   </Typography>
                 </Grid>
