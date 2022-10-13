@@ -2,9 +2,9 @@ import { Component } from "react";
 
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import StringX from "../../nonview/base/StringX";
 
 import Ents from "../../nonview/base/Ents.js";
+import StringX from "../../nonview/base/StringX";
 
 export default class EntView extends Component {
   constructor(props) {
