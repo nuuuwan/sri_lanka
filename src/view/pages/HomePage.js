@@ -17,8 +17,8 @@ import RegionDrawerInner from "../../view/organisms/RegionDrawerInner";
 import RegionGeo from "../organisms/RegionGeo";
 
 const DEFAULT_ZOOM = 14;
-const DEFAULT_CENTER = [7.8742, 80.6511]; // Dambulla
-// const DEFAULT_CENTER = [6.9157, 79.8636]; // Townhall Colombo
+// const DEFAULT_CENTER = [7.8742, 80.6511]; // Dambulla
+const DEFAULT_CENTER = [6.9157, 79.8636]; // Townhall Colombo
 
 const FOOTER_HEIGHT = 60;
 const STYLE_BOX = {};
