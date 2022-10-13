@@ -17,8 +17,9 @@ export const FIELD_NAME_TO_COLOR = {
   ACTC: COLOR_SL_FLAG.TAMIL,
   SLMP: "purple",
 
+  Others: "ghostwhite",
   other: "ghostwhite",
-  others: "gray",
+  others: "ghostwhite",
   // ethnicity_of_population
   bharatha: "cyan",
   burgher: "purple",
@@ -147,5 +148,5 @@ export const FIELD_NAME_TO_COLOR = {
   occupied: "green",
   vacant: "red",
   // year_of_construction_of_housing_unit
-  // persons_living_in_housing_unit
+  // persons_living_in_housing_unit,
 };
