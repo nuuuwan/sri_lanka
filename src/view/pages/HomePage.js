@@ -92,7 +92,7 @@ export default class HomePage extends Component {
     this.setState({ allEntIndex, tableIndex, center, geoCenter });
   }
 
-  render() {
+  renderDISABLE_HACK() {
     const {
       center,
       zoom,
@@ -169,5 +169,43 @@ export default class HomePage extends Component {
         </Box>
       </Box>
     );
+  }
+
+  render() { // HACK!
+    const {
+      center,
+      zoom,
+      selectedLayerTableName,
+      geoCenter,
+      colorMethod,
+      allEntIndex,
+      tableIndex,
+      selectedRegionID,
+      selectedDrawerTabValue,
+    } = this.state;
+
+    const logText = JSON.stringify(
+      {
+        center,
+        zoom,
+        selectedLayerTableName,
+        colorMethod,
+        allEntIndexLength: allEntIndex ? Object.keys(allEntIndex).length : 0,
+        didMount: this.didMount,
+      },
+      null,
+      2
+    );
+
+    return (
+      <Box sx={STYLE_FLOATING_LOG_BOX}>
+        <Typography
+          variant="caption"
+          sx={{ fontFamily: STYLE_FLOATING_LOG_BOX.fontFamily }}
+        >
+          {logText}
+        </Typography>
+      </Box>
+    )
   }
 }
