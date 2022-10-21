@@ -7,6 +7,10 @@ const STRING_REPLACE_LIST = [
 
 export default class StringX {
   static toTitleCase(str) {
+    if (!str) {
+      return "";
+    }
+
     if (str === str.toUpperCase()) {
       return str;
     }
