@@ -1,5 +1,3 @@
-import StringX from "../../nonview/base/StringX";
-
 const FILE_BASE = "/public/data/gig2";
 export default class GIG2TableMetadata {
   constructor(tableName) {
@@ -14,36 +12,28 @@ export default class GIG2TableMetadata {
     return FILE_BASE + this.tableName + ".tsv";
   }
 
-  get spaceID() {
-    return this.tokens[1];
-  }
-
-  get timeID() {
-    return this.tokens[2];
-  }
-
-  get attrID() {
+  get measurement() {
     return this.tokens[0];
   }
 
-  get attr() {
-    return StringX.toTitleCase(this.attrID);
+  get group() {
+    return this.measurement.split("-")[0];
   }
 
-  get space() {
-    return StringX.toTitleCase(this.spaceID);
+  get entity() {
+    return this.tokens[1];
   }
 
   get time() {
-    return StringX.toTitleCase(this.timeID);
+    return this.tokens[2];
   }
 
   get dataSource() {
-    if (this.spaceID === "regions") {
+    if (this.entity === "regions") {
       return "statistics.gov.lk";
     }
 
-    if (this.spaceID === "regions_ec") {
+    if (this.entity === "regions-ec") {
       return "elections.gov.lk";
     }
 
