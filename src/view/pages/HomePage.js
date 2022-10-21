@@ -26,6 +26,7 @@ import {
   STYLE_DRAWER_INNER,
   STYLE_FLOATING_BOX,
   STYLE_DRAWER,
+  STYLE_FLOATING_LOG_BOX,
 } from "../../view/pages/STYLES_HOME_PAGE";
 
 export default class HomePage extends Component {
@@ -41,6 +42,7 @@ export default class HomePage extends Component {
       zoom: DEFAULT_ZOOM,
       center: DEFAULT_CENTER,
       geoCenter: DEFAULT_CENTER,
+      logText: "init",
     };
   }
 
@@ -50,10 +52,12 @@ export default class HomePage extends Component {
 
   async setSelectedLayerTableName(selectedLayerTableName) {
     const tableIndex = await GIG2.getTableIndex(selectedLayerTableName);
+    const logText = `Loaded data for ${selectedLayerTableName}`;
     this.setState({
       tableIndex,
       selectedLayerTableName,
       showLayerDrawer: false,
+      logText,
     });
   }
 
@@ -99,7 +103,8 @@ export default class HomePage extends Component {
     const { selectedLayerTableName } = this.state;
     const allEntIndex = await Ents.getAllEntIndex();
     const tableIndex = await GIG2.getTableIndex(selectedLayerTableName);
-    this.setState({ allEntIndex, tableIndex, center, geoCenter });
+    const logText = `Loaded data for ${selectedLayerTableName} and Ents`;
+    this.setState({ allEntIndex, tableIndex, center, geoCenter, logText });
   }
 
   renderGeoMapChildren(center, zoom) {
@@ -171,8 +176,14 @@ export default class HomePage extends Component {
 
   render() {
     let drawerInner = this.renderDrawerInner();
-    const { center, zoom, selectedLayerTableName, geoCenter, colorMethod } =
-      this.state;
+    const {
+      center,
+      zoom,
+      selectedLayerTableName,
+      geoCenter,
+      colorMethod,
+      logText,
+    } = this.state;
 
     const key = `geo-map-${zoom}-${geoCenter}`;
     return (
@@ -206,6 +217,14 @@ export default class HomePage extends Component {
             handleGeoLocation={this.handleGeoLocation.bind(this)}
           />
         </Paper>
+        <Box sx={STYLE_FLOATING_LOG_BOX}>
+          <Typography
+            variant="caption"
+            sx={{ fontFamily: STYLE_FLOATING_LOG_BOX.fontFamily }}
+          >
+            {logText}
+          </Typography>
+        </Box>
       </Box>
     );
   }

@@ -28,6 +28,19 @@ export const STYLE_FLOATING_BOX = {
   borderRadius: 3,
 };
 
+export const STYLE_FLOATING_LOG_BOX = {
+  position: "fixed",
+  bottom: "15%",
+  left: "1%",
+  zIndex: 20000,
+  background: "rgba(0,0,0,0.8)",
+  color: "white",
+  padding: 1,
+  borderRadius: 3,
+  fontFamily: "menlo",
+  width: 200,
+};
+
 export const STYLE_DRAWER = {
   "& .MuiPaper-root": {
     background: "rgba(255, 255, 255, 0.8)",
