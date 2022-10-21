@@ -1,7 +1,7 @@
 import Box from "@mui/material/Box";
 import List from "@mui/material/List";
 import Typography from "@mui/material/Typography";
-import StringX from "../../nonview/base/StringX";
+
 import GIG2 from "../../nonview/base/GIG2";
 
 import LayerView from "../../view/molecules/LayerView";
@@ -26,9 +26,7 @@ export default function LayerListView({
         const key = `table-group-${groupName}`;
         return (
           <Box key={key}>
-            <Typography variant="subtitle1">
-              {StringX.toTitleCase(groupName)}
-            </Typography>
+            <Typography variant="subtitle1">{groupName}</Typography>
             <List>
               {tableNames.map(function (tableName) {
                 const key = "table-" + tableName;

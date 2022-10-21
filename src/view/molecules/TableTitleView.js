@@ -56,7 +56,12 @@ export default function TableTitleView({ tableName }) {
       </ListItemAvatar>
       <Box>
         <Typography variant="caption">{tableMetadata.time}</Typography>
-        <Typography variant="subtitle1">{tableMetadata.measurement}</Typography>
+        <Typography variant="subtitle1">
+          {tableMetadata.measurementLowest}
+        </Typography>
+        <Typography variant="caption">
+          {tableMetadata.measurement2ndLowest}
+        </Typography>
       </Box>
     </Stack>
   );
