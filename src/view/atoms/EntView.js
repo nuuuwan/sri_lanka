@@ -27,9 +27,9 @@ export default class EntView extends Component {
     }
     return (
       <Box>
-        <Typography variant="caption">{ent.id}</Typography>
+        <Typography variant="subtitle2">{ent.id}</Typography>
         <Typography variant="caption">
-          {" " + Ents.getEntTypeLongName(entType)}
+          {Ents.getEntTypeLongName(entType)}
         </Typography>
         <Typography variant="subtitle1">{ent.name}</Typography>
 
