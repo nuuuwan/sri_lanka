@@ -143,7 +143,9 @@ export default class RegionDrawerInner extends Component {
     }
     return (
       <Box sx={STYLE_BOX}>
-        <EntView entID={selectedRegionID} />
+        <Paper sx={STYLE_PAPER}>
+          <EntView entID={selectedRegionID} />
+        </Paper>
         <Paper sx={STYLE_PAPER}>
           <TableTitleView tableName={selectedLayerTableName} />
           {this.renderTableRow()}
