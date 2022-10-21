@@ -57,9 +57,6 @@ export default function TableTitleView({ tableName }) {
       <Box>
         <Typography variant="caption">{tableMetadata.time}</Typography>
         <Typography variant="h6">{tableMetadata.attr}</Typography>
-        <Typography variant="caption">
-          {"source: " + tableMetadata.dataSource}
-        </Typography>
       </Box>
     </Stack>
   );
