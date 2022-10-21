@@ -1,5 +1,7 @@
 # Diff Plan
 
+* feat: Perm Panel?
+* feat: Color + Legend Selector
 * refactor: Smaller Files
 * feat: URL
 
