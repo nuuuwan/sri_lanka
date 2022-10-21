@@ -1,5 +1,6 @@
 import { ENT } from "../../nonview/base/Ents";
 import GIG2TableMetadata from "../../nonview/base/GIG2TableMetadata";
+
 const MAX_DISPLAY_REGIONS = 32;
 const K_MAX_DISTANCE = 1500;
 
@@ -13,7 +14,7 @@ export default class EntsForMaps {
 
   static getEntTypes(selectedLayerTableName) {
     const tableMetadata = new GIG2TableMetadata(selectedLayerTableName);
-    const regionFormat = tableMetadata.spaceID;
+    const regionFormat = tableMetadata.entity;
 
     if (regionFormat === "regions") {
       return [ENT.GND, ENT.DSD, ENT.DISTRICT, ENT.PROVINCE];
