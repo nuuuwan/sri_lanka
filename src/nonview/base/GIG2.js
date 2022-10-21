@@ -2,7 +2,7 @@ import Color from "./Color.js";
 import GIG2TableMetadata from "./GIG2TableMetadata.js";
 import MathX from "./MathX.js";
 import WWW from "./WWW.js";
-import { FIELD_NAME_TO_COLOR } from "../constants/ColorConstants.js";
+import FIELD_NAME_TO_COLOR from "../constants/FIELD_NAME_TO_COLOR.js";
 import GIG2_TABLE_NAMES from "../constants/GIG2_TABLE_NAMES.js";
 
 let adhocValueKeyToColor = {};

@@ -1,10 +1,6 @@
-export const COLOR_SL_FLAG = {
-  SINHALA: "hsl(355, 63%, 34%)",
-  TAMIL: "hsl(21, 100%, 50%)",
-  MOOR: "hsl(165, 100%, 17%)",
-  BUDDHIST: "hsl(43, 100%, 50%)",
-};
-export const FIELD_NAME_TO_COLOR = {
+import COLOR_SL_FLAG from "../../nonview/constants/COLOR_SL_FLAG";
+
+const FIELD_NAME_TO_COLOR = {
   // political parties
   SLFP: "blue",
   PA: "blue",
@@ -150,3 +146,4 @@ export const FIELD_NAME_TO_COLOR = {
   // year_of_construction_of_housing_unit
   // persons_living_in_housing_unit,
 };
+export default FIELD_NAME_TO_COLOR;
