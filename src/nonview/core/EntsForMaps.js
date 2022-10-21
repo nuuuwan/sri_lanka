@@ -70,6 +70,6 @@ export default class EntsForMaps {
     zoom,
     selectedLayerTableName
   ) {
-    return Object.keys(allEntIndex[ENT.PROVINCE]);
+    return ['LK-11'];
   }
 }
