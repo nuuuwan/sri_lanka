@@ -22,7 +22,7 @@ export default class RegionGeoCollection extends Component {
       return null;
     }
 
-    const displayRegionIDs = EntsForMaps.getDisplayRegionIDs(
+    const displayRegionIDs = EntsForMaps.getDisplayRegionIDsHACK(
       allEntIndex,
       center,
       zoom,
