@@ -107,6 +107,7 @@ export default class HomePage extends Component {
         selectedLayerTableName,
         colorMethod,
         allEntIndexLength: allEntIndex ? Object.keys(allEntIndex).length : 0,
+        entTypes: Ents.getEntTypes(),
       },
       null,
       2
