@@ -3,7 +3,6 @@ import { Component } from "react";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import Paper from "@mui/material/Paper";
-import StringX from "../../nonview/base/StringX";
 import Typography from "@mui/material/Typography";
 import Ents from "../../nonview/base/Ents";
 import GIG2, {
@@ -15,16 +14,14 @@ import { DEFAULT_ZOOM, DEFAULT_CENTER } from "../../nonview/base/GeoData";
 
 import CustomBottomNavigation from "../../view/molecules/CustomBottomNavigation";
 import LayerListView from "../../view/molecules/LayerListView";
-import TableTitleView from "../../view/molecules/TableTitleView";
 import GeoMap from "../organisms/GeoMap";
 import RegionDrawerInner from "../../view/organisms/RegionDrawerInner";
 import RegionGeo from "../organisms/RegionGeo";
-
+import HeaderPanel from "../../view/molecules/HeaderPanel";
 import {
   STYLE_BODY,
   STYLE_FOOTER,
   STYLE_DRAWER_INNER,
-  STYLE_FLOATING_BOX,
   STYLE_DRAWER,
   STYLE_FLOATING_LOG_BOX,
 } from "../../view/pages/STYLES_HOME_PAGE";
@@ -197,12 +194,10 @@ export default class HomePage extends Component {
     return (
       <Box>
         <Paper sx={STYLE_BODY}>
-          <Box sx={STYLE_FLOATING_BOX}>
-            <TableTitleView tableName={selectedLayerTableName} />
-            <Typography variant="caption">
-              {StringX.toTitleCase(colorMethod)}
-            </Typography>
-          </Box>
+          <HeaderPanel
+            selectedLayerTableName={selectedLayerTableName}
+            colorMethod={colorMethod}
+          />
           <GeoMap
             key={key}
             center={center}
