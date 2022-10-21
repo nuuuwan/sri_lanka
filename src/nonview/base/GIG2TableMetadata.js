@@ -1,3 +1,5 @@
+import StringX from "../../nonview/base/StringX";
+
 const FILE_BASE = "/public/data/gig2";
 export default class GIG2TableMetadata {
   constructor(tableName) {
@@ -16,8 +18,20 @@ export default class GIG2TableMetadata {
     return this.tokens[0];
   }
 
+  get measurementTokens() {
+    return this.measurement.split("-");
+  }
+
+  get measurementLowest() {
+    return StringX.toTitleCase(this.measurementTokens.slice(-1)[0]);
+  }
+
+  get measurement2ndLowest() {
+    return StringX.toTitleCase(this.measurementTokens.slice(-2)[0]);
+  }
+
   get group() {
-    return this.measurement.split("-")[0];
+    return StringX.toTitleCase(this.measurementTokens[0]);
   }
 
   get entity() {
