@@ -70,6 +70,6 @@ export default class EntsForMaps {
     zoom,
     selectedLayerTableName
   ) {
-    return ['LK-11'];
+    return ["LK-11"];
   }
 }

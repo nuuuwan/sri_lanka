@@ -97,7 +97,7 @@ export default class Ents {
   }
 
   static getEntTypes() {
-    return REGION_TYPES.filter((entType) => entType !== ENT.UNKNOWN)
+    return REGION_TYPES.filter((entType) => entType !== ENT.UNKNOWN);
   }
 
   static async getAllEntIndex() {
