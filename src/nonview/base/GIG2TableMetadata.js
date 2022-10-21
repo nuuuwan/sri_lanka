@@ -1,30 +1,29 @@
 import StringX from "../../nonview/base/StringX";
-import { METADATA_MAP } from "../../nonview/constants/GIG2Constants";
 
+const FILE_BASE = "/public/data/gig2";
 export default class GIG2TableMetadata {
   constructor(tableName) {
     this.tableName = tableName;
-    this.data = METADATA_MAP[tableName];
+  }
+
+  get tokens() {
+    return this.tableName.split(".");
   }
 
   get fileName() {
-    return this.data["file_name"];
+    return FILE_BASE + this.tableName + ".tsv";
   }
 
   get spaceID() {
-    return this.data["space_id"];
+    return this.tokens[1];
   }
 
   get timeID() {
-    return this.data["time_id"];
+    return this.tokens[2];
   }
 
   get attrID() {
-    return this.data["attr_id"];
-  }
-
-  get valueKeyList() {
-    return this.data["value_key_list_str"].split(";");
+    return this.tokens[0];
   }
 
   get attr() {

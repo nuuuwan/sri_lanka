@@ -57,8 +57,7 @@ const STYLE_DRAWER = {
   },
 };
 
-const DEFAULT_SELECTED_LAYER_TABLE_NAME =
-  "regions_ec.2019_election_presidential.result";
+const DEFAULT_SELECTED_LAYER_TABLE_NAME = "population-ethnicity.regions.2012";
 const DEFAULT_SELECTED_REGION_ID = null;
 
 export default class HomePage extends Component {
@@ -127,7 +126,6 @@ export default class HomePage extends Component {
     const { selectedLayerTableName } = this.state;
     const allEntIndex = await Ents.getAllEntIndex();
     const tableIndex = await GIG2.getTableIndex(selectedLayerTableName);
-
     this.setState({ allEntIndex, tableIndex, center, geoCenter });
   }
 
