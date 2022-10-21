@@ -1,4 +1,5 @@
 import Color from "./Color.js";
+import GIG2TableMetadata from "./GIG2TableMetadata.js";
 import MathX from "./MathX.js";
 import WWW from "./WWW.js";
 import { FIELD_NAME_TO_COLOR } from "../constants/ColorConstants.js";
@@ -15,7 +16,8 @@ export default class GIG2 {
 
   static getGroupToTableNames() {
     return GIG2_TABLE_NAMES.reduce(function (groupToTableNames, tableName) {
-      const group = GIG2.getGroupFromTableName(tableName);
+      const tableMetadata = new GIG2TableMetadata(tableName);
+      const group = tableMetadata.group;
       if (!groupToTableNames[group]) {
         groupToTableNames[group] = [];
       }
