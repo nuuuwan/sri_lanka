@@ -5,9 +5,12 @@ import Drawer from "@mui/material/Drawer";
 import Paper from "@mui/material/Paper";
 
 import Ents from "../../nonview/base/Ents";
-import GIG2 from "../../nonview/base/GIG2";
+import GIG2, {
+  DEFAULT_SELECTED_LAYER_TABLE_NAME,
+} from "../../nonview/base/GIG2";
 import GeoLocation from "../../nonview/base/GeoLocation";
 import EntsForMaps from "../../nonview/core/EntsForMaps";
+import { DEFAULT_ZOOM, DEFAULT_CENTER } from "../../nonview/base/GeoData";
 
 import CustomBottomNavigation from "../../view/molecules/CustomBottomNavigation";
 import LayerListView from "../../view/molecules/LayerListView";
@@ -24,19 +27,12 @@ import {
   STYLE_DRAWER,
 } from "../../view/pages/STYLES_HOME_PAGE";
 
-const DEFAULT_ZOOM = 14;
-// const DEFAULT_CENTER = [7.8742, 80.6511]; // Dambulla
-const DEFAULT_CENTER = [6.9157, 79.8636]; // Townhall Colombo
-
-const DEFAULT_SELECTED_LAYER_TABLE_NAME = "population-ethnicity.regions.2012";
-const DEFAULT_SELECTED_REGION_ID = null;
-
 export default class HomePage extends Component {
   constructor(props) {
     super(props);
     this.state = {
       selectedLayerTableName: DEFAULT_SELECTED_LAYER_TABLE_NAME,
-      selectedRegionID: DEFAULT_SELECTED_REGION_ID,
+      selectedRegionID: null,
       showLayerDrawer: false,
       allEntIndex: null,
       tableIndex: null,

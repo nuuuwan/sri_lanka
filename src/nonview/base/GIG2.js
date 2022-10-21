@@ -8,6 +8,8 @@ import GIG2_TABLE_NAMES from "../constants/GIG2_TABLE_NAMES.js";
 let adhocValueKeyToColor = {};
 
 const ID_FIELD_KEY = "entity_id";
+export const DEFAULT_SELECTED_LAYER_TABLE_NAME =
+  "population-ethnicity.regions.2012";
 
 export default class GIG2 {
   static getGroupFromTableName(tableName) {
