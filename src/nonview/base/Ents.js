@@ -96,8 +96,12 @@ export default class Ents {
     }, {});
   }
 
+  static getEntTypes() {
+    return REGION_TYPES.filter((entType) => entType !== ENT.UNKNOWN)
+  }
+
   static async getAllEntIndex() {
-    const entTypes = REGION_TYPES.filter((entType) => entType !== ENT.UNKNOWN);
+    const entTypes = Ents.getEntTypes();
     const entIndexList = await Promise.all(
       entTypes.map(async function (entType) {
         return await Ents.getEntIndexByType(entType);
