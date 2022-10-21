@@ -1,8 +1,5 @@
 # Diff Plan
 
-* perf: access ent externally
-* perf: access geo externally
-* perf: access gig2 externally
 * style: Simplify Table Title
 * perf: Load geo from geo
 * refactor: Smaller Files
