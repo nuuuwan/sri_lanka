@@ -137,11 +137,13 @@ export default class RegionDrawerInner extends Component {
   }
 
   render() {
-    const { selectedLayerTableName } = this.props;
-
+    const { selectedLayerTableName, selectedRegionID } = this.props;
+    if (!selectedRegionID) {
+      return null;
+    }
     return (
       <Box sx={STYLE_BOX}>
-        <EntView entID={this.props.selectedRegionID} />
+        <EntView entID={selectedRegionID} />
         <Paper sx={STYLE_PAPER}>
           <TableTitleView tableName={selectedLayerTableName} />
           {this.renderTableRow()}

@@ -1,10 +1,10 @@
 import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
-import LayersIcon from "@mui/icons-material/Layers";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
+import TuneIcon from "@mui/icons-material/Tune";
 
 export default function CustomBottomNavigation({
-  handleOpenLayerDrawer,
+  handleOpenDrawer,
   handleGeoLocation,
 }) {
   return (
@@ -13,10 +13,7 @@ export default function CustomBottomNavigation({
         icon={<LocationOnIcon />}
         onClick={handleGeoLocation}
       />
-      <BottomNavigationAction
-        icon={<LayersIcon />}
-        onClick={handleOpenLayerDrawer}
-      />
+      <BottomNavigationAction icon={<TuneIcon />} onClick={handleOpenDrawer} />
     </BottomNavigation>
   );
 }

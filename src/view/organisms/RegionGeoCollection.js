@@ -1,6 +1,8 @@
 import { Component } from "react";
-import EntsForMaps from "../../nonview/core/EntsForMaps";
+
 import GIG2 from "../../nonview/base/GIG2";
+import EntsForMaps from "../../nonview/core/EntsForMaps";
+
 import RegionGeo from "../../view/organisms/RegionGeo";
 
 export default class RegionGeoCollection extends Component {

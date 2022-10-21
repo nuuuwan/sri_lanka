@@ -14,10 +14,6 @@ export const STYLE_FOOTER = {
   height: FOOTER_HEIGHT,
 };
 
-export const STYLE_DRAWER_INNER = {
-  width: 320,
-};
-
 export const STYLE_FLOATING_LOG_BOX = {
   position: "fixed",
   bottom: "15%",
@@ -29,10 +25,4 @@ export const STYLE_FLOATING_LOG_BOX = {
   borderRadius: 3,
   fontFamily: "menlo",
   width: 200,
-};
-
-export const STYLE_DRAWER = {
-  "& .MuiPaper-root": {
-    background: "rgba(255, 255, 255, 0.8)",
-  },
 };

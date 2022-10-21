@@ -1,7 +1,6 @@
 import { Component } from "react";
 
 import Box from "@mui/material/Box";
-import Drawer from "@mui/material/Drawer";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import Ents from "../../nonview/base/Ents";
@@ -10,17 +9,13 @@ import GIG2, {
 } from "../../nonview/base/GIG2";
 import GeoLocation from "../../nonview/base/GeoLocation";
 import { DEFAULT_ZOOM, DEFAULT_CENTER } from "../../nonview/base/GeoData";
-
+import CustomDrawer from "../../view/organisms/CustomDrawer";
 import CustomBottomNavigation from "../../view/molecules/CustomBottomNavigation";
-import LayerListView from "../../view/molecules/LayerListView";
 import GeoMap from "../organisms/GeoMap";
-import RegionDrawerInner from "../../view/organisms/RegionDrawerInner";
 import HeaderPanel from "../../view/molecules/HeaderPanel";
 import {
   STYLE_BODY,
   STYLE_FOOTER,
-  STYLE_DRAWER_INNER,
-  STYLE_DRAWER,
   STYLE_FLOATING_LOG_BOX,
 } from "../../view/pages/STYLES_HOME_PAGE";
 
@@ -29,9 +24,9 @@ export default class HomePage extends Component {
     super(props);
     this.state = {
       selectedLayerTableName: DEFAULT_SELECTED_LAYER_TABLE_NAME,
-      selectedRegionID: null,
+      selectedRegionID: "LK",
       colorMethod: "majority",
-      showLayerDrawer: false,
+      selectedDrawerTabValue: "none",
       allEntIndex: null,
       tableIndex: null,
       zoom: DEFAULT_ZOOM,
@@ -49,37 +44,28 @@ export default class HomePage extends Component {
     this.setState({
       tableIndex,
       selectedLayerTableName,
-      showLayerDrawer: false,
     });
   }
 
-  unsetSelectedLayerTableName() {
-    this.setState({ selectedLayerTableName: null });
-  }
-
   setSelectedRegion(selectedRegionID) {
-    this.setState({ selectedRegionID });
-  }
-
-  unsetSelectedRegion() {
-    this.setState({ selectedRegionID: null });
+    const selectedDrawerTabValue = "regions";
+    this.setState({ selectedRegionID, selectedDrawerTabValue });
   }
 
   setColorMethod(colorMethod) {
     this.setState({ colorMethod });
   }
 
-  handleOpenLayerDrawer() {
-    this.setState({ showLayerDrawer: true });
-  }
-
-  handleCloseLayerDrawer() {
-    this.setState({ showLayerDrawer: false });
+  handleOpenDrawer() {
+    this.setState({ selectedDrawerTabValue: "layers" });
   }
 
   handleCloseDrawer() {
-    this.handleCloseLayerDrawer();
-    this.unsetSelectedRegion();
+    this.setState({ selectedDrawerTabValue: "none" });
+  }
+
+  setSelectedDrawerTabValue(selectedDrawerTabValue) {
+    this.setState({ selectedDrawerTabValue });
   }
 
   async handleGeoLocation() {
@@ -98,34 +84,7 @@ export default class HomePage extends Component {
     this.setState({ allEntIndex, tableIndex, center, geoCenter });
   }
 
-  renderDrawerInner() {
-    const { selectedRegionID, selectedLayerTableName, colorMethod } =
-      this.state;
-    if (this.state.selectedRegionID !== null) {
-      return (
-        <RegionDrawerInner
-          selectedRegionID={selectedRegionID}
-          selectedLayerTableName={selectedLayerTableName}
-          setColorMethod={this.setColorMethod.bind(this)}
-          selectedColorMethod={colorMethod}
-        />
-      );
-    }
-
-    if (this.state.showLayerDrawer) {
-      return (
-        <LayerListView
-          selectedLayerTableName={selectedLayerTableName}
-          setSelectedLayerTableName={this.setSelectedLayerTableName.bind(this)}
-        />
-      );
-    }
-
-    return null;
-  }
-
   render() {
-    let drawerInner = this.renderDrawerInner();
     const {
       center,
       zoom,
@@ -135,6 +94,7 @@ export default class HomePage extends Component {
       allEntIndex,
       tableIndex,
       selectedRegionID,
+      selectedDrawerTabValue,
     } = this.state;
 
     const key = `geo-map-${zoom}-${geoCenter}`;
@@ -169,18 +129,24 @@ export default class HomePage extends Component {
             setCenterAndZoom={this.setCenterAndZoom.bind(this)}
             setSelectedRegion={this.setSelectedRegion.bind(this)}
           />
-          <Drawer
-            anchor={"right"}
-            open={drawerInner !== null}
-            onClose={this.handleCloseDrawer.bind(this)}
-            sx={STYLE_DRAWER}
-          >
-            <Box sx={STYLE_DRAWER_INNER}>{drawerInner}</Box>
-          </Drawer>
+          <CustomDrawer
+            selectedRegionID={selectedRegionID}
+            selectedLayerTableName={selectedLayerTableName}
+            selectedColorMethod={colorMethod}
+            setColorMethod={this.setColorMethod.bind(this)}
+            selectedDrawerTabValue={selectedDrawerTabValue}
+            setSelectedDrawerTabValue={this.setSelectedDrawerTabValue.bind(
+              this
+            )}
+            handleCloseDrawer={this.handleCloseDrawer.bind(this)}
+            setSelectedLayerTableName={this.setSelectedLayerTableName.bind(
+              this
+            )}
+          />
         </Paper>
         <Paper sx={STYLE_FOOTER}>
           <CustomBottomNavigation
-            handleOpenLayerDrawer={this.handleOpenLayerDrawer.bind(this)}
+            handleOpenDrawer={this.handleOpenDrawer.bind(this)}
             handleGeoLocation={this.handleGeoLocation.bind(this)}
           />
         </Paper>
