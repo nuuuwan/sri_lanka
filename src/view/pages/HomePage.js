@@ -176,12 +176,8 @@ export default class HomePage extends Component {
       center,
       zoom,
       selectedLayerTableName,
-      geoCenter,
       colorMethod,
-      allEntIndex,
-      tableIndex,
-      selectedRegionID,
-      selectedDrawerTabValue,
+      allEntIndex,      
     } = this.state;
 
     const logText = JSON.stringify(
