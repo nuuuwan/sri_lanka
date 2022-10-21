@@ -15,28 +15,28 @@ import WcIcon from "@mui/icons-material/Wc";
 import GIG2TableMetadata from "../../nonview/base/GIG2TableMetadata";
 
 function getTableIcon(tableMetadata) {
-  if (tableMetadata.spaceID === "regions_ec") {
+  if (tableMetadata.entity === "regions_ec") {
     return HowToVoteIcon;
   }
 
-  if (tableMetadata.attrID === "") {
+  if (tableMetadata.measurement === "") {
     return LocalDrinkIcon;
   }
 
-  switch (tableMetadata.attrID) {
-    case "ethnicity_of_population":
+  switch (tableMetadata.measurement) {
+    case "population-ethnicity":
       return TempleBuddhistIcon;
-    case "religious_affiliation_of_population":
+    case "population-religion":
       return TempleBuddhistIcon;
-    case "lighting_of_household":
+    case "social-household-lighting":
       return LightbulbIcon;
-    case "solid_waste_disposal_by_household":
+    case "social-household-waste_disposal":
       return DeleteIcon;
-    case "source_of_drinking_water_of_household":
+    case "social-household-drinking_water":
       return LocalDrinkIcon;
-    case "toilet_facilities_of_household":
+    case "social-household-toilet_facilities":
       return WcIcon;
-    case "year_of_construction_of_housing_unit":
+    case "social-household-year_of_construction":
       return HouseIcon;
     default:
       return LayersIcon;
@@ -56,7 +56,7 @@ export default function TableTitleView({ tableName }) {
       </ListItemAvatar>
       <Box>
         <Typography variant="caption">{tableMetadata.time}</Typography>
-        <Typography variant="subtitle1">{tableMetadata.attr}</Typography>
+        <Typography variant="subtitle1">{tableMetadata.measurement}</Typography>
       </Box>
     </Stack>
   );
