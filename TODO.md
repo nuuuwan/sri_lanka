@@ -1,6 +1,6 @@
 # Diff Plan
 
-* feat: Perm Panel?
+* perf: Remove all errors
 * feat: Color + Legend Selector
 * refactor: Smaller Files
 * feat: URL
