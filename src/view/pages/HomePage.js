@@ -16,46 +16,17 @@ import GeoMap from "../organisms/GeoMap";
 import RegionDrawerInner from "../../view/organisms/RegionDrawerInner";
 import RegionGeo from "../organisms/RegionGeo";
 
+import {
+  STYLE_BODY,
+  STYLE_FOOTER,
+  STYLE_DRAWER_INNER,
+  STYLE_FLOATING_BOX,
+  STYLE_DRAWER,
+} from "../../view/pages/STYLES_HOME_PAGE";
+
 const DEFAULT_ZOOM = 14;
 // const DEFAULT_CENTER = [7.8742, 80.6511]; // Dambulla
 const DEFAULT_CENTER = [6.9157, 79.8636]; // Townhall Colombo
-
-const FOOTER_HEIGHT = 60;
-const STYLE_BOX = {};
-const STYLE_BODY = {
-  position: "fixed",
-  bottom: FOOTER_HEIGHT,
-  top: 0,
-  left: 0,
-  right: 0,
-};
-const STYLE_FOOTER = {
-  position: "fixed",
-  bottom: 0,
-  left: 0,
-  right: 0,
-  height: FOOTER_HEIGHT,
-};
-
-const STYLE_DRAWER_INNER = {
-  width: 320,
-};
-
-const STYLE_FLOATING_BOX = {
-  position: "fixed",
-  top: "1%",
-  left: "1%",
-  zIndex: 10000,
-  background: "rgba(255,255,255,0.8)",
-  padding: 1,
-  borderRadius: 3,
-};
-
-const STYLE_DRAWER = {
-  "& .MuiPaper-root": {
-    background: "rgba(255, 255, 255, 0.8)",
-  },
-};
 
 const DEFAULT_SELECTED_LAYER_TABLE_NAME = "population-ethnicity.regions.2012";
 const DEFAULT_SELECTED_REGION_ID = null;
@@ -195,7 +166,7 @@ export default class HomePage extends Component {
 
     const key = `geo-map-${zoom}-${geoCenter}`;
     return (
-      <Box sx={STYLE_BOX}>
+      <Box>
         <Paper sx={STYLE_BODY}>
           <Box sx={STYLE_FLOATING_BOX}>
             <TableTitleView tableName={selectedLayerTableName} />
