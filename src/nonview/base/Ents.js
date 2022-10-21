@@ -38,6 +38,8 @@ export const PARENT_TO_CHILD = {
   [ENT.ED]: [ENT.PD],
 };
 
+const URL_BASE = 'https://raw.githubusercontent.com/nuuuwan/gig2/data';
+
 export default class Ents {
   static getEntType(entID) {
     if (entID.substring(0, 2) === "LK") {
@@ -82,7 +84,7 @@ export default class Ents {
     return ENT_TYPE_TO_LONG_NAME[regionType];
   }
   static async getEntsByType(entType) {
-    const url = `/sri_lanka/data/ents/${entType}.tsv`;
+    const url = `${URL_BASE}/${entType}.latest.basic.tsv`;
     return await WWW.tsv(url);
   }
 
