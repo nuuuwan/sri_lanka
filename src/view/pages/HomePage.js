@@ -3,7 +3,8 @@ import { Component } from "react";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import Paper from "@mui/material/Paper";
-
+import StringX from "../../nonview/base/StringX";
+import Typography from "@mui/material/Typography";
 import Ents from "../../nonview/base/Ents";
 import GIG2, {
   DEFAULT_SELECTED_LAYER_TABLE_NAME,
@@ -66,6 +67,10 @@ export default class HomePage extends Component {
 
   unsetSelectedRegion() {
     this.setState({ selectedRegionID: null });
+  }
+
+  setColorMethod(colorMethod) {
+    this.setState({ colorMethod });
   }
 
   handleOpenLayerDrawer() {
@@ -139,12 +144,15 @@ export default class HomePage extends Component {
   }
 
   renderDrawerInner() {
-    const { selectedRegionID, selectedLayerTableName } = this.state;
+    const { selectedRegionID, selectedLayerTableName, colorMethod } =
+      this.state;
     if (this.state.selectedRegionID !== null) {
       return (
         <RegionDrawerInner
           selectedRegionID={selectedRegionID}
           selectedLayerTableName={selectedLayerTableName}
+          setColorMethod={this.setColorMethod.bind(this)}
+          selectedColorMethod={colorMethod}
         />
       );
     }
@@ -163,7 +171,8 @@ export default class HomePage extends Component {
 
   render() {
     let drawerInner = this.renderDrawerInner();
-    const { center, zoom, selectedLayerTableName, geoCenter } = this.state;
+    const { center, zoom, selectedLayerTableName, geoCenter, colorMethod } =
+      this.state;
 
     const key = `geo-map-${zoom}-${geoCenter}`;
     return (
@@ -171,6 +180,9 @@ export default class HomePage extends Component {
         <Paper sx={STYLE_BODY}>
           <Box sx={STYLE_FLOATING_BOX}>
             <TableTitleView tableName={selectedLayerTableName} />
+            <Typography variant="caption">
+              {StringX.toTitleCase(colorMethod)}
+            </Typography>
           </Box>
           <GeoMap
             key={key}

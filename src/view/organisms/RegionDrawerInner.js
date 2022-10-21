@@ -6,6 +6,8 @@ import Grid from "@mui/material/Grid";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import Paper from "@mui/material/Paper";
+import Radio from "@mui/material/Radio";
+import RadioGroup from "@mui/material/RadioGroup";
 import Typography from "@mui/material/Typography";
 
 import GIG2 from "../../nonview/base/GIG2";
@@ -46,6 +48,7 @@ export default class RegionDrawerInner extends Component {
     if (!tableRow) {
       return <CircularProgress />;
     }
+    const { setColorMethod, selectedColorMethod } = this.props;
 
     const valueKeys = GIG2.filterValueCellKeys(tableRow);
     const sortedKeysAndValues = valueKeys
@@ -70,37 +73,55 @@ export default class RegionDrawerInner extends Component {
       sortedKeysAndValues.slice(0, MAX_NON_OTHER),
       [["Others", otherValue]]
     );
+
+    const onChangeRadioGroup = function (e) {
+      setColorMethod(e.target.value);
+    };
+
     return (
       <List>
-        {displayKeysAndValues.map(function ([k, v]) {
-          const key = `list-item-${k}`;
-          const styleBullet = {
-            background: GIG2.getValueKeyColor(k),
-            opacity: 0.8,
-            p: 1,
-            borderRadius: 10,
-          };
-          return (
-            <ListItem key={key}>
-              <Grid container alignItems="center" spacing={2}>
-                <Grid item xs={1}>
-                  <Typography sx={styleBullet}> </Typography>
+        <RadioGroup value={selectedColorMethod} onChange={onChangeRadioGroup}>
+          {displayKeysAndValues.map(function ([k, v]) {
+            const key = `list-item-${k}`;
+            const styleBullet = {
+              background: GIG2.getValueKeyColor(k),
+              opacity: 0.8,
+              p: 1,
+              borderRadius: 10,
+            };
+            return (
+              <ListItem key={key}>
+                <Radio value={k} />
+                <Grid container alignItems="center" spacing={2}>
+                  <Grid item xs={1}>
+                    <Typography sx={styleBullet}> </Typography>
+                  </Grid>
+                  <Grid item xs={5}>
+                    <Typography>{StringX.toTitleCase(k)}</Typography>
+                  </Grid>
+                  <Grid item xs={3}>
+                    <Typography align="right">
+                      {StringX.formatInt(v)}
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={3}>
+                    <Typography align="right">
+                      {StringX.formatPercent(v, totalValue)}
+                    </Typography>
+                  </Grid>
                 </Grid>
-                <Grid item xs={5}>
-                  <Typography>{StringX.toTitleCase(k)}</Typography>
-                </Grid>
-                <Grid item xs={3}>
-                  <Typography align="right">{StringX.formatInt(v)}</Typography>
-                </Grid>
-                <Grid item xs={3}>
-                  <Typography align="right">
-                    {StringX.formatPercent(v, totalValue)}
-                  </Typography>
-                </Grid>
+              </ListItem>
+            );
+          })}
+          <ListItem>
+            <Radio value="majority" label="Most Common" />
+            <Grid container alignItems="center" spacing={2}>
+              <Grid item xs={5}>
+                <Typography>{"Most Common"}</Typography>
               </Grid>
-            </ListItem>
-          );
-        })}
+            </Grid>
+          </ListItem>
+        </RadioGroup>
       </List>
     );
   }
