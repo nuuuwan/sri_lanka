@@ -1,7 +1,9 @@
 import Box from "@mui/material/Box";
-import TableTitleView from "../../view/molecules/TableTitleView";
 import Typography from "@mui/material/Typography";
+
 import StringX from "../../nonview/base/StringX";
+
+import TableTitleView from "../../view/molecules/TableTitleView";
 
 export const STYLE_FLOATING_BOX = {
   position: "fixed",

@@ -38,7 +38,7 @@ export const PARENT_TO_CHILD = {
   [ENT.ED]: [ENT.PD],
 };
 
-const URL_BASE = 'https://raw.githubusercontent.com/nuuuwan/gig2/data';
+const URL_BASE = "https://raw.githubusercontent.com/nuuuwan/gig2/data";
 
 export default class Ents {
   static getEntType(entID) {
