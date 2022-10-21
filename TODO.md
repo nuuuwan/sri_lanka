@@ -1,8 +1,6 @@
 # Diff Plan
 
-* refactor: MET (Measure Entity at Time) format
 * perf: Remove all errors
-* feat: Color + Legend Selector
 * refactor: Smaller Files
 * feat: URL
 * log: data load
