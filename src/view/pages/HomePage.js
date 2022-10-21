@@ -33,6 +33,7 @@ export default class HomePage extends Component {
       center: DEFAULT_CENTER,
       geoCenter: DEFAULT_CENTER,
     };
+    this.didMount = false;
   }
 
   setCenterAndZoom(center, zoom) {
@@ -77,12 +78,17 @@ export default class HomePage extends Component {
   }
 
   async componentDidMount() {
+    if (this.didMount) {
+      return;
+    }
     const geoCenter = await GeoLocation.getLatLng();
     const center = geoCenter ? geoCenter : DEFAULT_CENTER;
 
     const { selectedLayerTableName } = this.state;
     const allEntIndex = await Ents.getAllEntIndex();
     const tableIndex = await GIG2.getTableIndex(selectedLayerTableName);
+
+    this.didMount = true;
     this.setState({ allEntIndex, tableIndex, center, geoCenter });
   }
 
@@ -107,7 +113,7 @@ export default class HomePage extends Component {
         selectedLayerTableName,
         colorMethod,
         allEntIndexLength: allEntIndex ? Object.keys(allEntIndex).length : 0,
-        entTypes: Ents.getEntTypes(),
+        didMount: this.didMount,
       },
       null,
       2
