@@ -39,12 +39,6 @@ export default class HomePage extends Component {
     this.didMount = false;
   }
 
-  setStateAsync(state) {
-    return new Promise((resolve) => {
-      this.setState(state, resolve);
-    });
-  }
-
   async componentDidMount() {
     if (this.didMount) {
       return;
@@ -57,7 +51,7 @@ export default class HomePage extends Component {
     const tableIndex = await GIG2.getTableIndex(selectedLayerTableName);
 
     this.didMount = true;
-    await this.setStateAsync({ allEntIndex, tableIndex, center, geoCenter });
+    this.setState({ allEntIndex, tableIndex, center, geoCenter });
   }
 
   setCenterAndZoom(center, zoom) {
