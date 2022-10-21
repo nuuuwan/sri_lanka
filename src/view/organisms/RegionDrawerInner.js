@@ -4,10 +4,8 @@ import Box from "@mui/material/Box";
 import CircularProgress from "@mui/material/CircularProgress";
 import Grid from "@mui/material/Grid";
 import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
+import ListItemButton from "@mui/material/ListItemButton";
 import Paper from "@mui/material/Paper";
-import Radio from "@mui/material/Radio";
-import RadioGroup from "@mui/material/RadioGroup";
 import Typography from "@mui/material/Typography";
 
 import GIG2 from "../../nonview/base/GIG2";
@@ -24,6 +22,13 @@ const STYLE_BOX = {
 const STYLE_PAPER = {
   m: 0.5,
   p: 1,
+};
+
+const STYLE_BULLET = {
+  background: "gray",
+  opacity: 0.8,
+  p: 1,
+  borderRadius: 10,
 };
 
 export default class RegionDrawerInner extends Component {
@@ -74,54 +79,59 @@ export default class RegionDrawerInner extends Component {
       [["Others", otherValue]]
     );
 
-    const onChangeRadioGroup = function (e) {
-      setColorMethod(e.target.value);
+    const onClickMajority = function () {
+      setColorMethod("majority");
     };
 
     return (
       <List>
-        <RadioGroup value={selectedColorMethod} onChange={onChangeRadioGroup}>
-          {displayKeysAndValues.map(function ([k, v]) {
-            const key = `list-item-${k}`;
-            const styleBullet = {
-              background: GIG2.getValueKeyColor(k),
-              opacity: 0.8,
-              p: 1,
-              borderRadius: 10,
-            };
-            return (
-              <ListItem key={key}>
-                <Radio value={k} />
-                <Grid container alignItems="center" spacing={2}>
-                  <Grid item xs={1}>
-                    <Typography sx={styleBullet}> </Typography>
-                  </Grid>
-                  <Grid item xs={5}>
-                    <Typography>{StringX.toTitleCase(k)}</Typography>
-                  </Grid>
-                  <Grid item xs={3}>
-                    <Typography align="right">
-                      {StringX.formatInt(v)}
-                    </Typography>
-                  </Grid>
-                  <Grid item xs={3}>
-                    <Typography align="right">
-                      {StringX.formatPercent(v, totalValue)}
-                    </Typography>
-                  </Grid>
+        {displayKeysAndValues.map(function ([k, v]) {
+          const key = `list-item-${k}`;
+          const styleBulletCustom = {
+            ...STYLE_BULLET,
+            ...{ background: GIG2.getValueKeyColor(k) },
+          };
+          const onClick = function () {
+            setColorMethod(k);
+          };
+          return (
+            <ListItemButton
+              key={key}
+              onClick={onClick}
+              selected={k === selectedColorMethod}
+            >
+              <Grid container alignItems="center" spacing={2}>
+                <Grid item xs={1}>
+                  <Typography sx={styleBulletCustom}> </Typography>
                 </Grid>
-              </ListItem>
-            );
-          })}
-          <ListItem>
-            <Radio value="majority" label="Most Common" />
-            <Grid container alignItems="center" spacing={2}>
-              <Grid item xs={5}>
-                <Typography>{"Most Common"}</Typography>
+                <Grid item xs={5}>
+                  <Typography>{StringX.toTitleCase(k)}</Typography>
+                </Grid>
+                <Grid item xs={3}>
+                  <Typography align="right">{StringX.formatInt(v)}</Typography>
+                </Grid>
+                <Grid item xs={3}>
+                  <Typography align="right">
+                    {StringX.formatPercent(v, totalValue)}
+                  </Typography>
+                </Grid>
               </Grid>
+            </ListItemButton>
+          );
+        })}
+        <ListItemButton
+          onClick={onClickMajority}
+          selected={"majority" === selectedColorMethod}
+        >
+          <Grid container alignItems="center" spacing={2}>
+            <Grid item xs={1}>
+              <Typography sx={STYLE_BULLET}> </Typography>
             </Grid>
-          </ListItem>
-        </RadioGroup>
+            <Grid item xs={10}>
+              <Typography>{"Most Common"}</Typography>
+            </Grid>
+          </Grid>
+        </ListItemButton>
       </List>
     );
   }
