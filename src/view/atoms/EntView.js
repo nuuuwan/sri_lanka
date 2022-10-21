@@ -28,10 +28,11 @@ export default class EntView extends Component {
     return (
       <Box>
         <Typography variant="caption">{ent.id}</Typography>
-        <Typography variant="h6">{ent.name}</Typography>
-        <Typography variant="subtitle2">
-          {Ents.getEntTypeLongName(entType)}
+        <Typography variant="caption">
+          {" " + Ents.getEntTypeLongName(entType)}
         </Typography>
+        <Typography variant="subtitle1">{ent.name}</Typography>
+
         <Typography variant="caption">
           {StringX.formatInt(ent.population)}
           {" pop"}

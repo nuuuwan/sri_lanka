@@ -56,7 +56,7 @@ export default function TableTitleView({ tableName }) {
       </ListItemAvatar>
       <Box>
         <Typography variant="caption">{tableMetadata.time}</Typography>
-        <Typography variant="h6">{tableMetadata.attr}</Typography>
+        <Typography variant="subtitle1">{tableMetadata.attr}</Typography>
       </Box>
     </Stack>
   );
