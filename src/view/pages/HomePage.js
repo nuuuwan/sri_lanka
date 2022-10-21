@@ -171,14 +171,10 @@ export default class HomePage extends Component {
     );
   }
 
-  render() { // HACK!
-    const {
-      center,
-      zoom,
-      selectedLayerTableName,
-      colorMethod,
-      allEntIndex,      
-    } = this.state;
+  render() {
+    // HACK!
+    const { center, zoom, selectedLayerTableName, colorMethod, allEntIndex } =
+      this.state;
 
     const logText = JSON.stringify(
       {
@@ -202,6 +198,6 @@ export default class HomePage extends Component {
           {logText}
         </Typography>
       </Box>
-    )
+    );
   }
 }
