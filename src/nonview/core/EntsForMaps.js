@@ -63,4 +63,13 @@ export default class EntsForMaps {
     }
     return [];
   }
+
+  static getDisplayRegionIDsHACK(
+    allEntIndex,
+    center,
+    zoom,
+    selectedLayerTableName
+  ) {
+    return Object.keys(allEntIndex[ENT.PROVINCE]);
+  }
 }
