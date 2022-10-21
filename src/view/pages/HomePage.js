@@ -42,7 +42,6 @@ export default class HomePage extends Component {
       zoom: DEFAULT_ZOOM,
       center: DEFAULT_CENTER,
       geoCenter: DEFAULT_CENTER,
-      logText: "init",
     };
   }
 
@@ -52,12 +51,10 @@ export default class HomePage extends Component {
 
   async setSelectedLayerTableName(selectedLayerTableName) {
     const tableIndex = await GIG2.getTableIndex(selectedLayerTableName);
-    const logText = `Loaded data for ${selectedLayerTableName}`;
     this.setState({
       tableIndex,
       selectedLayerTableName,
       showLayerDrawer: false,
-      logText,
     });
   }
 
@@ -103,8 +100,7 @@ export default class HomePage extends Component {
     const { selectedLayerTableName } = this.state;
     const allEntIndex = await Ents.getAllEntIndex();
     const tableIndex = await GIG2.getTableIndex(selectedLayerTableName);
-    const logText = `Loaded data for ${selectedLayerTableName} and Ents`;
-    this.setState({ allEntIndex, tableIndex, center, geoCenter, logText });
+    this.setState({ allEntIndex, tableIndex, center, geoCenter });
   }
 
   renderGeoMapChildren(center, zoom) {
@@ -182,10 +178,22 @@ export default class HomePage extends Component {
       selectedLayerTableName,
       geoCenter,
       colorMethod,
-      logText,
+      allEntIndex,
     } = this.state;
 
     const key = `geo-map-${zoom}-${geoCenter}`;
+    const logText = JSON.stringify(
+      {
+        center,
+        zoom,
+        selectedLayerTableName,
+        colorMethod,
+        allEntIndexLength: allEntIndex ? Object.keys(allEntIndex).length : 0,
+      },
+      null,
+      2
+    );
+
     return (
       <Box>
         <Paper sx={STYLE_BODY}>
