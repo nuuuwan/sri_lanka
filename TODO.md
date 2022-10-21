@@ -1,7 +1,5 @@
 # Diff Plan
 
-* style: Simplify Table Title
-* perf: Load geo from geo
 * refactor: Smaller Files
 * feat: URL
 
