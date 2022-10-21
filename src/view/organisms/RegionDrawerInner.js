@@ -76,7 +76,7 @@ export default class RegionDrawerInner extends Component {
           const key = `list-item-${k}`;
           const styleBullet = {
             background: GIG2.getValueKeyColor(k),
-            opacity: GIG2.getOpacityFromP(GIG2.getValueKeyP(tableRow, k)),
+            opacity: 0.8,
             p: 1,
             borderRadius: 10,
           };
