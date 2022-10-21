@@ -39,6 +39,27 @@ export default class HomePage extends Component {
     this.didMount = false;
   }
 
+  setStateAsync(state) {
+    return new Promise((resolve) => {
+      this.setState(state, resolve);
+    });
+  }
+
+  async componentDidMount() {
+    if (this.didMount) {
+      return;
+    }
+    const geoCenter = await GeoLocation.getLatLng();
+    const center = geoCenter ? geoCenter : DEFAULT_CENTER;
+
+    const { selectedLayerTableName } = this.state;
+    const allEntIndex = await Ents.getAllEntIndex();
+    const tableIndex = await GIG2.getTableIndex(selectedLayerTableName);
+
+    this.didMount = true;
+    await this.setStateAsync({ allEntIndex, tableIndex, center, geoCenter });
+  }
+
   setCenterAndZoom(center, zoom) {
     this.setState({ center, zoom });
   }
@@ -78,21 +99,6 @@ export default class HomePage extends Component {
     const geoCenter = await GeoLocation.getLatLng();
     const center = geoCenter ? geoCenter : DEFAULT_CENTER;
     this.setState({ center, geoCenter, zoom: DEFAULT_ZOOM });
-  }
-
-  async componentDidMount() {
-    if (this.didMount) {
-      return;
-    }
-    const geoCenter = await GeoLocation.getLatLng();
-    const center = geoCenter ? geoCenter : DEFAULT_CENTER;
-
-    const { selectedLayerTableName } = this.state;
-    const allEntIndex = await Ents.getAllEntIndex();
-    const tableIndex = await GIG2.getTableIndex(selectedLayerTableName);
-
-    this.didMount = true;
-    this.setState({ allEntIndex, tableIndex, center, geoCenter });
   }
 
   render() {
