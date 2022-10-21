@@ -43,8 +43,10 @@ export default class HomePage extends Component {
   async setSelectedLayerTableName(selectedLayerTableName) {
     const tableIndex = await GIG2.getTableIndex(selectedLayerTableName);
     const colorMethod = "majority";
+    const allEntIndex = await Ents.getAllEntIndex();
     this.setState({
       tableIndex,
+      allEntIndex,
       selectedLayerTableName,
       colorMethod,
     });
