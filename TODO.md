@@ -14,3 +14,4 @@
 
 * What are the real questions we want answered?
 * How to select layers
+* "Compress by Time"
