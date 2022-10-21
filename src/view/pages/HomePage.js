@@ -9,14 +9,12 @@ import GIG2, {
   DEFAULT_SELECTED_LAYER_TABLE_NAME,
 } from "../../nonview/base/GIG2";
 import GeoLocation from "../../nonview/base/GeoLocation";
-import EntsForMaps from "../../nonview/core/EntsForMaps";
 import { DEFAULT_ZOOM, DEFAULT_CENTER } from "../../nonview/base/GeoData";
 
 import CustomBottomNavigation from "../../view/molecules/CustomBottomNavigation";
 import LayerListView from "../../view/molecules/LayerListView";
 import GeoMap from "../organisms/GeoMap";
 import RegionDrawerInner from "../../view/organisms/RegionDrawerInner";
-import RegionGeo from "../organisms/RegionGeo";
 import HeaderPanel from "../../view/molecules/HeaderPanel";
 import {
   STYLE_BODY,
@@ -100,47 +98,6 @@ export default class HomePage extends Component {
     this.setState({ allEntIndex, tableIndex, center, geoCenter });
   }
 
-  renderGeoMapChildren(center, zoom) {
-    const {
-      allEntIndex,
-      selectedRegionID,
-      tableIndex,
-      selectedLayerTableName,
-      colorMethod,
-    } = this.state;
-    if (!allEntIndex || !tableIndex) {
-      return null;
-    }
-
-    const displayRegionIDs = EntsForMaps.getDisplayRegionIDs(
-      allEntIndex,
-      center,
-      zoom,
-      selectedLayerTableName
-    );
-
-    return displayRegionIDs.map(
-      function (regionID) {
-        const key = `region-geo-${selectedLayerTableName}-${regionID}`;
-        const tableRow = tableIndex[regionID];
-        const { color, opacity } = GIG2.getTableRowColorAndOpacity(
-          colorMethod,
-          tableRow
-        );
-        return (
-          <RegionGeo
-            key={key}
-            regionID={regionID}
-            selectedRegionID={selectedRegionID}
-            setSelectedRegion={this.setSelectedRegion.bind(this)}
-            color={color}
-            opacity={opacity}
-          />
-        );
-      }.bind(this)
-    );
-  }
-
   renderDrawerInner() {
     const { selectedRegionID, selectedLayerTableName, colorMethod } =
       this.state;
@@ -176,6 +133,8 @@ export default class HomePage extends Component {
       geoCenter,
       colorMethod,
       allEntIndex,
+      tableIndex,
+      selectedRegionID,
     } = this.state;
 
     const key = `geo-map-${zoom}-${geoCenter}`;
@@ -202,8 +161,13 @@ export default class HomePage extends Component {
             key={key}
             center={center}
             zoom={zoom}
+            allEntIndex={allEntIndex}
+            tableIndex={tableIndex}
+            selectedRegionID={selectedRegionID}
+            selectedLayerTableName={selectedLayerTableName}
+            colorMethod={colorMethod}
             setCenterAndZoom={this.setCenterAndZoom.bind(this)}
-            renderChildren={this.renderGeoMapChildren.bind(this)}
+            setSelectedRegion={this.setSelectedRegion.bind(this)}
           />
           <Drawer
             anchor={"right"}

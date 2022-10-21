@@ -1,5 +1,6 @@
 import { Component } from "react";
 import { MapContainer, TileLayer, useMapEvents } from "react-leaflet";
+import RegionGeoCollection from "../../view/organisms/RegionGeoCollection";
 
 import "./GeoMap.css";
 
@@ -19,14 +20,32 @@ function EventComponent({ setCenterAndZoom }) {
 
 export default class GeoMap extends Component {
   render() {
-    const { center, zoom } = this.props;
+    const {
+      center,
+      zoom,
+      allEntIndex,
+      selectedRegionID,
+      tableIndex,
+      selectedLayerTableName,
+      setSelectedRegion,
+      colorMethod,
+    } = this.props;
     return (
       <MapContainer center={center} zoom={zoom} zoomControl={false}>
         <EventComponent
           setCenterAndZoom={this.props.setCenterAndZoom.bind(this)}
         />
         <TileLayer url={URL_FORMAT} />
-        {this.props.renderChildren(center, zoom)}
+        <RegionGeoCollection
+          center={center}
+          zoom={zoom}
+          allEntIndex={allEntIndex}
+          tableIndex={tableIndex}
+          selectedRegionID={selectedRegionID}
+          selectedLayerTableName={selectedLayerTableName}
+          colorMethod={colorMethod}
+          setSelectedRegion={setSelectedRegion}
+        />
       </MapContainer>
     );
   }
