@@ -105,7 +105,9 @@ export default class RegionDrawerInner extends Component {
                   <Typography sx={styleBulletCustom}> </Typography>
                 </Grid>
                 <Grid item xs={5}>
-                  <Typography>{StringX.toTitleCase(k)}</Typography>
+                  <Typography variant="body2">
+                    {StringX.toTitleCase(k)}
+                  </Typography>
                 </Grid>
                 <Grid item xs={3}>
                   <Typography align="right">{StringX.formatInt(v)}</Typography>
@@ -128,7 +130,9 @@ export default class RegionDrawerInner extends Component {
               <Typography sx={STYLE_BULLET}> </Typography>
             </Grid>
             <Grid item xs={10}>
-              <Typography>{"Most Common"}</Typography>
+              <Typography variant="caption">
+                {"Color by Most Common"}
+              </Typography>
             </Grid>
           </Grid>
         </ListItemButton>
