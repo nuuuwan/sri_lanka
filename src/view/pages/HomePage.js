@@ -3,6 +3,8 @@ import { Component } from "react";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
+import CircularProgress from "@mui/material/CircularProgress";
+
 import Ents from "../../nonview/base/Ents";
 import GIG2, {
   DEFAULT_SELECTED_LAYER_TABLE_NAME,
@@ -11,6 +13,7 @@ import GeoLocation from "../../nonview/base/GeoLocation";
 import { DEFAULT_ZOOM, DEFAULT_CENTER } from "../../nonview/base/GeoData";
 import CustomDrawer from "../../view/organisms/CustomDrawer";
 import CustomBottomNavigation from "../../view/molecules/CustomBottomNavigation";
+
 import GeoMap from "../organisms/GeoMap";
 import HeaderPanel from "../../view/molecules/HeaderPanel";
 import {
@@ -93,6 +96,9 @@ export default class HomePage extends Component {
   }
 
   render() {
+    if (!this.didMount) {
+      return <CircularProgress />;
+    }
     const {
       center,
       zoom,
