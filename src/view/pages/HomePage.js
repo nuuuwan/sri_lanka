@@ -33,6 +33,7 @@ export default class HomePage extends Component {
     this.state = {
       selectedLayerTableName: DEFAULT_SELECTED_LAYER_TABLE_NAME,
       selectedRegionID: null,
+      colorMethod: "majority",
       showLayerDrawer: false,
       allEntIndex: null,
       tableIndex: null,
@@ -102,6 +103,7 @@ export default class HomePage extends Component {
       selectedRegionID,
       tableIndex,
       selectedLayerTableName,
+      colorMethod,
     } = this.state;
     if (!allEntIndex || !tableIndex) {
       return null;
@@ -118,7 +120,10 @@ export default class HomePage extends Component {
       function (regionID) {
         const key = `region-geo-${selectedLayerTableName}-${regionID}`;
         const tableRow = tableIndex[regionID];
-        const { color, opacity } = GIG2.getTableRowColorAndOpacity(tableRow);
+        const { color, opacity } = GIG2.getTableRowColorAndOpacity(
+          colorMethod,
+          tableRow
+        );
         return (
           <RegionGeo
             key={key}

@@ -10,6 +10,8 @@ let adhocValueKeyToColor = {};
 const ID_FIELD_KEY = "entity_id";
 export const DEFAULT_SELECTED_LAYER_TABLE_NAME =
   "population-ethnicity.regions.2012";
+const DEFAULT_COLOR = "#ccc";
+const DEFAULT_OPACITY = 0.5;
 
 export default class GIG2 {
   static getGroupFromTableName(tableName) {
@@ -117,13 +119,21 @@ export default class GIG2 {
     return MIN_OPACITY + q * (MAX_OPACITY - MIN_OPACITY);
   }
 
-  static getTableRowColorAndOpacity(tableRow) {
-    const maxValueKey = GIG2.getMaxValueKey(tableRow);
+  static getTableRowColorAndOpacity(colorMethod, tableRow) {
+    let color = DEFAULT_COLOR,
+      opacity = DEFAULT_OPACITY;
 
-    const color = GIG2.getValueKeyColor(maxValueKey);
-
-    const maxValueP = GIG2.getValueKeyP(tableRow, maxValueKey);
-    const opacity = GIG2.getOpacityFromP(maxValueP);
+    if (colorMethod === "majority") {
+      const maxValueKey = GIG2.getMaxValueKey(tableRow);
+      color = GIG2.getValueKeyColor(maxValueKey);
+      const maxValueP = GIG2.getValueKeyP(tableRow, maxValueKey);
+      opacity = GIG2.getOpacityFromP(maxValueP);
+    } else {
+      const colorKey = colorMethod;
+      color = GIG2.getValueKeyColor(colorKey);
+      const p = GIG2.getValueKeyP(tableRow, colorKey);
+      opacity = GIG2.getOpacityFromP(p);
+    }
 
     return {
       color,
