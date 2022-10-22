@@ -40,7 +40,7 @@ export default class HomePage extends Component {
     console.debug("🏃‍♀️ HomePage.componentDidMountUnSafe start.");
     const geoCenter = await GeoLocation.getLatLng();
     console.debug(
-      "🏃‍♀️ HomePage.componentDidMountUnSafe geoCenter = ",
+      "🧮 HomePage.componentDidMountUnSafe geoCenter = ",
       geoCenter
     );
     const center = geoCenter ? geoCenter : DEFAULT_CENTER;
@@ -48,12 +48,12 @@ export default class HomePage extends Component {
     const { selectedLayerTableName } = this.state;
     const allEntIndex = await Ents.getAllEntIndex();
     console.debug(
-      "HomePage.componentDidMountUnSafe: Object.keys(allEntIndex) = ",
+      "🧮 HomePage.componentDidMountUnSafe: Object.keys(allEntIndex) = ",
       Object.keys(allEntIndex)
     );
     const tableIndex = await GIG2.getTableIndex(selectedLayerTableName);
     console.debug(
-      "HomePage.componentDidMountUnSafe: Object.keys(tableIndex).length = ",
+      "🧮 HomePage.componentDidMountUnSafe: Object.keys(tableIndex).length = ",
       Object.keys(tableIndex).length
     );
 
