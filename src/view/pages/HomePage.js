@@ -2,7 +2,6 @@ import { Component } from "react";
 
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
-import CircularProgress from "@mui/material/CircularProgress";
 
 import Ents from "../../nonview/base/Ents";
 import GIG2, {
@@ -117,9 +116,6 @@ export default class HomePage extends Component {
 
   render() {
     console.debug("✅ HomePage.render start.");
-    if (!this.didMount) {
-      return <CircularProgress />;
-    }
     const {
       center,
       zoom,
