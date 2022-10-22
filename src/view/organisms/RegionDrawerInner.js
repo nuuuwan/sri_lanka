@@ -142,6 +142,7 @@ export default class RegionDrawerInner extends Component {
       <Box sx={STYLE_BOX}>
         <EntView entID={selectedRegionID} top />
         {this.renderTableRow()}
+        <EntView entID={selectedRegionID} bottom />
       </Box>
     );
   }
