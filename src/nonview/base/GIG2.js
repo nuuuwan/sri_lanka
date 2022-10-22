@@ -8,7 +8,7 @@ import GIG2_TABLE_NAMES from "../constants/GIG2_TABLE_NAMES.js";
 let adhocValueKeyToColor = {};
 
 const ID_FIELD_KEY = "entity_id";
-export const DEFAULT_SELECTED_LAYER_TABLE_NAME =
+export const DEFAULT_LAYER_TABLE_NAME =
   "population-ethnicity.regions.2012";
 const DEFAULT_COLOR = "#ccc";
 const DEFAULT_OPACITY = 0.5;

@@ -5,7 +5,7 @@ import Paper from "@mui/material/Paper";
 
 import Ents from "../../nonview/base/Ents";
 import GIG2, {
-  DEFAULT_SELECTED_LAYER_TABLE_NAME,
+  DEFAULT_LAYER_TABLE_NAME,
 } from "../../nonview/base/GIG2";
 import GeoLocation from "../../nonview/base/GeoLocation";
 import { DEFAULT_ZOOM, DEFAULT_CENTER } from "../../nonview/base/GeoData";
@@ -20,15 +20,15 @@ export default class HomePage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      layerTableName: DEFAULT_SELECTED_LAYER_TABLE_NAME,
-      regionID: "LK",
+      allEntIndex: null,
+      center: DEFAULT_CENTER,
       coloringMethod: "majority",
       drawerTabValue: "none",
-      allEntIndex: null,
+      geoCenter: DEFAULT_CENTER,
+      layerTableName: DEFAULT_LAYER_TABLE_NAME,
+      regionID: "LK",
       tableIndex: null,
       zoom: DEFAULT_ZOOM,
-      center: DEFAULT_CENTER,
-      geoCenter: DEFAULT_CENTER,
     };
     this.didMount = false;
     this.componentDidMountErrors = null;
