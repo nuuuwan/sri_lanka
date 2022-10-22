@@ -3,10 +3,7 @@
 * i18N
 * URL
 * style: Redesign majority
-* style: Alternative to drawer???
 * style: One field coloring
-* feat: URL
-* log: data load
 
 # Ongoing
 * perf: Remove all errors
