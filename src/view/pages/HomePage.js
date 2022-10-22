@@ -108,15 +108,15 @@ export default class HomePage extends Component {
   render() {
     console.debug("✅ HomePage.render start.");
     const {
-      center,
-      zoom,
-      layerTableName,
-      geoCenter,
-      coloringMethod,
       allEntIndex,
-      tableIndex,
-      regionID,
+      center,
+      coloringMethod,
       drawerTabValue,
+      geoCenter,
+      layerTableName,
+      regionID,
+      tableIndex,
+      zoom,
     } = this.state;
 
     const key = `geo-map-${zoom}-${geoCenter}`;
@@ -125,24 +125,24 @@ export default class HomePage extends Component {
         <Paper sx={STYLE_BODY}>
           <LayerInfoPanel layerTableName={layerTableName} />
           <GeoMap
-            key={key}
-            center={center}
-            zoom={zoom}
             allEntIndex={allEntIndex}
-            tableIndex={tableIndex}
-            layerTableName={layerTableName}
+            center={center}
             coloringMethod={coloringMethod}
+            key={key}
+            layerTableName={layerTableName}
             setCenterAndZoom={this.setCenterAndZoom.bind(this)}
             setRegion={this.setRegion.bind(this)}
+            tableIndex={tableIndex}
+            zoom={zoom}
           />
           <CustomDrawer
-            regionID={regionID}
-            layerTableName={layerTableName}
             coloringMethod={coloringMethod}
-            setColoringMethod={this.setColoringMethod.bind(this)}
             drawerTabValue={drawerTabValue}
-            setDrawerTabValue={this.setDrawerTabValue.bind(this)}
+            layerTableName={layerTableName}
             onClickCloseDrawer={this.onClickCloseDrawer.bind(this)}
+            regionID={regionID}
+            setColoringMethod={this.setColoringMethod.bind(this)}
+            setDrawerTabValue={this.setDrawerTabValue.bind(this)}
             setLayerTableName={this.setLayerTableName.bind(this)}
           />
         </Paper>
