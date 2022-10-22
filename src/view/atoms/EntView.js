@@ -19,7 +19,7 @@ export default class EntView extends Component {
   }
 
   render() {
-    const { entID } = this.props;
+    const { entID, top, bottom } = this.props;
     const { ent } = this.state;
     const entType = Ents.getEntType(entID);
     if (!ent) {
@@ -27,22 +27,33 @@ export default class EntView extends Component {
     }
     return (
       <Box>
-        <Typography variant="subtitle2">{ent.id}</Typography>
-        <Typography variant="caption">
-          {Ents.getEntTypeLongName(entType)}
-        </Typography>
-        <Typography variant="subtitle1">{ent.name}</Typography>
+        {top ? (
+          <>
+          <Typography variant="subtitle1">{ent.name}</Typography>
+          <Typography variant="caption">
+            {Ents.getEntTypeLongName(entType)}
+          <Typography variant="caption">{` (${ent.id})`}</Typography>
+          </Typography>
+          </>
+        ) : null}
 
-        <Typography variant="caption">
-          {StringX.formatInt(ent.population)}
-          {" pop"}
-        </Typography>
-        <Typography variant="caption">
-          {" · " + ent.area + "km² area"}
-        </Typography>
-        <Typography variant="caption">
-          {" · " + ent.centroid_altitude + "m alt"}
-        </Typography>
+        {bottom ? (
+          <>
+          <Typography variant="caption">
+            {StringX.formatInt(ent.population)}
+            {" pop"}
+          </Typography>
+          <Typography variant="caption">
+            {" · " + ent.area + "km² area"}
+          </Typography>
+          <Typography variant="caption">
+            {" · " + ent.centroid_altitude + "m alt"}
+          </Typography>
+          </>
+        ) : null}
+
+
+
       </Box>
     );
   }
