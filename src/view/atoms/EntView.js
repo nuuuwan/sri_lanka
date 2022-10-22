@@ -30,15 +30,11 @@ export default class EntView extends Component {
         {top ? (
           <>
             <Typography variant="subtitle1">{ent.name}</Typography>
-            <Typography variant="caption">
-              {Ents.getEntTypeLongName(entType)}
-              <Typography variant="caption">{` (${ent.id})`}</Typography>
-            </Typography>
           </>
         ) : null}
 
         {bottom ? (
-          <>
+          <Box sx={{color: "lightgray"}}>
             <Typography variant="caption">
               {StringX.formatInt(ent.population)}
               {" pop"}
@@ -49,7 +45,11 @@ export default class EntView extends Component {
             <Typography variant="caption">
               {" · " + ent.centroid_altitude + "m alt"}
             </Typography>
-          </>
+            <Typography variant="body2">
+              {Ents.getEntTypeLongName(entType)}
+            </Typography>
+            <Typography variant="body2">{ent.id}</Typography>
+          </Box>
         ) : null}
       </Box>
     );
