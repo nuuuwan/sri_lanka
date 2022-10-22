@@ -1,4 +1,5 @@
 import Box from "@mui/material/Box";
+
 import TableTitleView from "../../view/molecules/TableTitleView";
 
 export const STYLE_FLOATING_BOX = {

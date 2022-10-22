@@ -134,9 +134,7 @@ export default class HomePage extends Component {
     return (
       <Box>
         <Paper sx={STYLE_BODY}>
-          <LayerInfoPanel
-            selectedLayerTableName={selectedLayerTableName}
-          />
+          <LayerInfoPanel selectedLayerTableName={selectedLayerTableName} />
           <GeoMap
             key={key}
             center={center}

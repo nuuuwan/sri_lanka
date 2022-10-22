@@ -29,31 +29,28 @@ export default class EntView extends Component {
       <Box>
         {top ? (
           <>
-          <Typography variant="subtitle1">{ent.name}</Typography>
-          <Typography variant="caption">
-            {Ents.getEntTypeLongName(entType)}
-          <Typography variant="caption">{` (${ent.id})`}</Typography>
-          </Typography>
+            <Typography variant="subtitle1">{ent.name}</Typography>
+            <Typography variant="caption">
+              {Ents.getEntTypeLongName(entType)}
+              <Typography variant="caption">{` (${ent.id})`}</Typography>
+            </Typography>
           </>
         ) : null}
 
         {bottom ? (
           <>
-          <Typography variant="caption">
-            {StringX.formatInt(ent.population)}
-            {" pop"}
-          </Typography>
-          <Typography variant="caption">
-            {" · " + ent.area + "km² area"}
-          </Typography>
-          <Typography variant="caption">
-            {" · " + ent.centroid_altitude + "m alt"}
-          </Typography>
+            <Typography variant="caption">
+              {StringX.formatInt(ent.population)}
+              {" pop"}
+            </Typography>
+            <Typography variant="caption">
+              {" · " + ent.area + "km² area"}
+            </Typography>
+            <Typography variant="caption">
+              {" · " + ent.centroid_altitude + "m alt"}
+            </Typography>
           </>
         ) : null}
-
-
-
       </Box>
     );
   }
