@@ -13,16 +13,3 @@ export const STYLE_FOOTER = {
   right: 0,
   height: FOOTER_HEIGHT,
 };
-
-export const STYLE_FLOATING_LOG_BOX = {
-  position: "fixed",
-  bottom: "15%",
-  left: "1%",
-  zIndex: 20000,
-  background: "rgba(0,0,0,0.8)",
-  color: "white",
-  padding: 1,
-  borderRadius: 3,
-  fontFamily: "menlo",
-  width: 200,
-};

@@ -2,7 +2,6 @@ import { Component } from "react";
 
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
-import Typography from "@mui/material/Typography";
 import CircularProgress from "@mui/material/CircularProgress";
 
 import Ents from "../../nonview/base/Ents";
@@ -16,11 +15,7 @@ import CustomBottomNavigation from "../../view/molecules/CustomBottomNavigation"
 
 import GeoMap from "../organisms/GeoMap";
 import HeaderPanel from "../../view/molecules/HeaderPanel";
-import {
-  STYLE_BODY,
-  STYLE_FOOTER,
-  STYLE_FLOATING_LOG_BOX,
-} from "../../view/pages/STYLES_HOME_PAGE";
+import { STYLE_BODY, STYLE_FOOTER } from "../../view/pages/STYLES_HOME_PAGE";
 
 export default class HomePage extends Component {
   constructor(props) {
@@ -122,19 +117,6 @@ export default class HomePage extends Component {
     } = this.state;
 
     const key = `geo-map-${zoom}-${geoCenter}`;
-    const logText = JSON.stringify(
-      {
-        center,
-        zoom,
-        selectedLayerTableName,
-        colorMethod,
-        allEntIndexLength: allEntIndex ? Object.keys(allEntIndex).length : 0,
-        didMount: this.didMount,
-        componentDidMountErrors: this.componentDidMountErrors,
-      },
-      null,
-      2
-    );
 
     return (
       <Box>
@@ -176,14 +158,6 @@ export default class HomePage extends Component {
             handleGeoLocation={this.handleGeoLocation.bind(this)}
           />
         </Paper>
-        <Box sx={STYLE_FLOATING_LOG_BOX}>
-          <Typography
-            variant="caption"
-            sx={{ fontFamily: STYLE_FLOATING_LOG_BOX.fontFamily }}
-          >
-            {logText}
-          </Typography>
-        </Box>
       </Box>
     );
   }
