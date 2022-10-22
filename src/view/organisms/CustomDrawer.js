@@ -19,45 +19,41 @@ const STYLE_DRAWER_INNER = {
 export default class CustomDrawer extends Component {
   renderInner() {
     const {
-      selectedRegionID,
-      selectedLayerTableName,
+      regionID,
+      layerTableName,
       setColorMethod,
-      selectedColorMethod,
-      setSelectedLayerTableName,
-      selectedDrawerTabValue,
+      colorMethod,
+      setLayerTableName,
+      drawerTabValue,
     } = this.props;
 
-    switch (selectedDrawerTabValue) {
+    switch (drawerTabValue) {
       case "regions":
         return (
           <RegionDrawerInner
-            selectedRegionID={selectedRegionID}
-            selectedLayerTableName={selectedLayerTableName}
+            regionID={regionID}
+            layerTableName={layerTableName}
             setColorMethod={setColorMethod}
-            selectedColorMethod={selectedColorMethod}
+            colorMethod={colorMethod}
           />
         );
       default:
         return (
           <LayerListView
-            selectedLayerTableName={selectedLayerTableName}
-            setSelectedLayerTableName={setSelectedLayerTableName}
+            layerTableName={layerTableName}
+            setLayerTableName={setLayerTableName}
           />
         );
     }
   }
 
   render() {
-    const {
-      handleCloseDrawer,
-      selectedDrawerTabValue,
-      setSelectedDrawerTabValue,
-    } = this.props;
+    const { handleCloseDrawer, drawerTabValue, setDrawerTabValue } = this.props;
 
     const onChangeTabs = function (_, tabValue) {
-      setSelectedDrawerTabValue(tabValue);
+      setDrawerTabValue(tabValue);
     };
-    const isOpen = selectedDrawerTabValue !== "none";
+    const isOpen = drawerTabValue !== "none";
     return (
       <Drawer
         anchor={"right"}
@@ -67,11 +63,7 @@ export default class CustomDrawer extends Component {
       >
         {isOpen ? (
           <Box sx={STYLE_DRAWER_INNER}>
-            <Tabs
-              value={selectedDrawerTabValue}
-              onChange={onChangeTabs}
-              centered
-            >
+            <Tabs value={drawerTabValue} onChange={onChangeTabs} centered>
               <Tab icon={<LayersIcon />} value="layers" />
               <Tab icon={<MapIcon />} value="regions" />
             </Tabs>

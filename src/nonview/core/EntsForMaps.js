@@ -12,8 +12,8 @@ export default class EntsForMaps {
     return Math.abs(dlat) * r + Math.abs(dlng);
   }
 
-  static getEntTypes(selectedLayerTableName) {
-    const tableMetadata = new GIG2TableMetadata(selectedLayerTableName);
+  static getEntTypes(layerTableName) {
+    const tableMetadata = new GIG2TableMetadata(layerTableName);
     const regionFormat = tableMetadata.entity;
 
     if (regionFormat === "regions") {
@@ -27,14 +27,9 @@ export default class EntsForMaps {
     return [ENT.PROVINCE];
   }
 
-  static getDisplayRegionIDs(
-    allEntIndex,
-    center,
-    zoom,
-    selectedLayerTableName
-  ) {
+  static getDisplayRegionIDs(allEntIndex, center, zoom, layerTableName) {
     const maxDistance = K_MAX_DISTANCE / Math.pow(2, zoom);
-    const entTypes = EntsForMaps.getEntTypes(selectedLayerTableName);
+    const entTypes = EntsForMaps.getEntTypes(layerTableName);
 
     for (let entType of entTypes) {
       const entIndex = allEntIndex[entType];
@@ -64,12 +59,7 @@ export default class EntsForMaps {
     return [];
   }
 
-  static getDisplayRegionIDsHACK(
-    allEntIndex,
-    center,
-    zoom,
-    selectedLayerTableName
-  ) {
+  static getDisplayRegionIDsHACK(allEntIndex, center, zoom, layerTableName) {
     return ["LK-11"];
   }
 }

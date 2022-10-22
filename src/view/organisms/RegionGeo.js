@@ -43,7 +43,7 @@ export default class RegionGeo extends Component {
       return "...";
     }
 
-    const { regionID, setSelectedRegion } = this.props;
+    const { regionID, setRegion } = this.props;
 
     const geoJsonData = {
       type: "MultiPolygon",
@@ -59,7 +59,7 @@ export default class RegionGeo extends Component {
     }
 
     function onClickRegionInner() {
-      setSelectedRegion(regionID);
+      setRegion(regionID);
     }
 
     return (

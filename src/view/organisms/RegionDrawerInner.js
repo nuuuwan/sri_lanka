@@ -31,13 +31,13 @@ export default class RegionDrawerInner extends Component {
   }
 
   async componentDidMount() {
-    const { selectedLayerTableName, selectedRegionID } = this.props;
-    if (!selectedLayerTableName || !selectedRegionID) {
+    const { layerTableName, regionID } = this.props;
+    if (!layerTableName || !regionID) {
       return;
     }
 
-    const tableIndex = await GIG2.getTableIndex(selectedLayerTableName);
-    const tableRow = tableIndex[selectedRegionID];
+    const tableIndex = await GIG2.getTableIndex(layerTableName);
+    const tableRow = tableIndex[regionID];
     this.setState({ tableRow });
   }
 
@@ -46,7 +46,7 @@ export default class RegionDrawerInner extends Component {
     if (!tableRow) {
       return <CircularProgress />;
     }
-    const { setColorMethod, selectedColorMethod } = this.props;
+    const { setColorMethod, colorMethod } = this.props;
 
     const valueKeys = GIG2.filterValueCellKeys(tableRow);
     const sortedKeysAndValues = valueKeys
@@ -91,7 +91,7 @@ export default class RegionDrawerInner extends Component {
             <ListItemButton
               key={key}
               onClick={onClick}
-              selected={k === selectedColorMethod}
+              selected={k === colorMethod}
             >
               <Grid container alignItems="center" spacing={2}>
                 <Grid item xs={1}>
@@ -116,7 +116,7 @@ export default class RegionDrawerInner extends Component {
         })}
         <ListItemButton
           onClick={onClickMajority}
-          selected={"majority" === selectedColorMethod}
+          selected={"majority" === colorMethod}
         >
           <Grid container alignItems="center" spacing={2}>
             <Grid item xs={1}>
@@ -134,15 +134,15 @@ export default class RegionDrawerInner extends Component {
   }
 
   render() {
-    const { selectedRegionID } = this.props;
-    if (!selectedRegionID) {
+    const { regionID } = this.props;
+    if (!regionID) {
       return null;
     }
     return (
       <Box sx={STYLE_BOX}>
-        <EntView entID={selectedRegionID} top />
+        <EntView entID={regionID} top />
         {this.renderTableRow()}
-        <EntView entID={selectedRegionID} bottom />
+        <EntView entID={regionID} bottom />
       </Box>
     );
   }

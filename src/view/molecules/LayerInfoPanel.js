@@ -12,10 +12,10 @@ export const STYLE_FLOATING_BOX = {
   borderRadius: 3,
 };
 
-export default function LayerInfoPanel({ selectedLayerTableName }) {
+export default function LayerInfoPanel({ layerTableName }) {
   return (
     <Box sx={STYLE_FLOATING_BOX}>
-      <TableTitleView tableName={selectedLayerTableName} />
+      <TableTitleView tableName={layerTableName} />
     </Box>
   );
 }

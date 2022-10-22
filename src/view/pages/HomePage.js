@@ -20,10 +20,10 @@ export default class HomePage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedLayerTableName: DEFAULT_SELECTED_LAYER_TABLE_NAME,
-      selectedRegionID: "LK",
+      layerTableName: DEFAULT_SELECTED_LAYER_TABLE_NAME,
+      regionID: "LK",
       colorMethod: "majority",
-      selectedDrawerTabValue: "none",
+      drawerTabValue: "none",
       allEntIndex: null,
       tableIndex: null,
       zoom: DEFAULT_ZOOM,
@@ -48,13 +48,13 @@ export default class HomePage extends Component {
     );
     const center = geoCenter ? geoCenter : DEFAULT_CENTER;
 
-    const { selectedLayerTableName } = this.state;
+    const { layerTableName } = this.state;
     const allEntIndex = await Ents.getAllEntIndex();
     console.debug(
       "🧮 HomePage.componentDidMountUnSafe: Object.keys(allEntIndex) = ",
       Object.keys(allEntIndex)
     );
-    const tableIndex = await GIG2.getTableIndex(selectedLayerTableName);
+    const tableIndex = await GIG2.getTableIndex(layerTableName);
     console.debug(
       "🧮 HomePage.componentDidMountUnSafe: Object.keys(tableIndex).length = ",
       Object.keys(tableIndex).length
@@ -69,19 +69,19 @@ export default class HomePage extends Component {
     this.setState({ center, zoom });
   }
 
-  async setSelectedLayerTableName(selectedLayerTableName) {
-    const tableIndex = await GIG2.getTableIndex(selectedLayerTableName);
+  async setLayerTableName(layerTableName) {
+    const tableIndex = await GIG2.getTableIndex(layerTableName);
     const colorMethod = "majority";
     this.setState({
       tableIndex,
-      selectedLayerTableName,
+      layerTableName,
       colorMethod,
     });
   }
 
-  setSelectedRegion(selectedRegionID) {
-    const selectedDrawerTabValue = "regions";
-    this.setState({ selectedRegionID, selectedDrawerTabValue });
+  setRegion(regionID) {
+    const drawerTabValue = "regions";
+    this.setState({ regionID, drawerTabValue });
   }
 
   setColorMethod(colorMethod) {
@@ -89,15 +89,15 @@ export default class HomePage extends Component {
   }
 
   handleOpenDrawer() {
-    this.setState({ selectedDrawerTabValue: "layers" });
+    this.setState({ drawerTabValue: "layers" });
   }
 
   handleCloseDrawer() {
-    this.setState({ selectedDrawerTabValue: "none" });
+    this.setState({ drawerTabValue: "none" });
   }
 
-  setSelectedDrawerTabValue(selectedDrawerTabValue) {
-    this.setState({ selectedDrawerTabValue });
+  setDrawerTabValue(drawerTabValue) {
+    this.setState({ drawerTabValue });
   }
 
   async handleGeoLocation() {
@@ -111,45 +111,40 @@ export default class HomePage extends Component {
     const {
       center,
       zoom,
-      selectedLayerTableName,
+      layerTableName,
       geoCenter,
       colorMethod,
       allEntIndex,
       tableIndex,
-      selectedRegionID,
-      selectedDrawerTabValue,
+      regionID,
+      drawerTabValue,
     } = this.state;
 
     const key = `geo-map-${zoom}-${geoCenter}`;
     return (
       <Box>
         <Paper sx={STYLE_BODY}>
-          <LayerInfoPanel selectedLayerTableName={selectedLayerTableName} />
+          <LayerInfoPanel layerTableName={layerTableName} />
           <GeoMap
             key={key}
             center={center}
             zoom={zoom}
             allEntIndex={allEntIndex}
             tableIndex={tableIndex}
-            selectedRegionID={selectedRegionID}
-            selectedLayerTableName={selectedLayerTableName}
+            layerTableName={layerTableName}
             colorMethod={colorMethod}
             setCenterAndZoom={this.setCenterAndZoom.bind(this)}
-            setSelectedRegion={this.setSelectedRegion.bind(this)}
+            setRegion={this.setRegion.bind(this)}
           />
           <CustomDrawer
-            selectedRegionID={selectedRegionID}
-            selectedLayerTableName={selectedLayerTableName}
-            selectedColorMethod={colorMethod}
+            regionID={regionID}
+            layerTableName={layerTableName}
+            colorMethod={colorMethod}
             setColorMethod={this.setColorMethod.bind(this)}
-            selectedDrawerTabValue={selectedDrawerTabValue}
-            setSelectedDrawerTabValue={this.setSelectedDrawerTabValue.bind(
-              this
-            )}
+            drawerTabValue={drawerTabValue}
+            setDrawerTabValue={this.setDrawerTabValue.bind(this)}
             handleCloseDrawer={this.handleCloseDrawer.bind(this)}
-            setSelectedLayerTableName={this.setSelectedLayerTableName.bind(
-              this
-            )}
+            setLayerTableName={this.setLayerTableName.bind(this)}
           />
         </Paper>
         <Paper sx={STYLE_FOOTER}>

@@ -4,12 +4,12 @@ import TableTitleView from "../../view/molecules/TableTitleView";
 
 export default function LayerView({
   tableName,
-  selectedLayerTableName,
-  setSelectedLayerTableName,
+  layerTableName,
+  setLayerTableName,
 }) {
-  const selected = selectedLayerTableName === tableName;
+  const selected = layerTableName === tableName;
   function onClick() {
-    setSelectedLayerTableName(tableName);
+    setLayerTableName(tableName);
   }
 
   return (

@@ -11,10 +11,9 @@ export default class RegionGeoCollection extends Component {
       center,
       zoom,
       allEntIndex,
-      selectedRegionID,
       tableIndex,
-      selectedLayerTableName,
-      setSelectedRegion,
+      layerTableName,
+      setRegion,
       colorMethod,
     } = this.props;
 
@@ -26,11 +25,11 @@ export default class RegionGeoCollection extends Component {
       allEntIndex,
       center,
       zoom,
-      selectedLayerTableName
+      layerTableName
     );
 
     return displayRegionIDs.map(function (regionID) {
-      const key = `region-geo-${selectedLayerTableName}-${regionID}`;
+      const key = `region-geo-${layerTableName}-${regionID}`;
       const tableRow = tableIndex[regionID];
       const { color, opacity } = GIG2.getTableRowColorAndOpacity(
         colorMethod,
@@ -40,8 +39,7 @@ export default class RegionGeoCollection extends Component {
         <RegionGeo
           key={key}
           regionID={regionID}
-          selectedRegionID={selectedRegionID}
-          setSelectedRegion={setSelectedRegion}
+          setRegion={setRegion}
           color={color}
           opacity={opacity}
         />

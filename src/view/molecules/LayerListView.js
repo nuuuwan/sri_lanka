@@ -11,10 +11,7 @@ const STYLE_BOX = {
   p: 1,
 };
 
-export default function LayerListView({
-  selectedLayerTableName,
-  setSelectedLayerTableName,
-}) {
+export default function LayerListView({ layerTableName, setLayerTableName }) {
   const groupToTableNames = GIG2.getGroupToTableNames();
 
   return (
@@ -34,8 +31,8 @@ export default function LayerListView({
                   <LayerView
                     key={key}
                     tableName={tableName}
-                    selectedLayerTableName={selectedLayerTableName}
-                    setSelectedLayerTableName={setSelectedLayerTableName}
+                    layerTableName={layerTableName}
+                    setLayerTableName={setLayerTableName}
                   />
                 );
               })}
