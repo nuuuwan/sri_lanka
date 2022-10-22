@@ -88,11 +88,11 @@ export default class HomePage extends Component {
     this.setState({ coloringMethod });
   }
 
-  handleOpenDrawer() {
+  onClickOpenLayerDrawer() {
     this.setState({ drawerTabValue: "layers" });
   }
 
-  handleCloseDrawer() {
+  onClickCloseDrawer() {
     this.setState({ drawerTabValue: "none" });
   }
 
@@ -100,7 +100,7 @@ export default class HomePage extends Component {
     this.setState({ drawerTabValue });
   }
 
-  async handleGeoLocation() {
+  async onClickCenterOnCurrentLocation() {
     const geoCenter = await GeoLocation.getLatLng();
     const center = geoCenter ? geoCenter : DEFAULT_CENTER;
     this.setState({ center, geoCenter, zoom: DEFAULT_ZOOM });
@@ -143,14 +143,14 @@ export default class HomePage extends Component {
             setColoringMethod={this.setColoringMethod.bind(this)}
             drawerTabValue={drawerTabValue}
             setDrawerTabValue={this.setDrawerTabValue.bind(this)}
-            handleCloseDrawer={this.handleCloseDrawer.bind(this)}
+            onClickCloseDrawer={this.onClickCloseDrawer.bind(this)}
             setLayerTableName={this.setLayerTableName.bind(this)}
           />
         </Paper>
         <Paper sx={STYLE_FOOTER}>
           <CustomBottomNavigation
-            handleOpenDrawer={this.handleOpenDrawer.bind(this)}
-            handleGeoLocation={this.handleGeoLocation.bind(this)}
+            onClickOpenLayerDrawer={this.onClickOpenLayerDrawer.bind(this)}
+            onClickCenterOnCurrentLocation={this.onClickCenterOnCurrentLocation.bind(this)}
           />
         </Paper>
       </Box>

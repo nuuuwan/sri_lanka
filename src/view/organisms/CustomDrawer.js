@@ -48,7 +48,7 @@ export default class CustomDrawer extends Component {
   }
 
   render() {
-    const { handleCloseDrawer, drawerTabValue, setDrawerTabValue } = this.props;
+    const { onClickCloseDrawer, drawerTabValue, setDrawerTabValue } = this.props;
 
     const onChangeTabs = function (_, tabValue) {
       setDrawerTabValue(tabValue);
@@ -58,7 +58,7 @@ export default class CustomDrawer extends Component {
       <Drawer
         anchor={"right"}
         open={isOpen}
-        onClose={handleCloseDrawer}
+        onClose={onClickCloseDrawer}
         sx={STYLE_DRAWER}
       >
         {isOpen ? (
