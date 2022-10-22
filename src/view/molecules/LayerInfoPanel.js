@@ -15,13 +15,10 @@ export const STYLE_FLOATING_BOX = {
   borderRadius: 3,
 };
 
-export default function LayerInfoPanel({ selectedLayerTableName, colorMethod }) {
+export default function LayerInfoPanel({ selectedLayerTableName }) {
   return (
     <Box sx={STYLE_FLOATING_BOX}>
       <TableTitleView tableName={selectedLayerTableName} />
-      <Typography variant="caption">
-        {StringX.toTitleCase(colorMethod)}
-      </Typography>
     </Box>
   );
 }

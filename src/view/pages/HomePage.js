@@ -134,7 +134,6 @@ export default class HomePage extends Component {
         <Paper sx={STYLE_BODY}>
           <LayerInfoPanel
             selectedLayerTableName={selectedLayerTableName}
-            colorMethod={colorMethod}
           />
           <GeoMap
             key={key}
