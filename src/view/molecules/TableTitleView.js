@@ -14,6 +14,10 @@ import WcIcon from "@mui/icons-material/Wc";
 
 import GIG2TableMetadata from "../../nonview/base/GIG2TableMetadata";
 
+const STYLE_BODY1 = {
+  fontSize: "50%",
+};
+
 function getTableIcon(tableMetadata) {
   if (tableMetadata.entity === "regions_ec") {
     return HowToVoteIcon;
@@ -55,12 +59,11 @@ export default function TableTitleView({ tableName }) {
         </Avatar>
       </ListItemAvatar>
       <Box>
-        <Typography variant="caption">{tableMetadata.time}</Typography>
-        <Typography variant="subtitle1">
-          {tableMetadata.measurementLowest}
+        <Typography variant="body1" sx={STYLE_BODY1}>
+          {tableMetadata.time + " · " + tableMetadata.measurement2ndLowest}
         </Typography>
         <Typography variant="caption">
-          {tableMetadata.measurement2ndLowest}
+          {tableMetadata.measurementLowest}
         </Typography>
       </Box>
     </Stack>
