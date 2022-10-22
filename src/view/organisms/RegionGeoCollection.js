@@ -14,7 +14,7 @@ export default class RegionGeoCollection extends Component {
       tableIndex,
       layerTableName,
       setRegion,
-      colorMethod,
+      coloringMethod,
     } = this.props;
 
     if (!allEntIndex) {
@@ -32,7 +32,7 @@ export default class RegionGeoCollection extends Component {
       const key = `region-geo-${layerTableName}-${regionID}`;
       const tableRow = tableIndex[regionID];
       const { color, opacity } = GIG2.getTableRowColorAndOpacity(
-        colorMethod,
+        coloringMethod,
         tableRow
       );
       return (

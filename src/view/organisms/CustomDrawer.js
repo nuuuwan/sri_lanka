@@ -21,8 +21,8 @@ export default class CustomDrawer extends Component {
     const {
       regionID,
       layerTableName,
-      setColorMethod,
-      colorMethod,
+      setColoringMethod,
+      coloringMethod,
       setLayerTableName,
       drawerTabValue,
     } = this.props;
@@ -33,8 +33,8 @@ export default class CustomDrawer extends Component {
           <RegionDrawerInner
             regionID={regionID}
             layerTableName={layerTableName}
-            setColorMethod={setColorMethod}
-            colorMethod={colorMethod}
+            setColoringMethod={setColoringMethod}
+            coloringMethod={coloringMethod}
           />
         );
       default:

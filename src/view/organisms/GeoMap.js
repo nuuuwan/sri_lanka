@@ -27,7 +27,7 @@ export default class GeoMap extends Component {
       tableIndex,
       layerTableName,
       setRegion,
-      colorMethod,
+      coloringMethod,
     } = this.props;
     return (
       <MapContainer center={center} zoom={zoom} zoomControl={false}>
@@ -41,7 +41,7 @@ export default class GeoMap extends Component {
           allEntIndex={allEntIndex}
           tableIndex={tableIndex}
           layerTableName={layerTableName}
-          colorMethod={colorMethod}
+          coloringMethod={coloringMethod}
           setRegion={setRegion}
         />
       </MapContainer>

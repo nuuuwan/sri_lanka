@@ -22,7 +22,7 @@ export default class HomePage extends Component {
     this.state = {
       layerTableName: DEFAULT_SELECTED_LAYER_TABLE_NAME,
       regionID: "LK",
-      colorMethod: "majority",
+      coloringMethod: "majority",
       drawerTabValue: "none",
       allEntIndex: null,
       tableIndex: null,
@@ -71,11 +71,11 @@ export default class HomePage extends Component {
 
   async setLayerTableName(layerTableName) {
     const tableIndex = await GIG2.getTableIndex(layerTableName);
-    const colorMethod = "majority";
+    const coloringMethod = "majority";
     this.setState({
       tableIndex,
       layerTableName,
-      colorMethod,
+      coloringMethod,
     });
   }
 
@@ -84,8 +84,8 @@ export default class HomePage extends Component {
     this.setState({ regionID, drawerTabValue });
   }
 
-  setColorMethod(colorMethod) {
-    this.setState({ colorMethod });
+  setColoringMethod(coloringMethod) {
+    this.setState({ coloringMethod });
   }
 
   handleOpenDrawer() {
@@ -113,7 +113,7 @@ export default class HomePage extends Component {
       zoom,
       layerTableName,
       geoCenter,
-      colorMethod,
+      coloringMethod,
       allEntIndex,
       tableIndex,
       regionID,
@@ -132,15 +132,15 @@ export default class HomePage extends Component {
             allEntIndex={allEntIndex}
             tableIndex={tableIndex}
             layerTableName={layerTableName}
-            colorMethod={colorMethod}
+            coloringMethod={coloringMethod}
             setCenterAndZoom={this.setCenterAndZoom.bind(this)}
             setRegion={this.setRegion.bind(this)}
           />
           <CustomDrawer
             regionID={regionID}
             layerTableName={layerTableName}
-            colorMethod={colorMethod}
-            setColorMethod={this.setColorMethod.bind(this)}
+            coloringMethod={coloringMethod}
+            setColoringMethod={this.setColoringMethod.bind(this)}
             drawerTabValue={drawerTabValue}
             setDrawerTabValue={this.setDrawerTabValue.bind(this)}
             handleCloseDrawer={this.handleCloseDrawer.bind(this)}

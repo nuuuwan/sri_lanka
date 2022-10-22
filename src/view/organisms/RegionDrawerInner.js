@@ -46,7 +46,7 @@ export default class RegionDrawerInner extends Component {
     if (!tableRow) {
       return <CircularProgress />;
     }
-    const { setColorMethod, colorMethod } = this.props;
+    const { setColoringMethod, coloringMethod } = this.props;
 
     const valueKeys = GIG2.filterValueCellKeys(tableRow);
     const sortedKeysAndValues = valueKeys
@@ -73,7 +73,7 @@ export default class RegionDrawerInner extends Component {
     );
 
     const onClickMajority = function () {
-      setColorMethod("majority");
+      setColoringMethod("majority");
     };
 
     return (
@@ -85,13 +85,13 @@ export default class RegionDrawerInner extends Component {
             ...{ background: GIG2.getValueKeyColor(k) },
           };
           const onClick = function () {
-            setColorMethod(k);
+            setColoringMethod(k);
           };
           return (
             <ListItemButton
               key={key}
               onClick={onClick}
-              selected={k === colorMethod}
+              selected={k === coloringMethod}
             >
               <Grid container alignItems="center" spacing={2}>
                 <Grid item xs={1}>
@@ -116,7 +116,7 @@ export default class RegionDrawerInner extends Component {
         })}
         <ListItemButton
           onClick={onClickMajority}
-          selected={"majority" === colorMethod}
+          selected={"majority" === coloringMethod}
         >
           <Grid container alignItems="center" spacing={2}>
             <Grid item xs={1}>

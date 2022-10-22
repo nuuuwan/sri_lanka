@@ -119,17 +119,17 @@ export default class GIG2 {
     return MIN_OPACITY + q * (MAX_OPACITY - MIN_OPACITY);
   }
 
-  static getTableRowColorAndOpacity(colorMethod, tableRow) {
+  static getTableRowColorAndOpacity(coloringMethod, tableRow) {
     let color = DEFAULT_COLOR,
       opacity = DEFAULT_OPACITY;
 
-    if (colorMethod === "majority") {
+    if (coloringMethod === "majority") {
       const maxValueKey = GIG2.getMaxValueKey(tableRow);
       color = GIG2.getValueKeyColor(maxValueKey);
       const maxValueP = GIG2.getValueKeyP(tableRow, maxValueKey);
       opacity = GIG2.getOpacityFromP(maxValueP);
     } else {
-      const colorKey = colorMethod;
+      const colorKey = coloringMethod;
       color = GIG2.getValueKeyColor(colorKey);
       const p = GIG2.getValueKeyP(tableRow, colorKey);
       opacity = GIG2.getOpacityFromP(p);
