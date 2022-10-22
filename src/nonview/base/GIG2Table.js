@@ -29,6 +29,22 @@ export default class GIG2Table {
     );
   }
 
+  getPToRankP(valueKey) {
+    const pList = Object.values(this.tableIndex).map(
+      function(tableRow) {
+        return tableRow.getPValue(valueKey);
+      }
+    );
+    const n = pList.length;
+    return pList.sort().reduce(
+      function(pToRankP, p, iP) {
+        pToRankP[p] = iP / n;
+        return pToRankP;
+      },
+      {},
+    );
+
+  }
   getStyle(id, coloringMethod) {
     const tableRow = this.getRowByID(id);
     let color = DEFAULT_COLOR,
