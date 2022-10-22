@@ -35,7 +35,11 @@ export default class HomePage extends Component {
     console.debug("👍 HomePage.constructor end.");
   }
 
-  async componentDidMountUnSafe() {
+  async componentDidMount() {
+    if (this.didMount) {
+      return;
+    }
+
     console.debug("🏃‍♀️ HomePage.componentDidMountUnSafe start.");
     const geoCenter = await GeoLocation.getLatLng();
     console.debug(
@@ -57,20 +61,8 @@ export default class HomePage extends Component {
     );
 
     this.setState({ allEntIndex, tableIndex, center, geoCenter });
-    console.debug("👍 HomePage.componentDidMountUnSafe end.");
-  }
-
-  async componentDidMount() {
-    if (this.didMount) {
-      return;
-    }
-
-    try {
-      await this.componentDidMountUnSafe();
-    } catch (errors) {
-      this.componentDidMountErrors = errors;
-    }
     this.didMount = true;
+    console.debug("👍 HomePage.componentDidMountUnSafe end.");
   }
 
   setCenterAndZoom(center, zoom) {
