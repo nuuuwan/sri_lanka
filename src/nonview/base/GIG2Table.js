@@ -30,42 +30,42 @@ export default class GIG2Table {
   }
 
   getPToRankP(valueKey) {
-    const pList = Object.values(this.tableIndex).map(
-      function(tableRow) {
-        return tableRow.getPValue(valueKey);
-      }
-    );
+    const pList = Object.values(this.tableIndex).map(function (tableRow) {
+      return tableRow.getPValue(valueKey);
+    });
     const n = pList.length;
-    return pList.sort().reduce(
-      function(pToRankP, p, iP) {
-        pToRankP[p] = iP / n;
-        return pToRankP;
-      },
-      {},
-    );
-
+    return pList.sort().reduce(function (pToRankP, p, iP) {
+      pToRankP[p] = iP / n;
+      return pToRankP;
+    }, {});
   }
-  getStyle(id, coloringMethod) {
-    const tableRow = this.getRowByID(id);
-    let color = DEFAULT_COLOR,
-      opacity = DEFAULT_OPACITY;
+  getIDToStyle(coloringMethod) {
+    return Object.entries(this.tableIndex).reduce(function (
+      idToStyle,
+      [id, tableRow]
+    ) {
+      let color = DEFAULT_COLOR,
+        opacity = DEFAULT_OPACITY;
 
-    if (coloringMethod === "majority") {
-      /* eslint-disable no-unused-vars */
-      const [maxValueKey, maxValue] = tableRow.getMaxValueKeyAndValue();
-      color = GIG2TableStyle.getValueKeyColor(maxValueKey);
-      const maxPValue = tableRow.getPValue(maxValueKey);
-      opacity = GIG2TableStyle.getOpacityFromP(maxPValue);
-    } else {
-      const colorKey = coloringMethod;
-      color = GIG2TableStyle.getValueKeyColor(colorKey);
-      const p = tableRow.getPValue(colorKey);
-      opacity = GIG2TableStyle.getOpacityFromP(p);
-    }
+      if (coloringMethod === "majority") {
+        /* eslint-disable no-unused-vars */
+        const [maxValueKey, maxValue] = tableRow.getMaxValueKeyAndValue();
+        color = GIG2TableStyle.getValueKeyColor(maxValueKey);
+        const maxPValue = tableRow.getPValue(maxValueKey);
+        opacity = GIG2TableStyle.getOpacityFromP(maxPValue);
+      } else {
+        const colorKey = coloringMethod;
+        color = GIG2TableStyle.getValueKeyColor(colorKey);
+        const p = tableRow.getPValue(colorKey);
+        opacity = GIG2TableStyle.getOpacityFromP(p);
+      }
 
-    return {
-      color,
-      opacity,
-    };
+      idToStyle[id] = {
+        color,
+        opacity,
+      };
+      return idToStyle;
+    },
+    {});
   }
 }
