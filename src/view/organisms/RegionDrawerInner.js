@@ -98,7 +98,7 @@ export default class RegionDrawerInner extends Component {
                   <Typography sx={styleBulletCustom}> </Typography>
                 </Grid>
                 <Grid item xs={5}>
-                  <Typography variant="body2">
+                  <Typography variant="caption">
                     {StringX.toTitleCase(k)}
                   </Typography>
                 </Grid>
