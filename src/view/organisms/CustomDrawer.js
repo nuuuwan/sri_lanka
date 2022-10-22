@@ -48,7 +48,8 @@ export default class CustomDrawer extends Component {
   }
 
   render() {
-    const { onClickCloseDrawer, drawerTabValue, setDrawerTabValue } = this.props;
+    const { onClickCloseDrawer, drawerTabValue, setDrawerTabValue } =
+      this.props;
 
     const onChangeTabs = function (_, tabValue) {
       setDrawerTabValue(tabValue);

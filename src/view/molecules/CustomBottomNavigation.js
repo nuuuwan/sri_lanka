@@ -13,7 +13,10 @@ export default function CustomBottomNavigation({
         icon={<LocationOnIcon />}
         onClick={onClickCenterOnCurrentLocation}
       />
-      <BottomNavigationAction icon={<TuneIcon />} onClick={onClickOpenLayerDrawer} />
+      <BottomNavigationAction
+        icon={<TuneIcon />}
+        onClick={onClickOpenLayerDrawer}
+      />
     </BottomNavigation>
   );
 }
