@@ -12,6 +12,8 @@ const FIELD_NAME_TO_COLOR = {
   LSSP: "red",
   ACTC: COLOR_SL_FLAG.TAMIL,
   SLMP: "purple",
+  NMPP: "red",
+  NPP: "red",
 
   Others: "ghostwhite",
   other: "ghostwhite",
