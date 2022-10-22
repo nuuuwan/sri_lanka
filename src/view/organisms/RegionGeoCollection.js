@@ -29,8 +29,7 @@ export default class RegionGeoCollection extends Component {
 
     return displayRegionIDs.map(function (regionID) {
       const key = `region-geo-${layerTableName}-${regionID}`;
-      const tableRow = layerTable.getRowByID(regionID);
-      const { color, opacity } = tableRow.getStyle(coloringMethod);
+      const { color, opacity } = layerTable.getStyle(regionID, coloringMethod);
       return (
         <RegionGeo
           key={key}

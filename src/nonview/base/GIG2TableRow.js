@@ -1,8 +1,3 @@
-import GIG2TableStyle, {
-  DEFAULT_COLOR,
-  DEFAULT_OPACITY,
-} from "./GIG2TableStyle";
-
 export default class GIG2TableRow {
   static isValueKey(k) {
     return !(
@@ -48,28 +43,5 @@ export default class GIG2TableRow {
 
   getPValue(valueKey) {
     return this.d[valueKey] / this.sumValue;
-  }
-
-  getStyle(coloringMethod) {
-    let color = DEFAULT_COLOR,
-      opacity = DEFAULT_OPACITY;
-
-    if (coloringMethod === "majority") {
-      /* eslint-disable no-unused-vars */
-      const [maxValueKey, maxValue] = this.getMaxValueKeyAndValue();
-      color = GIG2TableStyle.getValueKeyColor(maxValueKey);
-      const maxPValue = this.getPValue(maxValueKey);
-      opacity = GIG2TableStyle.getOpacityFromP(maxPValue);
-    } else {
-      const colorKey = coloringMethod;
-      color = GIG2TableStyle.getValueKeyColor(colorKey);
-      const p = this.getPValue(colorKey);
-      opacity = GIG2TableStyle.getOpacityFromP(p);
-    }
-
-    return {
-      color,
-      opacity,
-    };
   }
 }
