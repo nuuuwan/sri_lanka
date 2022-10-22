@@ -31,7 +31,6 @@ export default class HomePage extends Component {
       zoom: DEFAULT_ZOOM,
     };
     this.didMount = false;
-    this.componentDidMountErrors = null;
     console.debug("👍 HomePage.constructor end.");
   }
 
