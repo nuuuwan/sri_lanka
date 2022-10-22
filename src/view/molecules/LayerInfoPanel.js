@@ -15,7 +15,7 @@ export const STYLE_FLOATING_BOX = {
   borderRadius: 3,
 };
 
-export default function HeaderPanel({ selectedLayerTableName, colorMethod }) {
+export default function LayerInfoPanel({ selectedLayerTableName, colorMethod }) {
   return (
     <Box sx={STYLE_FLOATING_BOX}>
       <TableTitleView tableName={selectedLayerTableName} />

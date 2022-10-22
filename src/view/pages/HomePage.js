@@ -13,7 +13,7 @@ import CustomDrawer from "../../view/organisms/CustomDrawer";
 import CustomBottomNavigation from "../../view/molecules/CustomBottomNavigation";
 
 import GeoMap from "../organisms/GeoMap";
-import HeaderPanel from "../../view/molecules/HeaderPanel";
+import LayerInfoPanel from "../../view/molecules/LayerInfoPanel";
 import { STYLE_BODY, STYLE_FOOTER } from "../../view/pages/STYLES_HOME_PAGE";
 
 export default class HomePage extends Component {
@@ -132,7 +132,7 @@ export default class HomePage extends Component {
     return (
       <Box>
         <Paper sx={STYLE_BODY}>
-          <HeaderPanel
+          <LayerInfoPanel
             selectedLayerTableName={selectedLayerTableName}
             colorMethod={colorMethod}
           />
