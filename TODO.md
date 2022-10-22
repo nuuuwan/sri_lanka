@@ -1,14 +1,20 @@
 # Diff Plan
 
-* perf: Remove all errors
-* refactor: Smaller Files
+* i18N
+* URL
+* style: Redesign majority
+* style: Alternative to drawer???
+* style: One field coloring
 * feat: URL
 * log: data load
 
-## Need to spec
+# Ongoing
+* perf: Remove all errors
+* refactor: Smaller Files
+
+## Complex: Need to breakdown
 * feat: Typeahead Search for Layers
 * feat: Dorling Cartogram
-* feat: Add legend
 
 # Design Questions
 
