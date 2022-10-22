@@ -11,7 +11,6 @@ import GIG2 from "../../nonview/base/GIG2";
 import StringX from "../../nonview/base/StringX";
 
 import EntView from "../../view/atoms/EntView";
-import TableTitleView from "../../view/molecules/TableTitleView";
 
 const STYLE_BOX = {
   m: 1,
@@ -135,14 +134,13 @@ export default class RegionDrawerInner extends Component {
   }
 
   render() {
-    const { selectedLayerTableName, selectedRegionID } = this.props;
+    const { selectedRegionID } = this.props;
     if (!selectedRegionID) {
       return null;
     }
     return (
       <Box sx={STYLE_BOX}>
-        <EntView entID={selectedRegionID} />
-        <TableTitleView tableName={selectedLayerTableName} />
+        <EntView entID={selectedRegionID} top />
         {this.renderTableRow()}
       </Box>
     );
