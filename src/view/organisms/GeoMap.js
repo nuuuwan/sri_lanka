@@ -24,7 +24,7 @@ export default class GeoMap extends Component {
       center,
       zoom,
       allEntIndex,
-      tableIndex,
+      layerTable,
       layerTableName,
       setRegion,
       coloringMethod,
@@ -39,7 +39,7 @@ export default class GeoMap extends Component {
           center={center}
           zoom={zoom}
           allEntIndex={allEntIndex}
-          tableIndex={tableIndex}
+          layerTable={layerTable}
           layerTableName={layerTableName}
           coloringMethod={coloringMethod}
           setRegion={setRegion}

@@ -16,7 +16,7 @@ export default class HomePageState extends Component {
       geoCenter: DEFAULT_CENTER,
       layerTableName: DEFAULT_LAYER_TABLE_NAME,
       regionID: "LK",
-      tableIndex: null,
+      layerTable: null,
       zoom: DEFAULT_ZOOM,
     };
   }
@@ -26,8 +26,8 @@ export default class HomePageState extends Component {
     const center = geoCenter ? geoCenter : DEFAULT_CENTER;
     const { layerTableName } = this.state;
     const allEntIndex = await Ents.getAllEntIndex();
-    const tableIndex = await GIG2.getTableIndex(layerTableName);
-    this.setState({ allEntIndex, tableIndex, center, geoCenter });
+    const layerTable = await GIG2.getTable(layerTableName);
+    this.setState({ allEntIndex, layerTable, center, geoCenter });
   }
 
   setCenterAndZoom(center, zoom) {
@@ -43,10 +43,10 @@ export default class HomePageState extends Component {
   }
 
   async setLayerTableName(layerTableName) {
-    const tableIndex = await GIG2.getTableIndex(layerTableName);
+    const layerTable = await GIG2.getTable(layerTableName);
     const coloringMethod = "majority";
     this.setState({
-      tableIndex,
+      layerTable,
       layerTableName,
       coloringMethod,
     });

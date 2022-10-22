@@ -1,6 +1,5 @@
 import { Component } from "react";
 
-import GIG2TableUtils from "../../nonview/base/GIG2TableUtils";
 import EntsForMaps from "../../nonview/core/EntsForMaps";
 
 import RegionGeo from "../../view/organisms/RegionGeo";
@@ -11,7 +10,7 @@ export default class RegionGeoCollection extends Component {
       center,
       zoom,
       allEntIndex,
-      tableIndex,
+      layerTable,
       layerTableName,
       setRegion,
       coloringMethod,
@@ -30,11 +29,8 @@ export default class RegionGeoCollection extends Component {
 
     return displayRegionIDs.map(function (regionID) {
       const key = `region-geo-${layerTableName}-${regionID}`;
-      const tableRow = tableIndex[regionID];
-      const { color, opacity } = GIG2TableUtils.getTableRowColorAndOpacity(
-        coloringMethod,
-        tableRow
-      );
+      const tableRow = layerTable.getRowByID(regionID);
+      const { color, opacity } = tableRow.getStyle(coloringMethod);
       return (
         <RegionGeo
           key={key}

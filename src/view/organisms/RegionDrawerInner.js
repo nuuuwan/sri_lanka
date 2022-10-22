@@ -8,7 +8,7 @@ import ListItemButton from "@mui/material/ListItemButton";
 import Typography from "@mui/material/Typography";
 
 import GIG2 from "../../nonview/base/GIG2";
-import GIG2TableUtils from "../../nonview/base/GIG2TableUtils";
+import GIG2TableStyle from "../../nonview/base/GIG2TableStyle";
 import StringX from "../../nonview/base/StringX";
 
 import EntView from "../../view/atoms/EntView";
@@ -37,8 +37,8 @@ export default class RegionDrawerInner extends Component {
       return;
     }
 
-    const tableIndex = await GIG2.getTableIndex(layerTableName);
-    const tableRow = tableIndex[regionID];
+    const layerTable = await GIG2.getTable(layerTableName);
+    const tableRow = layerTable.getRowByID(regionID);
     this.setState({ tableRow });
   }
 
@@ -49,12 +49,12 @@ export default class RegionDrawerInner extends Component {
     }
     const { setColoringMethod, coloringMethod } = this.props;
 
-    const valueKeys = GIG2TableUtils.filterValueCellKeys(tableRow);
-    const sortedKeysAndValues = valueKeys
-      .map((k) => [k, tableRow[k]])
-      .sort(function (a, b) {
-        return b[1] - a[1];
-      });
+    const sortedKeysAndValues = Object.entries(tableRow.d).sort(function (
+      a,
+      b
+    ) {
+      return b[1] - a[1];
+    });
     const MAX_NON_OTHER = 4;
     const otherValue = sortedKeysAndValues
       .slice(MAX_NON_OTHER)
@@ -83,7 +83,7 @@ export default class RegionDrawerInner extends Component {
           const key = `list-item-${k}`;
           const styleBulletCustom = {
             ...STYLE_BULLET,
-            ...{ background: GIG2TableUtils.getValueKeyColor(k) },
+            ...{ background: GIG2TableStyle.getValueKeyColor(k) },
           };
           const onClick = function () {
             setColoringMethod(k);

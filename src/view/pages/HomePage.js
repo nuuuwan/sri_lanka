@@ -48,7 +48,7 @@ export default class HomePage extends HomePageState {
       geoCenter,
       layerTableName,
       regionID,
-      tableIndex,
+      layerTable,
       zoom,
     } = this.state;
 
@@ -65,7 +65,7 @@ export default class HomePage extends HomePageState {
             layerTableName={layerTableName}
             setCenterAndZoom={this.setCenterAndZoom.bind(this)}
             setRegion={this.setRegion.bind(this)}
-            tableIndex={tableIndex}
+            layerTable={layerTable}
             zoom={zoom}
           />
           <CustomDrawer
