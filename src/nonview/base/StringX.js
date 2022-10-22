@@ -27,30 +27,26 @@ export default class StringX {
   static formatInt(x) {
     const logBase1000 = Math.log(x) / Math.log(1000);
 
-    let numPart, multPart, color;
+    let numPart, multPart;
     if (x >= 1_000_000) {
       numPart = Number(x / 1_000_000).toLocaleString(undefined, {
         maximumSignificantDigits: MAX_SIG_DIGITS,
       });
       multPart = "M";
-      color = "#000";
     } else if (x >= 1_000) {
       numPart = Number(x / 1_000).toLocaleString(undefined, {
         maximumSignificantDigits: MAX_SIG_DIGITS,
       });
       multPart = "K";
-      color = "#222";
     } else {
       numPart = Number(x).toLocaleString(undefined, {
         maximumSignificantDigits: MAX_SIG_DIGITS,
       });
       multPart = "";
-      color = "#444";
     }
 
     const style = {
       fontSize: parseInt(logBase1000 * 60) + "%",
-      color,
     };
 
     return (
