@@ -1,37 +1,20 @@
-import { Component } from "react";
-
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 
-import Ents from "../../nonview/base/Ents";
-import GIG2, {
-  DEFAULT_LAYER_TABLE_NAME,
-} from "../../nonview/base/GIG2";
-import GeoLocation from "../../nonview/base/GeoLocation";
 import { DEFAULT_ZOOM, DEFAULT_CENTER } from "../../nonview/base/GeoData";
-import CustomDrawer from "../../view/organisms/CustomDrawer";
-import CustomBottomNavigation from "../../view/molecules/CustomBottomNavigation";
+import GeoLocation from "../../nonview/base/GeoLocation";
 
-import GeoMap from "../organisms/GeoMap";
+import CustomBottomNavigation from "../../view/molecules/CustomBottomNavigation";
 import LayerInfoPanel from "../../view/molecules/LayerInfoPanel";
+import CustomDrawer from "../../view/organisms/CustomDrawer";
+import GeoMap from "../organisms/GeoMap";
+import HomePageState from "./HomePageState";
 import { STYLE_BODY, STYLE_FOOTER } from "../../view/pages/STYLES_HOME_PAGE";
 
-export default class HomePage extends Component {
+export default class HomePage extends HomePageState {
   constructor(props) {
     super(props);
-    this.state = {
-      allEntIndex: null,
-      center: DEFAULT_CENTER,
-      coloringMethod: "majority",
-      drawerTabValue: "none",
-      geoCenter: DEFAULT_CENTER,
-      layerTableName: DEFAULT_LAYER_TABLE_NAME,
-      regionID: "LK",
-      tableIndex: null,
-      zoom: DEFAULT_ZOOM,
-    };
     this.didMount = false;
-    console.debug("👍 HomePage.constructor end.");
   }
 
   async componentDidMount() {
@@ -39,56 +22,8 @@ export default class HomePage extends Component {
       return;
     }
 
-    console.debug("🏃‍♀️ HomePage.componentDidMountUnSafe start.");
-    const geoCenter = await GeoLocation.getLatLng();
-    console.debug(
-      "🧮 HomePage.componentDidMountUnSafe geoCenter = ",
-      geoCenter
-    );
-    const center = geoCenter ? geoCenter : DEFAULT_CENTER;
-
-    const { layerTableName } = this.state;
-    const allEntIndex = await Ents.getAllEntIndex();
-    console.debug(
-      "🧮 HomePage.componentDidMountUnSafe: Object.keys(allEntIndex) = ",
-      Object.keys(allEntIndex)
-    );
-    const tableIndex = await GIG2.getTableIndex(layerTableName);
-    console.debug(
-      "🧮 HomePage.componentDidMountUnSafe: Object.keys(tableIndex).length = ",
-      Object.keys(tableIndex).length
-    );
-
-    this.setState({ allEntIndex, tableIndex, center, geoCenter });
+    this.loadState();
     this.didMount = true;
-    console.debug("👍 HomePage.componentDidMountUnSafe end.");
-  }
-
-  setCenterAndZoom(center, zoom) {
-    this.setState({ center, zoom });
-  }
-
-  setColoringMethod(coloringMethod) {
-    this.setState({ coloringMethod });
-  }
-
-  setDrawerTabValue(drawerTabValue) {
-    this.setState({ drawerTabValue });
-  }
-
-  async setLayerTableName(layerTableName) {
-    const tableIndex = await GIG2.getTableIndex(layerTableName);
-    const coloringMethod = "majority";
-    this.setState({
-      tableIndex,
-      layerTableName,
-      coloringMethod,
-    });
-  }
-
-  setRegion(regionID) {
-    const drawerTabValue = "regions";
-    this.setState({ regionID, drawerTabValue });
   }
 
   async onClickCenterOnCurrentLocation() {
@@ -105,7 +40,6 @@ export default class HomePage extends Component {
   }
 
   render() {
-    console.debug("✅ HomePage.render start.");
     const {
       allEntIndex,
       center,
