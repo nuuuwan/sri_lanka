@@ -8,6 +8,7 @@ import ListItemButton from "@mui/material/ListItemButton";
 import Typography from "@mui/material/Typography";
 
 import GIG2 from "../../nonview/base/GIG2";
+import GIG2TableUtils from "../../nonview/base/GIG2TableUtils";
 import StringX from "../../nonview/base/StringX";
 
 import EntView from "../../view/atoms/EntView";
@@ -48,7 +49,7 @@ export default class RegionDrawerInner extends Component {
     }
     const { setColoringMethod, coloringMethod } = this.props;
 
-    const valueKeys = GIG2.filterValueCellKeys(tableRow);
+    const valueKeys = GIG2TableUtils.filterValueCellKeys(tableRow);
     const sortedKeysAndValues = valueKeys
       .map((k) => [k, tableRow[k]])
       .sort(function (a, b) {
@@ -82,7 +83,7 @@ export default class RegionDrawerInner extends Component {
           const key = `list-item-${k}`;
           const styleBulletCustom = {
             ...STYLE_BULLET,
-            ...{ background: GIG2.getValueKeyColor(k) },
+            ...{ background: GIG2TableUtils.getValueKeyColor(k) },
           };
           const onClick = function () {
             setColoringMethod(k);

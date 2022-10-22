@@ -2,8 +2,8 @@ import { Component } from "react";
 
 import Ents from "../../nonview/base/Ents";
 import GIG2, { DEFAULT_LAYER_TABLE_NAME } from "../../nonview/base/GIG2";
-import GeoLocation from "../../nonview/base/GeoLocation";
 import { DEFAULT_ZOOM, DEFAULT_CENTER } from "../../nonview/base/GeoData";
+import GeoLocation from "../../nonview/base/GeoLocation";
 
 export default class HomePageState extends Component {
   constructor(props) {
