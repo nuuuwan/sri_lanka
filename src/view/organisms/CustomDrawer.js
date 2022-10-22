@@ -10,11 +10,7 @@ import MapIcon from "@mui/icons-material/Map";
 import LayerListView from "../../view/molecules/LayerListView";
 import RegionDrawerInner from "../../view/organisms/RegionDrawerInner";
 
-const STYLE_DRAWER = {
-  "& .MuiPaper-root": {
-    background: "rgba(255, 255, 255, 0.8)",
-  },
-};
+const STYLE_DRAWER = {};
 
 const STYLE_DRAWER_INNER = {
   width: 320,

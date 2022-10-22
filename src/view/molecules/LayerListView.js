@@ -1,6 +1,5 @@
 import Box from "@mui/material/Box";
 import List from "@mui/material/List";
-import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 
 import GIG2 from "../../nonview/base/GIG2";
@@ -9,11 +8,6 @@ import LayerView from "../../view/molecules/LayerView";
 
 const STYLE_BOX = {
   m: 1,
-  p: 1,
-};
-
-const STYLE_PAPER = {
-  m: 0.5,
   p: 1,
 };
 
@@ -31,7 +25,7 @@ export default function LayerListView({
       ]) {
         const key = `table-group-${groupName}`;
         return (
-          <Paper key={key} sx={STYLE_PAPER}>
+          <Box key={key}>
             <Typography variant="subtitle1">{groupName}</Typography>
             <List>
               {tableNames.map(function (tableName) {
@@ -46,7 +40,7 @@ export default function LayerListView({
                 );
               })}
             </List>
-          </Paper>
+          </Box>
         );
       })}
     </Box>

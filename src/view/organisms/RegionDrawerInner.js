@@ -5,7 +5,6 @@ import CircularProgress from "@mui/material/CircularProgress";
 import Grid from "@mui/material/Grid";
 import List from "@mui/material/List";
 import ListItemButton from "@mui/material/ListItemButton";
-import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 
 import GIG2 from "../../nonview/base/GIG2";
@@ -16,11 +15,6 @@ import TableTitleView from "../../view/molecules/TableTitleView";
 
 const STYLE_BOX = {
   m: 1,
-  p: 1,
-};
-
-const STYLE_PAPER = {
-  m: 0.5,
   p: 1,
 };
 
@@ -147,13 +141,9 @@ export default class RegionDrawerInner extends Component {
     }
     return (
       <Box sx={STYLE_BOX}>
-        <Paper sx={STYLE_PAPER}>
-          <EntView entID={selectedRegionID} />
-        </Paper>
-        <Paper sx={STYLE_PAPER}>
-          <TableTitleView tableName={selectedLayerTableName} />
-          {this.renderTableRow()}
-        </Paper>
+        <EntView entID={selectedRegionID} />
+        <TableTitleView tableName={selectedLayerTableName} />
+        {this.renderTableRow()}
       </Box>
     );
   }
