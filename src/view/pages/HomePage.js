@@ -80,10 +80,12 @@ export default class HomePage extends Component {
   async setSelectedLayerTableName(selectedLayerTableName) {
     const tableIndex = await GIG2.getTableIndex(selectedLayerTableName);
     const colorMethod = "majority";
+    const selectedDrawerTabValue = "none";
     this.setState({
       tableIndex,
       selectedLayerTableName,
       colorMethod,
+      selectedDrawerTabValue,
     });
   }
 
