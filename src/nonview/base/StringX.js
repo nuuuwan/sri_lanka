@@ -49,7 +49,7 @@ export default class StringX {
     }
 
     const style = {
-      fontSize: parseInt(logBase1000 * 70) + "%",
+      fontSize: parseInt(logBase1000 * 60) + "%",
       color,
     };
 
