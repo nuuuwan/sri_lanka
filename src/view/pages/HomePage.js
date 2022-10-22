@@ -69,6 +69,14 @@ export default class HomePage extends Component {
     this.setState({ center, zoom });
   }
 
+  setColoringMethod(coloringMethod) {
+    this.setState({ coloringMethod });
+  }
+
+  setDrawerTabValue(drawerTabValue) {
+    this.setState({ drawerTabValue });
+  }
+
   async setLayerTableName(layerTableName) {
     const tableIndex = await GIG2.getTableIndex(layerTableName);
     const coloringMethod = "majority";
@@ -84,26 +92,17 @@ export default class HomePage extends Component {
     this.setState({ regionID, drawerTabValue });
   }
 
-  setColoringMethod(coloringMethod) {
-    this.setState({ coloringMethod });
-  }
-
-  onClickOpenLayerDrawer() {
-    this.setState({ drawerTabValue: "layers" });
-  }
-
-  onClickCloseDrawer() {
-    this.setState({ drawerTabValue: "none" });
-  }
-
-  setDrawerTabValue(drawerTabValue) {
-    this.setState({ drawerTabValue });
-  }
-
   async onClickCenterOnCurrentLocation() {
     const geoCenter = await GeoLocation.getLatLng();
     const center = geoCenter ? geoCenter : DEFAULT_CENTER;
     this.setState({ center, geoCenter, zoom: DEFAULT_ZOOM });
+  }
+  onClickCloseDrawer() {
+    this.setState({ drawerTabValue: "none" });
+  }
+
+  onClickOpenLayerDrawer() {
+    this.setState({ drawerTabValue: "layers" });
   }
 
   render() {
@@ -150,7 +149,9 @@ export default class HomePage extends Component {
         <Paper sx={STYLE_FOOTER}>
           <CustomBottomNavigation
             onClickOpenLayerDrawer={this.onClickOpenLayerDrawer.bind(this)}
-            onClickCenterOnCurrentLocation={this.onClickCenterOnCurrentLocation.bind(this)}
+            onClickCenterOnCurrentLocation={this.onClickCenterOnCurrentLocation.bind(
+              this
+            )}
           />
         </Paper>
       </Box>
