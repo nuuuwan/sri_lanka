@@ -13,6 +13,14 @@ export default class GIG2Table {
     }, {});
   }
 
+  get ids() {
+    return Object.keys(this.tableIndex);
+  }
+
+  get baseIDs() {
+    return this.ids.filter((id) => id.length === 5);
+  }
+
   getRowByID(id) {
     return this.tableIndex[id];
   }
@@ -30,42 +38,77 @@ export default class GIG2Table {
   }
 
   getPToRankP(valueKey) {
-    const pList = Object.values(this.tableIndex).map(function (tableRow) {
-      return tableRow.getPValue(valueKey);
-    });
+    const pList = this.baseIDs.map(
+      function (id) {
+        return this.getRowByID(id).getPValue(valueKey);
+      }.bind(this)
+    );
     const n = pList.length;
     return pList.sort().reduce(function (pToRankP, p, iP) {
       pToRankP[p] = iP / n;
       return pToRankP;
     }, {});
   }
-  getIDToStyle(coloringMethod) {
-    return Object.entries(this.tableIndex).reduce(function (
-      idToStyle,
-      [id, tableRow]
-    ) {
-      let color = DEFAULT_COLOR,
-        opacity = DEFAULT_OPACITY;
 
-      if (coloringMethod === "majority") {
+  getIDToStyle(displayRegionIDs, coloringMethod) {
+    if (coloringMethod === "majority") {
+      return this.getIDToStyleMajority(displayRegionIDs);
+    }
+    return this.getIDToStyleForKey(displayRegionIDs, coloringMethod);
+  }
+
+  getIDToStyleMajority(displayRegionIDs) {
+    return displayRegionIDs.reduce(
+      function (idToStyle, id) {
+        const tableRow = this.getRowByID(id);
+        let color = DEFAULT_COLOR,
+          opacity = DEFAULT_OPACITY;
+
         /* eslint-disable no-unused-vars */
         const [maxValueKey, maxValue] = tableRow.getMaxValueKeyAndValue();
         color = GIG2TableStyle.getValueKeyColor(maxValueKey);
         const maxPValue = tableRow.getPValue(maxValueKey);
         opacity = GIG2TableStyle.getOpacityFromP(maxPValue);
-      } else {
-        const colorKey = coloringMethod;
-        color = GIG2TableStyle.getValueKeyColor(colorKey);
-        const p = tableRow.getPValue(colorKey);
-        opacity = GIG2TableStyle.getOpacityFromP(p);
-      }
 
-      idToStyle[id] = {
-        color,
-        opacity,
-      };
-      return idToStyle;
-    },
-    {});
+        idToStyle[id] = {
+          color,
+          opacity,
+        };
+        return idToStyle;
+      }.bind(this),
+      {}
+    );
+  }
+
+  getIDToStyleForKey(displayRegionIDs, coloringKey) {
+    const pToRankP = this.getPToRankP(coloringKey);
+    function getRankP(p) {
+      for (let [p1, rankP1] of Object.entries(pToRankP)) {
+        if (p < p1) {
+          return rankP1;
+        }
+      }
+      return 1;
+    }
+    console.debug(pToRankP);
+
+    return displayRegionIDs.reduce(
+      function (idToStyle, id) {
+        const tableRow = this.getRowByID(id);
+        let color = DEFAULT_COLOR,
+          opacity = DEFAULT_OPACITY;
+
+        color = GIG2TableStyle.getValueKeyColor(coloringKey);
+        const p = tableRow.getPValue(coloringKey);
+        const rankP = getRankP(p);
+        opacity = GIG2TableStyle.getOpacityFromP(rankP);
+        idToStyle[id] = {
+          color,
+          opacity,
+        };
+        return idToStyle;
+      }.bind(this),
+      {}
+    );
   }
 }
