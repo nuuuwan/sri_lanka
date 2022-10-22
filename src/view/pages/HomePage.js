@@ -33,6 +33,7 @@ export default class HomePage extends Component {
     };
     this.didMount = false;
     this.componentDidMountErrors = null;
+    console.debug("✅ HomePage.constructor end.");
   }
 
   async componentDidMountUnSafe() {
@@ -41,9 +42,18 @@ export default class HomePage extends Component {
 
     const { selectedLayerTableName } = this.state;
     const allEntIndex = await Ents.getAllEntIndex();
+    console.debug(
+      "HomePage.componentDidMountUnSafe: Object.keys(allEntIndex) = ",
+      Object.keys(allEntIndex)
+    );
     const tableIndex = await GIG2.getTableIndex(selectedLayerTableName);
+    console.debug(
+      "HomePage.componentDidMountUnSafe: Object.keys(tableIndex).length = ",
+      Object.keys(tableIndex).length
+    );
 
     this.setState({ allEntIndex, tableIndex, center, geoCenter });
+    console.debug("✅ HomePage.componentDidMountUnSafe end.");
   }
 
   async componentDidMount() {
@@ -101,6 +111,7 @@ export default class HomePage extends Component {
   }
 
   render() {
+    console.debug("✅ HomePage.render start.");
     if (!this.didMount) {
       return <CircularProgress />;
     }
@@ -117,7 +128,6 @@ export default class HomePage extends Component {
     } = this.state;
 
     const key = `geo-map-${zoom}-${geoCenter}`;
-
     return (
       <Box>
         <Paper sx={STYLE_BODY}>
