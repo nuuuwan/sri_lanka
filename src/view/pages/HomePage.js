@@ -33,11 +33,16 @@ export default class HomePage extends Component {
     };
     this.didMount = false;
     this.componentDidMountErrors = null;
-    console.debug("✅ HomePage.constructor end.");
+    console.debug("👍 HomePage.constructor end.");
   }
 
   async componentDidMountUnSafe() {
+    console.debug("🏃‍♀️ HomePage.componentDidMountUnSafe start.");
     const geoCenter = await GeoLocation.getLatLng();
+    console.debug(
+      "🏃‍♀️ HomePage.componentDidMountUnSafe geoCenter = ",
+      geoCenter
+    );
     const center = geoCenter ? geoCenter : DEFAULT_CENTER;
 
     const { selectedLayerTableName } = this.state;
@@ -53,7 +58,7 @@ export default class HomePage extends Component {
     );
 
     this.setState({ allEntIndex, tableIndex, center, geoCenter });
-    console.debug("✅ HomePage.componentDidMountUnSafe end.");
+    console.debug("👍 HomePage.componentDidMountUnSafe end.");
   }
 
   async componentDidMount() {
