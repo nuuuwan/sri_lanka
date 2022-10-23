@@ -1,7 +1,7 @@
 import { ENT_TYPES } from "../../nonview/base/EntTypes";
 import GIG2TableMetadata from "../../nonview/base/GIG2TableMetadata";
 
-const MAX_DISPLAY_REGIONS = 256;
+const MAX_DISPLAY_REGIONS = 350;
 
 export default class EntsForMaps {
   static getDistance([latCenter, lngCenter], { centroid }) {
