@@ -1,11 +1,13 @@
 import { ENT_TYPES } from "../../nonview/base/EntTypes";
 import GIG2TableMetadata from "../../nonview/base/GIG2TableMetadata";
 
-const MAX_DISPLAY_REGIONS = 200;
-const K_MAX_DISTANCE = 2000;
+const MAX_DISPLAY_REGIONS = 256;
 
 export default class EntsForMaps {
   static getDistance([latCenter, lngCenter], { centroid }) {
+    if (!centroid) {
+      return 0;
+    }
     const [lat, lng] = JSON.parse(centroid);
     const [dlat, dlng] = [lat - latCenter, lng - lngCenter];
     const r = window.screen.height / window.screen.width;
@@ -32,37 +34,26 @@ export default class EntsForMaps {
     return [ENT_TYPES.PROVINCE];
   }
 
-  static getDisplayRegionIDs(allEntIndex, center, zoom, layerTableName) {
-    const maxDistance = K_MAX_DISTANCE / Math.pow(2, zoom);
-    const entTypes = EntsForMaps.getEntTypes(layerTableName);
+  static getDisplayRegionIDs(
+    allEntIndex,
+    center,
+    zoom,
+    layerTableName,
+    regionEntType
+  ) {
+    const entIndex = allEntIndex[regionEntType];
+    const displayEnts = Object.values(entIndex).sort(function (entA, entB) {
+      return (
+        EntsForMaps.getDistance(center, entA) -
+        EntsForMaps.getDistance(center, entB)
+      );
+    });
 
-    for (let entType of entTypes) {
-      const entIndex = allEntIndex[entType];
-      const displayEnts = Object.values(entIndex)
-        .filter(function (ent) {
-          if (ent.centroid === "") {
-            return false;
-          }
-          const distance = EntsForMaps.getDistance(center, ent);
-          return distance < maxDistance;
-        })
-        .sort(function (entA, entB) {
-          return (
-            EntsForMaps.getDistance(center, entA) -
-            EntsForMaps.getDistance(center, entB)
-          );
-        });
-
-      const nDisplayEnts = displayEnts.length;
-
-      if (nDisplayEnts < MAX_DISPLAY_REGIONS) {
-        const displayRegionIDs = displayEnts
-          .slice(0, MAX_DISPLAY_REGIONS)
-          .map((ent) => ent.id);
-        return displayRegionIDs;
-      }
-    }
-    return [];
+    const displayRegionIDs = displayEnts
+      .slice(0, MAX_DISPLAY_REGIONS)
+      .map((ent) => ent.id)
+      .filter((id) => id.substring(6) !== "P");
+    return displayRegionIDs;
   }
 
   static getDisplayRegionIDsHACK(allEntIndex, center, zoom, layerTableName) {
