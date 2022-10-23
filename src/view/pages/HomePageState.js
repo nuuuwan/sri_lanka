@@ -50,7 +50,6 @@ export default class HomePageState extends Component {
     this.setState({
       layerTableName,
       layerTable: await GIG2.getTable(layerTableName),
-      coloringMethod: DEFAULT_COLORING_METHOD,
     });
   }
 
