@@ -2,8 +2,6 @@ import Grid from "@mui/material/Grid";
 import ListItemButton from "@mui/material/ListItemButton";
 import Typography from "@mui/material/Typography";
 
-import { STYLE_BULLET } from "../../view/molecules/RegionTableRowCellView";
-
 export default function RegionTableRowCustomCellView({
   onClickMajority,
   isSelected,
