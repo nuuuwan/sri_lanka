@@ -13,9 +13,11 @@ export default class HomePageState extends Component {
       center: DEFAULT_CENTER,
       coloringMethod: "majority",
       geoCenter: DEFAULT_CENTER,
+      layerTable: null,
       layerTableName: DEFAULT_LAYER_TABLE_NAME,
       regionID: "LK",
-      layerTable: null,
+      showLayerListView: false,
+      showRegionDetailsView: false,
       zoom: DEFAULT_ZOOM,
     };
   }
@@ -48,6 +50,6 @@ export default class HomePageState extends Component {
   }
 
   setRegion(regionID) {
-    this.setState({ regionID });
+    this.setState({ regionID, showRegionDetailsView: true });
   }
 }

@@ -10,7 +10,7 @@ import GeoMap from "../organisms/GeoMap";
 import RegionDetailsView from "../../view/organisms/RegionDetailsView";
 import HomePageState from "./HomePageState";
 import TableTitleView from "../../view/molecules/TableTitleView";
-import ShowHide from "../../view/organisms/ShowHide";
+import ShowHide from "../../view/molecules/ShowHide";
 import LayersIcon from "@mui/icons-material/Layers";
 import BarChartIcon from "@mui/icons-material/BarChart";
 
@@ -43,15 +43,31 @@ export default class HomePage extends HomePageState {
     this.setState({ center, geoCenter, zoom: DEFAULT_ZOOM });
   }
 
+  onClickShowRegionDetailsView() {
+    this.setState({ showRegionDetailsView: true });
+  }
+  onClickHideRegionDetailsView() {
+    this.setState({ showRegionDetailsView: false });
+  }
+
+  onClickShowLayerListView() {
+    this.setState({ showLayerListView: true });
+  }
+  onClickHideLayerListView() {
+    this.setState({ showLayerListView: false });
+  }
+
   render() {
     const {
       allEntIndex,
       center,
       coloringMethod,
       geoCenter,
+      layerTable,
       layerTableName,
       regionID,
-      layerTable,
+      showLayerListView,
+      showRegionDetailsView,
       zoom,
     } = this.state;
 
@@ -62,7 +78,12 @@ export default class HomePage extends HomePageState {
             <TableTitleView tableName={layerTableName} />
           </Box>
           <Paper sx={STYLE_BODY_REGION_DETAILS}>
-            <ShowHide ShowIcon={BarChartIcon}>
+            <ShowHide
+              ShowIcon={BarChartIcon}
+              show={showRegionDetailsView}
+              onShow={this.onClickShowRegionDetailsView.bind(this)}
+              onHide={this.onClickHideRegionDetailsView.bind(this)}
+            >
               <RegionDetailsView
                 key={`region-details-${regionID}-${layerTableName}`}
                 regionID={regionID}
@@ -73,7 +94,12 @@ export default class HomePage extends HomePageState {
             </ShowHide>
           </Paper>
           <Paper sx={STYLE_BODY_LAYERS}>
-            <ShowHide ShowIcon={LayersIcon}>
+            <ShowHide
+              ShowIcon={LayersIcon}
+              show={showLayerListView}
+              onShow={this.onClickShowLayerListView.bind(this)}
+              onHide={this.onClickHideLayerListView.bind(this)}
+            >
               <LayerListView
                 key={`layer-details-${layerTableName}`}
                 layerTableName={layerTableName}
