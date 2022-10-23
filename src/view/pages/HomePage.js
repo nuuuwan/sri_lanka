@@ -10,6 +10,7 @@ import GeoMap from "../organisms/GeoMap";
 import RegionDetailsView from "../../view/organisms/RegionDetailsView";
 import HomePageState from "./HomePageState";
 import TableTitleView from "../../view/molecules/TableTitleView";
+import ShowHide from "../../view/organisms/ShowHide";
 
 import {
   STYLE_FLOATING_BOX,
@@ -59,13 +60,15 @@ export default class HomePage extends HomePageState {
             <TableTitleView tableName={layerTableName} />
           </Box>
           <Paper sx={STYLE_BODY_REGION_DETAILS}>
-            <RegionDetailsView
-              key={`region-details-${regionID}`}
-              regionID={regionID}
-              layerTableName={layerTableName}
-              setColoringMethod={this.setColoringMethod.bind(this)}
-              coloringMethod={coloringMethod}
-            />
+            <ShowHide title="Region Details">
+              <RegionDetailsView
+                key={`region-details-${regionID}`}
+                regionID={regionID}
+                layerTableName={layerTableName}
+                setColoringMethod={this.setColoringMethod.bind(this)}
+                coloringMethod={coloringMethod}
+              />
+            </ShowHide>
           </Paper>
           <Paper sx={STYLE_BODY_LAYERS}>
             <LayerListView
