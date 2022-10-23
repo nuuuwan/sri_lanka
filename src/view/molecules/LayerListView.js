@@ -7,9 +7,10 @@ import GIG2 from "../../nonview/base/GIG2";
 import LayerView from "../../view/molecules/LayerView";
 
 const STYLE_BOX = {
-  m: 1,
-  p: 1,
-  maxHeight: "60vh",
+  marginLeft: 1,
+  marginRight: 1,
+  paddingBottom: 1,
+  maxHeight: "67vh",
   overflow: "scroll",
 };
 

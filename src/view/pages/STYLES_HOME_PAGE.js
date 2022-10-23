@@ -43,6 +43,7 @@ export const STYLE_BODY_LAYERS = {
   right: PADDING,
   zIndex: 10000,
   maxWidth: "67%",
+  maxHeight: "67vh",
   background: "rgba(255,255,255,0.8)",
   padding: 1,
   borderRadius: 5,
