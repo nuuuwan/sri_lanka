@@ -15,7 +15,7 @@ export default class HomePageState extends Component {
     this.state = {
       allEntIndex: null,
       center: DEFAULT_CENTER,
-      coloringMethod: "majority",
+      coloringMethod: DEFAULT_COLORING_METHOD,
       geoCenter: DEFAULT_CENTER,
       layerTable: null,
       layerTableName: DEFAULT_LAYER_TABLE_NAME,
