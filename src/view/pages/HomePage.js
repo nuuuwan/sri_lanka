@@ -9,7 +9,7 @@ import CustomBottomNavigation from "../../view/molecules/CustomBottomNavigation"
 import GeoMap from "../organisms/GeoMap";
 import RegionDetailsView from "../../view/organisms/RegionDetailsView";
 import HomePageState from "./HomePageState";
-import TableTitleView from "../../view/molecules/TableTitleView";
+import LayerTableTitleView from "../../view/molecules/LayerTableTitleView";
 import ShowHide from "../../view/molecules/ShowHide";
 import LayersIcon from "@mui/icons-material/Layers";
 import BarChartIcon from "@mui/icons-material/BarChart";
@@ -75,7 +75,7 @@ export default class HomePage extends HomePageState {
       <Box>
         <Paper sx={STYLE_BODY}>
           <Box sx={STYLE_FLOATING_BOX}>
-            <TableTitleView tableName={layerTableName} />
+            <LayerTableTitleView tableName={layerTableName} />
           </Box>
           <Paper sx={STYLE_BODY_REGION_DETAILS}>
             <ShowHide

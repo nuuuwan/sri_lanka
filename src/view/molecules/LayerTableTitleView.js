@@ -47,7 +47,7 @@ function getTableIcon(tableMetadata) {
   }
 }
 
-export default function TableTitleView({ tableName }) {
+export default function LayerTableTitleView({ tableName }) {
   const tableMetadata = new GIG2TableMetadata(tableName);
 
   let Icon = getTableIcon(tableMetadata);

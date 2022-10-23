@@ -1,6 +1,6 @@
 import ListItemButton from "@mui/material/ListItemButton";
 
-import TableTitleView from "../../view/molecules/TableTitleView";
+import LayerTableTitleView from "../../view/molecules/LayerTableTitleView";
 
 export default function LayerView({
   tableName,
@@ -14,7 +14,7 @@ export default function LayerView({
 
   return (
     <ListItemButton selected={selected} onClick={onClick}>
-      <TableTitleView tableName={tableName} />
+      <LayerTableTitleView tableName={tableName} />
     </ListItemButton>
   );
 }
