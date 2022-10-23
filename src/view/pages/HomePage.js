@@ -11,6 +11,8 @@ import RegionDetailsView from "../../view/organisms/RegionDetailsView";
 import HomePageState from "./HomePageState";
 import TableTitleView from "../../view/molecules/TableTitleView";
 import ShowHide from "../../view/organisms/ShowHide";
+import LayersIcon from "@mui/icons-material/Layers";
+import BarChartIcon from "@mui/icons-material/BarChart";
 
 import {
   STYLE_FLOATING_BOX,
@@ -60,7 +62,7 @@ export default class HomePage extends HomePageState {
             <TableTitleView tableName={layerTableName} />
           </Box>
           <Paper sx={STYLE_BODY_REGION_DETAILS}>
-            <ShowHide title="Details">
+            <ShowHide ShowIcon={BarChartIcon}>
               <RegionDetailsView
                 key={`region-details-${regionID}`}
                 regionID={regionID}
@@ -71,7 +73,7 @@ export default class HomePage extends HomePageState {
             </ShowHide>
           </Paper>
           <Paper sx={STYLE_BODY_LAYERS}>
-            <ShowHide title="Layers">
+            <ShowHide ShowIcon={LayersIcon}>
               <LayerListView
                 key={`layer-details-${layerTableName}`}
                 layerTableName={layerTableName}

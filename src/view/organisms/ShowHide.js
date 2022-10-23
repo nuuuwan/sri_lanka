@@ -1,13 +1,8 @@
 import { Component } from "react";
 
-import Button from "@mui/material/Button";
+import IconButton from "@mui/material/IconButton";
 import Stack from "@mui/material/Stack";
-
-const STYLE_BUTTON = {
-  fontSize: "50%",
-  p: 0,
-  m: 0,
-};
+import CloseIcon from "@mui/icons-material/Close";
 
 export default class ShowHide extends Component {
   constructor(props) {
@@ -16,13 +11,14 @@ export default class ShowHide extends Component {
   }
 
   renderWhenHide() {
+    const { ShowIcon } = this.props;
     const onClick = function () {
       this.setState({ show: true });
     }.bind(this);
     return (
-      <Button onClick={onClick} sx={STYLE_BUTTON}>
-        {this.props.title}
-      </Button>
+      <IconButton onClick={onClick}>
+        <ShowIcon />
+      </IconButton>
     );
   }
 
@@ -32,9 +28,9 @@ export default class ShowHide extends Component {
     }.bind(this);
     return (
       <>
-        <Button onClick={onClick} sx={STYLE_BUTTON}>
-          {"X"}
-        </Button>
+        <IconButton onClick={onClick}>
+          <CloseIcon />
+        </IconButton>
         {this.props.children}
       </>
     );
