@@ -25,7 +25,7 @@ const STYLE_BULLET = {
   borderRadius: 10,
 };
 
-export default class RegionDrawerInner extends Component {
+export default class RegionDetailsView extends Component {
   constructor(props) {
     super(props);
     this.state = { tableRow: undefined };

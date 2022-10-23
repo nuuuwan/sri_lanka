@@ -7,7 +7,7 @@ import GeoLocation from "../../nonview/base/GeoLocation";
 import LayerListView from "../../view/molecules/LayerListView";
 import CustomBottomNavigation from "../../view/molecules/CustomBottomNavigation";
 import GeoMap from "../organisms/GeoMap";
-import RegionDrawerInner from "../../view/organisms/RegionDrawerInner";
+import RegionDetailsView from "../../view/organisms/RegionDetailsView";
 import HomePageState from "./HomePageState";
 import TableTitleView from "../../view/molecules/TableTitleView";
 
@@ -59,7 +59,7 @@ export default class HomePage extends HomePageState {
             <TableTitleView tableName={layerTableName} />
           </Box>
           <Paper sx={STYLE_BODY_REGION_DETAILS}>
-            <RegionDrawerInner
+            <RegionDetailsView
               key={`region-details-${regionID}`}
               regionID={regionID}
               layerTableName={layerTableName}
