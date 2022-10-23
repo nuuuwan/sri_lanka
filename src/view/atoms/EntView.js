@@ -3,6 +3,7 @@ import { Component } from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 
+import EntTypes from "../../nonview/base/EntTypes.js";
 import Ents from "../../nonview/base/Ents.js";
 import StringX from "../../nonview/base/StringX";
 
@@ -24,14 +25,14 @@ export default class EntView extends Component {
     if (!ent) {
       return null;
     }
-    const entType = Ents.getEntType(entID);
+    const entType = EntTypes.getEntType(entID);
     return (
       <Box>
         {top ? (
           <>
             <Typography variant="subtitle1">{ent.name}</Typography>
             <Typography variant="caption">
-              {Ents.getEntTypeLongName(entType)}
+              {EntTypes.getEntTypeLongName(entType)}
             </Typography>
           </>
         ) : null}

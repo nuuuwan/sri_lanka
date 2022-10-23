@@ -1,4 +1,4 @@
-import { ENT } from "../../nonview/base/Ents";
+import { ENT_TYPES } from "../../nonview/base/EntTypes";
 import GIG2TableMetadata from "../../nonview/base/GIG2TableMetadata";
 
 const MAX_DISPLAY_REGIONS = 32;
@@ -17,14 +17,19 @@ export default class EntsForMaps {
     const regionFormat = tableMetadata.entity;
 
     if (regionFormat === "regions") {
-      return [ENT.GND, ENT.DSD, ENT.DISTRICT, ENT.PROVINCE];
+      return [
+        ENT_TYPES.GND,
+        ENT_TYPES.DSD,
+        ENT_TYPES.DISTRICT,
+        ENT_TYPES.PROVINCE,
+      ];
     }
 
     if (regionFormat === "regions-ec") {
-      return [ENT.PD, ENT.ED, ENT.PROVINCE];
+      return [ENT_TYPES.PD, ENT_TYPES.ED, ENT_TYPES.PROVINCE];
     }
 
-    return [ENT.PROVINCE];
+    return [ENT_TYPES.PROVINCE];
   }
 
   static getDisplayRegionIDs(allEntIndex, center, zoom, layerTableName) {
