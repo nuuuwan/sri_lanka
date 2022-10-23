@@ -47,7 +47,6 @@ export default class HomePageState extends Component {
       layerTableName,
       layerTable: await GIG2.getTable(layerTableName),
       coloringMethod: DEFAULT_COLORING_METHOD,
-      regionID: DEFAULT_REGION_ID,
     });
   }
 
