@@ -5,7 +5,7 @@ import GIG2, { DEFAULT_LAYER_TABLE_NAME } from "../../nonview/base/GIG2";
 import { DEFAULT_ZOOM, DEFAULT_CENTER } from "../../nonview/base/GeoData";
 import GeoLocation from "../../nonview/base/GeoLocation";
 
-const DEFAULT_REGION_ID = "LK";
+const DEFAULT_REGION_ID = "LK-1";
 const DEFAULT_COLORING_METHOD = "majority";
 
 export default class HomePageState extends Component {
