@@ -7,13 +7,14 @@ import RegionGeo from "../../view/organisms/RegionGeo";
 export default class RegionGeoCollection extends Component {
   render() {
     const {
-      center,
-      zoom,
       allEntIndex,
+      center,
+      coloringMethod,
       layerTable,
       layerTableName,
+      regionEntType,
       setRegion,
-      coloringMethod,
+      zoom,
     } = this.props;
 
     if (!allEntIndex) {
@@ -24,7 +25,8 @@ export default class RegionGeoCollection extends Component {
       allEntIndex,
       center,
       zoom,
-      layerTableName
+      layerTableName,
+      regionEntType
     );
 
     const idToStyle = layerTable.getIDToStyle(displayRegionIDs, coloringMethod);
