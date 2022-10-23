@@ -7,7 +7,7 @@ const STRING_REPLACE_LIST = [
 ];
 
 const FONT_SIZE = {
-  PCT_MIN: 40,
+  PCT_MIN: 60,
   PCT_MAX: 100,
 };
 
@@ -31,7 +31,7 @@ export default class StringX {
   }
 
   static formatInt(x) {
-    const logBase1000 = Math.log(x) / Math.log(1000);
+    let logBase1000 = Math.log(x) / Math.log(1000);
 
     let numPart, multPart;
     if (x >= 1_000_000) {
@@ -44,11 +44,15 @@ export default class StringX {
         maximumSignificantDigits: MAX_SIG_DIGITS,
       });
       multPart = "K";
-    } else {
+    } else if (x > 0) {
       numPart = Number(x).toLocaleString(undefined, {
         maximumSignificantDigits: MAX_SIG_DIGITS,
       });
       multPart = "";
+    } else {
+      numPart = "0";
+      multPart = "";
+      logBase1000 = 0;
     }
 
     const fontSize =
@@ -71,7 +75,7 @@ export default class StringX {
 
   static formatPercent(numerator, denominator) {
     const p = numerator / denominator;
-    const logBase = Math.log(p * 100) / Math.log(2);
+    let logBase = Math.log(p * 100) / Math.log(2);
 
     let numPart = Number(p).toLocaleString(undefined, {
       style: "percent",
@@ -79,7 +83,20 @@ export default class StringX {
     });
 
     if (p < 0.01) {
-      numPart = "<1%";
+      logBase = 0;
+      if (p === 0) {
+        numPart = "0%";
+      } else {
+        numPart = "<1%";
+      }
+    }
+
+    if (p > 0.99) {
+      if (p === 1) {
+        numPart = "100%";
+      } else {
+        numPart = ">99%";
+      }
     }
 
     const fontSize =
