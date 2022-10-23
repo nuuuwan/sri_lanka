@@ -10,7 +10,7 @@ const STYLE_BOX = {
   marginLeft: 1,
   marginRight: 1,
   paddingBottom: 1,
-  maxHeight: "67vh",
+  maxHeight: "60vh",
   overflow: "scroll",
 };
 
