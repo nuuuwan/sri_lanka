@@ -35,13 +35,14 @@ export const STYLE_BODY_REGION_DETAILS = {
   background: "rgba(255,255,255,0.8)",
   padding: 1,
   borderRadius: 5,
+  maxWidth: "67%",
 };
 export const STYLE_BODY_LAYERS = {
   position: "fixed",
   top: PADDING * 3 + TITLE_HEIGHT,
   right: PADDING,
   zIndex: 10000,
-  maxWidth: 200,
+  maxWidth: "67%",
   background: "rgba(255,255,255,0.8)",
   padding: 1,
   borderRadius: 5,
