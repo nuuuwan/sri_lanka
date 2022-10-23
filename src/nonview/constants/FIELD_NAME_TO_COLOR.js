@@ -1,38 +1,11 @@
-import COLOR_SL_FLAG from "../../nonview/constants/COLOR_SL_FLAG";
+import ETHNO_RELIGION_TO_COLOR from "../../nonview/constants/ETHNO_RELIGION_TO_COLOR";
+import POLITICAL_PARTY_TO_COLOR from "../../nonview/constants/POLITICAL_PARTY_TO_COLOR";
 
-const FIELD_NAME_TO_COLOR = {
-  // political parties
-  SLFP: "blue",
-  PA: "blue",
-  UPFA: "blue",
-  SLPP: COLOR_SL_FLAG.SINHALA,
-  UNP: "green",
-  NDF: "green",
-  JVP: "red",
-  LSSP: "red",
-  ACTC: COLOR_SL_FLAG.TAMIL,
-  SLMP: "purple",
-  NMPP: "red",
-  NPP: "red",
-
+const FIELD_NAME_TO_COLOR_INNER = {
   Others: "ghostwhite",
   other: "ghostwhite",
   others: "ghostwhite",
-  // ethnicity_of_population
-  bharatha: "cyan",
-  burgher: "purple",
-  chetty: "blue",
-  indian_tamil: COLOR_SL_FLAG.TAMIL,
-  malay: COLOR_SL_FLAG.MOOR,
-  moor: COLOR_SL_FLAG.MOOR,
-  sinhalese: COLOR_SL_FLAG.SINHALA,
-  sri_lankan_tamil: COLOR_SL_FLAG.TAMIL,
-  // religious_affiliation_of_population
-  buddhist: COLOR_SL_FLAG.BUDDHIST,
-  islam: COLOR_SL_FLAG.MOOR,
-  hindu: COLOR_SL_FLAG.TAMIL,
-  roman_catholic: "purple",
-  other_christian: "blue",
+
   // gender_of_population
   female: "pink",
   male: "lightblue",
@@ -147,5 +120,10 @@ const FIELD_NAME_TO_COLOR = {
   vacant: "red",
   // year_of_construction_of_housing_unit
   // persons_living_in_housing_unit,
+};
+const FIELD_NAME_TO_COLOR = {
+  ...POLITICAL_PARTY_TO_COLOR,
+  ...ETHNO_RELIGION_TO_COLOR,
+  ...FIELD_NAME_TO_COLOR_INNER,
 };
 export default FIELD_NAME_TO_COLOR;
