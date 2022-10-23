@@ -1,5 +1,6 @@
 import { Component } from "react";
 
+import { ENT_TYPES } from "../../nonview/base/EntTypes";
 import Ents from "../../nonview/base/Ents";
 import GIG2, { DEFAULT_LAYER_TABLE_NAME } from "../../nonview/base/GIG2";
 import { DEFAULT_ZOOM, DEFAULT_CENTER } from "../../nonview/base/GeoData";
@@ -7,7 +8,7 @@ import GeoLocation from "../../nonview/base/GeoLocation";
 
 const DEFAULT_REGION_ID = "LK-1";
 const DEFAULT_COLORING_METHOD = "majority";
-
+const DEFAULT_REGION_ENT_TYPE = ENT_TYPES.PROVINCE;
 export default class HomePageState extends Component {
   constructor(props) {
     super(props);
@@ -18,7 +19,9 @@ export default class HomePageState extends Component {
       geoCenter: DEFAULT_CENTER,
       layerTable: null,
       layerTableName: DEFAULT_LAYER_TABLE_NAME,
+      regionEntType: DEFAULT_REGION_ENT_TYPE,
       regionID: DEFAULT_REGION_ID,
+      showEntTypesSelectorView: false,
       showLayerListView: false,
       showRegionDetailsView: false,
       zoom: DEFAULT_ZOOM,
@@ -54,6 +57,10 @@ export default class HomePageState extends Component {
     this.setState({ regionID, showRegionDetailsView: true });
   }
 
+  setRegionEntType(regionEntType) {
+    this.setState({ regionEntType });
+  }
+
   async onClickCenterOnCurrentLocation() {
     const geoCenter = await GeoLocation.getLatLng();
     const center = geoCenter ? geoCenter : DEFAULT_CENTER;
@@ -72,5 +79,12 @@ export default class HomePageState extends Component {
   }
   onClickHideLayerListView() {
     this.setState({ showLayerListView: false });
+  }
+
+  onClickShowEntTypesSelectorView() {
+    this.setState({ showEntTypesSelectorView: true });
+  }
+  onClickHideEntTypesSelectorView() {
+    this.setState({ showEntTypesSelectorView: false });
   }
 }
