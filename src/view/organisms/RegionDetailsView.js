@@ -29,33 +29,28 @@ export default class RegionDetailsView extends Component {
     this.setState({ tableRow });
   }
 
-  renderRegionTable() {
+  render() {
+    const { layerTableName, regionID, setColoringMethod, coloringMethod } =
+      this.props;
+    if (!regionID) {
+      return null;
+    }
     const { tableRow } = this.state;
-    const { setColoringMethod, coloringMethod } = this.props;
     const onClickMajority = function () {
       setColoringMethod("majority");
     };
 
     return (
-      <RegionTableRowView
-        coloringMethod={coloringMethod}
-        tableRow={tableRow}
-        onClickMajority={onClickMajority}
-        setColoringMethod={setColoringMethod}
-      />
-    );
-  }
-
-  render() {
-    const { regionID } = this.props;
-    if (!regionID) {
-      return null;
-    }
-    return (
       <Box sx={STYLE_BOX}>
-        <EntView entID={regionID} top />
-        {this.renderRegionTable()}
-        <EntView entID={regionID} bottom />
+        <EntView entID={regionID} top key={`ent-top-${regionID}`} />
+        <RegionTableRowView
+          key={`region-table-row-${regionID}-${layerTableName}`}
+          coloringMethod={coloringMethod}
+          tableRow={tableRow}
+          onClickMajority={onClickMajority}
+          setColoringMethod={setColoringMethod}
+        />
+        <EntView entID={regionID} bottom key={`ent-bottom-${regionID}`} />
       </Box>
     );
   }
