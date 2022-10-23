@@ -2,6 +2,7 @@ import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import LayersIcon from "@mui/icons-material/Layers";
 import BarChartIcon from "@mui/icons-material/BarChart";
+import MapIcon from "@mui/icons-material/Map";
 
 import CustomBottomNavigation from "../../view/molecules/CustomBottomNavigation";
 import LayerListView from "../../view/molecules/LayerListView";
@@ -10,13 +11,15 @@ import ShowHide from "../../view/molecules/ShowHide";
 import GeoMap from "../../view/organisms/GeoMap";
 import RegionDetailsView from "../../view/organisms/RegionDetailsView";
 import HomePageState from "../../view/pages/HomePageState";
+import EntTypesSelectorView from "../../view/molecules/EntTypesSelectorView";
 
 import {
-  STYLE_TITLE_BOX,
   STYLE_BODY,
-  STYLE_FOOTER,
-  STYLE_BODY_REGION_DETAILS,
+  STYLE_TITLE_BOX,
   STYLE_BODY_LAYERS,
+  STYLE_BODY_REGION_TYPES,
+  STYLE_BODY_REGION_DETAILS,
+  STYLE_FOOTER,
 } from "../../view/pages/STYLES_HOME_PAGE";
 
 export default class HomePage extends HomePageState {
@@ -42,7 +45,9 @@ export default class HomePage extends HomePageState {
       geoCenter,
       layerTable,
       layerTableName,
+      regionEntType,
       regionID,
+      showEntTypesSelectorView,
       showLayerListView,
       showRegionDetailsView,
       zoom,
@@ -54,22 +59,6 @@ export default class HomePage extends HomePageState {
           <Box sx={STYLE_TITLE_BOX}>
             <LayerTableTitleView tableName={layerTableName} />
           </Box>
-          <Paper sx={STYLE_BODY_REGION_DETAILS}>
-            <ShowHide
-              ShowIcon={BarChartIcon}
-              show={showRegionDetailsView}
-              onShow={this.onClickShowRegionDetailsView.bind(this)}
-              onHide={this.onClickHideRegionDetailsView.bind(this)}
-            >
-              <RegionDetailsView
-                key={`region-details-${regionID}-${layerTableName}`}
-                regionID={regionID}
-                layerTableName={layerTableName}
-                setColoringMethod={this.setColoringMethod.bind(this)}
-                coloringMethod={coloringMethod}
-              />
-            </ShowHide>
-          </Paper>
           <Paper sx={STYLE_BODY_LAYERS}>
             <ShowHide
               ShowIcon={LayersIcon}
@@ -83,18 +72,53 @@ export default class HomePage extends HomePageState {
               />
             </ShowHide>
           </Paper>
+
+          <Paper sx={STYLE_BODY_REGION_TYPES}>
+            <ShowHide
+              ShowIcon={MapIcon}
+              show={showEntTypesSelectorView}
+              onShow={this.onClickShowEntTypesSelectorView.bind(this)}
+              onHide={this.onClickHideEntTypesSelectorView.bind(this)}
+            >
+              <EntTypesSelectorView
+                layerTableName={layerTableName}
+                regionEntType={regionEntType}
+                setRegionEntType={this.setRegionEntType.bind(this)}
+              />
+            </ShowHide>
+          </Paper>
+
           <GeoMap
             allEntIndex={allEntIndex}
             center={center}
             coloringMethod={coloringMethod}
             key={`geo-map-${zoom}-${geoCenter}`}
             layerTableName={layerTableName}
+            regionEntType={regionEntType}
             setCenterAndZoom={this.setCenterAndZoom.bind(this)}
             setRegion={this.setRegion.bind(this)}
             layerTable={layerTable}
             zoom={zoom}
           />
         </Paper>
+
+        <Paper sx={STYLE_BODY_REGION_DETAILS}>
+          <ShowHide
+            ShowIcon={BarChartIcon}
+            show={showRegionDetailsView}
+            onShow={this.onClickShowRegionDetailsView.bind(this)}
+            onHide={this.onClickHideRegionDetailsView.bind(this)}
+          >
+            <RegionDetailsView
+              key={`region-details-${regionID}-${layerTableName}`}
+              regionID={regionID}
+              layerTableName={layerTableName}
+              setColoringMethod={this.setColoringMethod.bind(this)}
+              coloringMethod={coloringMethod}
+            />
+          </ShowHide>
+        </Paper>
+
         <Paper sx={STYLE_FOOTER}>
           <CustomBottomNavigation
             onClickCenterOnCurrentLocation={this.onClickCenterOnCurrentLocation.bind(

@@ -21,13 +21,14 @@ function EventComponent({ setCenterAndZoom }) {
 export default class GeoMap extends Component {
   render() {
     const {
-      center,
-      zoom,
       allEntIndex,
+      center,
+      coloringMethod,
       layerTable,
       layerTableName,
+      regionEntType,
       setRegion,
-      coloringMethod,
+      zoom,
     } = this.props;
     return (
       <MapContainer center={center} zoom={zoom} zoomControl={false}>
@@ -36,13 +37,14 @@ export default class GeoMap extends Component {
         />
         <TileLayer url={URL_FORMAT} />
         <RegionGeoCollection
-          center={center}
-          zoom={zoom}
           allEntIndex={allEntIndex}
+          center={center}
+          coloringMethod={coloringMethod}
           layerTable={layerTable}
           layerTableName={layerTableName}
-          coloringMethod={coloringMethod}
+          regionEntType={regionEntType}
           setRegion={setRegion}
+          zoom={zoom}
         />
       </MapContainer>
     );
