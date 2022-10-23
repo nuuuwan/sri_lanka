@@ -11,7 +11,7 @@ export default class EntsForMaps {
     const [lat, lng] = JSON.parse(centroid);
     const [dlat, dlng] = [lat - latCenter, lng - lngCenter];
     const r = window.screen.height / window.screen.width;
-    return Math.abs(dlat) * r + Math.abs(dlng);
+    return Math.max(Math.abs(dlat), Math.abs(dlng) * r);
   }
 
   static getEntTypes(layerTableName) {
