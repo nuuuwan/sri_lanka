@@ -1,5 +1,3 @@
-import StringX from "../../nonview/base/StringX";
-
 export const ENT_TYPES = {
   COUNTRY: "country",
   PROVINCE: "province",
@@ -22,6 +20,14 @@ export const ENT_TYPE_TO_LONG_NAME = {
   [ENT_TYPES.ED]: "Electoral District",
   [ENT_TYPES.MOH]: "Medical Officer of Health Area",
   [ENT_TYPES.LG]: "Local Authority Area",
+};
+
+export const ENT_TYPE_TO_SHORT_NAME = {
+  [ENT_TYPES.Country]: "Country",
+  [ENT_TYPES.PROVINCE]: "Province",
+  [ENT_TYPES.DISTRICT]: "District",
+  [ENT_TYPES.PD]: "Polling Division",
+  [ENT_TYPES.ED]: "Electoral District",
 };
 
 export default class EntTypes {
@@ -71,6 +77,12 @@ export default class EntTypes {
   static getEntTypeLongName(entType) {
     return ENT_TYPE_TO_LONG_NAME[entType]
       ? ENT_TYPE_TO_LONG_NAME[entType]
-      : StringX.toTitleCase(entType);
+      : entType.toUpperCase();
+  }
+
+  static getEntTypeShortName(entType) {
+    return ENT_TYPE_TO_SHORT_NAME[entType]
+      ? ENT_TYPE_TO_SHORT_NAME[entType]
+      : entType.toUpperCase();
   }
 }
