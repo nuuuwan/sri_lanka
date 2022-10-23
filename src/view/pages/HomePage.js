@@ -1,18 +1,18 @@
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
+import LayersIcon from "@mui/icons-material/Layers";
+import BarChartIcon from "@mui/icons-material/BarChart";
 
 import { DEFAULT_ZOOM, DEFAULT_CENTER } from "../../nonview/base/GeoData";
 import GeoLocation from "../../nonview/base/GeoLocation";
 
-import LayerListView from "../../view/molecules/LayerListView";
 import CustomBottomNavigation from "../../view/molecules/CustomBottomNavigation";
-import GeoMap from "../organisms/GeoMap";
-import RegionDetailsView from "../../view/organisms/RegionDetailsView";
-import HomePageState from "./HomePageState";
+import LayerListView from "../../view/molecules/LayerListView";
 import LayerTableTitleView from "../../view/molecules/LayerTableTitleView";
 import ShowHide from "../../view/molecules/ShowHide";
-import LayersIcon from "@mui/icons-material/Layers";
-import BarChartIcon from "@mui/icons-material/BarChart";
+import GeoMap from "../../view/organisms/GeoMap";
+import RegionDetailsView from "../../view/organisms/RegionDetailsView";
+import HomePageState from "../../view/pages/HomePageState";
 
 import {
   STYLE_TITLE_BOX,
