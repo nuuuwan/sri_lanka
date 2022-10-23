@@ -7,6 +7,10 @@ import EntTypes from "../../nonview/base/EntTypes.js";
 import Ents from "../../nonview/base/Ents.js";
 import StringX from "../../nonview/base/StringX";
 
+const STYLE_TEXT_LIGHT = {
+  color: "#aaa",
+};
+
 export default class EntView extends Component {
   constructor(props) {
     super(props);
@@ -30,15 +34,17 @@ export default class EntView extends Component {
       <Box>
         {top ? (
           <>
-            <Typography variant="subtitle1">{ent.name}</Typography>
-            <Typography variant="caption">
-              {EntTypes.getEntTypeLongName(entType)}
+            <Typography variant="body1" display="inline">
+              {ent.name}
+            </Typography>
+            <Typography variant="caption" sx={STYLE_TEXT_LIGHT}>
+              {" " + EntTypes.getEntTypeLongName(entType)}
             </Typography>
           </>
         ) : null}
 
         {bottom ? (
-          <Box sx={{ color: "lightgray" }}>
+          <Box sx={STYLE_TEXT_LIGHT}>
             <Typography variant="caption">
               {StringX.formatInt(ent.population)}
               {" pop"}

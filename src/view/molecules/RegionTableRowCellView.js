@@ -12,6 +12,11 @@ export const STYLE_BULLET = {
   borderRadius: 10,
 };
 
+export const STYLE_LIST_ITEM = {
+  m: 0,
+  p: 0,
+};
+
 export default function RegionTableRowCellView({
   coloringMethod,
   valueKey,
@@ -27,12 +32,16 @@ export default function RegionTableRowCellView({
     setColoringMethod(valueKey);
   };
   return (
-    <ListItemButton onClick={onClick} selected={valueKey === coloringMethod}>
+    <ListItemButton
+      onClick={onClick}
+      selected={valueKey === coloringMethod}
+      sx={STYLE_LIST_ITEM}
+    >
       <Grid container alignItems="center" spacing={2}>
         <Grid item xs={1}>
           <Typography sx={styleBulletCustom}> </Typography>
         </Grid>
-        <Grid item xs={5}>
+        <Grid item xs={4}>
           <Typography variant="caption">
             {StringX.toTitleCase(valueKey)}
           </Typography>

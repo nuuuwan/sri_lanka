@@ -12,9 +12,6 @@ export default function RegionTableRowCustomCellView({
   return (
     <ListItemButton onClick={onClickMajority} selected={isSelected}>
       <Grid container alignItems="center" spacing={2}>
-        <Grid item xs={1}>
-          <Typography sx={STYLE_BULLET}> </Typography>
-        </Grid>
         <Grid item xs={10}>
           <Typography variant="caption">{label}</Typography>
         </Grid>
