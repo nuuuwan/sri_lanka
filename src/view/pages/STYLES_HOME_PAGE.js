@@ -36,6 +36,7 @@ export const STYLE_BODY_REGION_DETAILS = {
 export const STYLE_BODY_LAYERS = {
   position: "fixed",
   top: "1%",
+  bottom: "15%",
   right: "1%",
   zIndex: 10000,
   background: "rgba(255,255,255,0.8)",

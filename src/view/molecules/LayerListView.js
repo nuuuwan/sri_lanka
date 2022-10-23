@@ -9,6 +9,8 @@ import LayerView from "../../view/molecules/LayerView";
 const STYLE_BOX = {
   m: 1,
   p: 1,
+  maxHeight: "75vh",
+  overflow: "scroll",
 };
 
 export default function LayerListView({ layerTableName, setLayerTableName }) {
