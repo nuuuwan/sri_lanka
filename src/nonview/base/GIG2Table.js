@@ -104,7 +104,8 @@ export default class GIG2Table {
           const [maxValueKey, maxValue] = tableRow.getMaxValueKeyAndValue();
           color = GIG2TableStyle.getValueKeyColor(maxValueKey);
           const maxPValue = tableRow.getPValue(maxValueKey);
-          opacity = GIG2TableStyle.getOpacityFromP(maxPValue);
+          const q = Math.max(0, (maxPValue - 0.5) * 2);
+          opacity = GIG2TableStyle.getOpacityFromP(q);
         }
 
         idToStyle[id] = {
