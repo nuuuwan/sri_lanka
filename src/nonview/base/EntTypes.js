@@ -10,7 +10,6 @@ export const ENT_TYPES = {
   ED: "ed",
   MOH: "moh",
   LG: "lg",
-  UNKNOWN: "unknown-entity",
 };
 
 export const ENT_TYPE_TO_LONG_NAME = {
