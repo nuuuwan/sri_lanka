@@ -7,7 +7,7 @@ const STRING_REPLACE_LIST = [
 ];
 
 const FONT_SIZE = {
-  PCT_MIN: 10,
+  PCT_MIN: 40,
   PCT_MAX: 100,
 };
 
@@ -71,7 +71,7 @@ export default class StringX {
 
   static formatPercent(numerator, denominator) {
     const p = numerator / denominator;
-    const logBase1000 = Math.log(p * 100) / Math.log(2);
+    const logBase = Math.log(p * 100) / Math.log(2);
 
     let numPart = Number(p).toLocaleString(undefined, {
       style: "percent",
@@ -86,7 +86,7 @@ export default class StringX {
       MathX.forceRange(
         FONT_SIZE.PCT_MIN,
         FONT_SIZE.PCT_MAX,
-        parseInt(logBase1000 * 20)
+        parseInt(logBase * 20)
       ) + "%";
 
     const style = {
