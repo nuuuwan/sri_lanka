@@ -4,8 +4,8 @@ import WWW from "../../nonview/base/WWW";
 const URL_BASE =
   "https://raw.githubusercontent.com/nuuuwan/gig-data/master/geo";
 
-export const DEFAULT_ZOOM = 10;
-// const DEFAULT_CENTER = [7.8742, 80.6511]; // Dambulla
+export const DEFAULT_ZOOM = 7;
+// export const DEFAULT_CENTER = [7.8742, 80.6511]; // Dambulla
 export const DEFAULT_CENTER = [6.9157, 79.8636]; // Townhall Colombo
 
 export default class GeoData {
