@@ -1,7 +1,6 @@
 import { Component } from "react";
-import { GeoJSON, Tooltip } from "react-leaflet";
+import { GeoJSON } from "react-leaflet";
 
-import Ents from "../../nonview/base/Ents.js";
 import GeoData from "../../nonview/base/GeoData.js";
 
 const DEFAULT_STYLE_GEOJSON = {
@@ -25,10 +24,8 @@ export default class RegionGeo extends Component {
     this.isComponentMounted = true;
     const { regionID } = this.props;
     const geoData = await GeoData.getGeoForRegion(regionID);
-    const ent = await Ents.getEnt(regionID);
-
     if (this.isComponentMounted) {
-      this.setState({ geoData, ent });
+      this.setState({ geoData });
     }
   }
 
@@ -37,7 +34,7 @@ export default class RegionGeo extends Component {
   }
 
   render() {
-    const { geoData, ent } = this.state;
+    const { geoData } = this.state;
 
     if (!geoData) {
       return "...";
@@ -71,9 +68,7 @@ export default class RegionGeo extends Component {
         eventHandlers={{
           click: onClickRegionInner,
         }}
-      >
-        <Tooltip permanent>{ent.name}</Tooltip>
-      </GeoJSON>
+      />
     );
   }
 }
