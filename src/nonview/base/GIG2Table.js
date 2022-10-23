@@ -1,3 +1,5 @@
+import MathX from "../../nonview/base/MathX";
+import EntTypes, { ENT_TYPES } from "../../nonview/base/EntTypes";
 import GIG2TableRow from "../../nonview/base/GIG2TableRow";
 import GIG2TableStyle, {
   DEFAULT_COLOR,
@@ -17,10 +19,6 @@ export default class GIG2Table {
     return Object.keys(this.tableIndex);
   }
 
-  get baseIDs() {
-    return this.ids.filter((id) => id.length === 5);
-  }
-
   getRowByID(id) {
     return this.tableIndex[id];
   }
@@ -37,17 +35,50 @@ export default class GIG2Table {
     );
   }
 
-  getPToRankP(valueKey) {
-    const pList = this.baseIDs.map(
-      function (id) {
-        return this.getRowByID(id).getPValue(valueKey);
-      }.bind(this)
-    );
-    const n = pList.length;
-    return pList.sort().reduce(function (pToRankP, p, iP) {
-      pToRankP[p] = iP / n;
-      return pToRankP;
-    }, {});
+  getGetRankPFromP(valueKey) {
+    const sortedPAndTotalList = this.ids
+      .filter((id) => EntTypes.getEntType(id) === ENT_TYPES.PROVINCE)
+      .map(
+        function (id) {
+          const tableRow = this.getRowByID(id);
+          const pValue = tableRow.getPValue(valueKey);
+          const totalValue = 1;
+          return { pValue, totalValue };
+        }.bind(this)
+      )
+      .sort(function (a, b) {
+        return a.pValue - b.pValue;
+      });
+
+    const totalTotal = MathX.sum(sortedPAndTotalList.map((x) => x.totalValue));
+
+    let cumTotal = 0;
+    const sortedPAndRankedPValueList = sortedPAndTotalList.map(function ({
+      pValue,
+      totalValue,
+    }) {
+      cumTotal += totalValue;
+      const rankedPValue = cumTotal / totalTotal;
+      return { pValue, rankedPValue };
+    });
+
+    return function (p) {
+      if (p < sortedPAndRankedPValueList[0].pValue) {
+        return 0;
+      }
+
+      const n = sortedPAndRankedPValueList.length;
+      for (let i = 1; i < n; i++) {
+        const { pValue, rankedPValue } = sortedPAndRankedPValueList[i];
+        if (p < pValue) {
+          const { pValue: pValuePrev, rankedPValue: rankedPValuePrev } =
+            sortedPAndRankedPValueList[i - 1];
+          const q = (p - pValuePrev) / (pValue - pValuePrev);
+          return rankedPValue * q + rankedPValuePrev * (1 - q);
+        }
+      }
+      return 1;
+    };
   }
 
   getIDToStyle(displayRegionIDs, coloringMethod) {
@@ -81,15 +112,7 @@ export default class GIG2Table {
   }
 
   getIDToStyleForKey(displayRegionIDs, coloringKey) {
-    const pToRankP = this.getPToRankP(coloringKey);
-    function getRankP(p) {
-      for (let [p1, rankP1] of Object.entries(pToRankP)) {
-        if (p < p1) {
-          return rankP1;
-        }
-      }
-      return 1;
-    }
+    const getRankPFromP = this.getGetRankPFromP(coloringKey);
 
     return displayRegionIDs.reduce(
       function (idToStyle, id) {
@@ -99,7 +122,7 @@ export default class GIG2Table {
 
         color = GIG2TableStyle.getValueKeyColor(coloringKey);
         const p = tableRow.getPValue(coloringKey);
-        const rankP = getRankP(p);
+        const rankP = getRankPFromP(p);
         opacity = GIG2TableStyle.getOpacityFromP(rankP);
         idToStyle[id] = {
           color,
