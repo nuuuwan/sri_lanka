@@ -8,8 +8,13 @@ import CustomBottomNavigation from "../../view/molecules/CustomBottomNavigation"
 import LayerInfoPanel from "../../view/molecules/LayerInfoPanel";
 import CustomDrawer from "../../view/organisms/CustomDrawer";
 import GeoMap from "../organisms/GeoMap";
+import RegionDrawerInner from "../../view/organisms/RegionDrawerInner";
 import HomePageState from "./HomePageState";
-import { STYLE_BODY, STYLE_FOOTER } from "../../view/pages/STYLES_HOME_PAGE";
+import {
+  STYLE_BODY,
+  STYLE_FOOTER,
+  STYLE_BODY_REGION_DETAILS,
+} from "../../view/pages/STYLES_HOME_PAGE";
 
 export default class HomePage extends HomePageState {
   constructor(props) {
@@ -52,16 +57,24 @@ export default class HomePage extends HomePageState {
       zoom,
     } = this.state;
 
-    const key = `geo-map-${zoom}-${geoCenter}`;
     return (
       <Box>
         <Paper sx={STYLE_BODY}>
           <LayerInfoPanel layerTableName={layerTableName} />
+          <Paper sx={STYLE_BODY_REGION_DETAILS}>
+            <RegionDrawerInner
+              key={`region-details-${regionID}`}
+              regionID={regionID}
+              layerTableName={layerTableName}
+              setColoringMethod={this.setColoringMethod.bind(this)}
+              coloringMethod={coloringMethod}
+            />
+          </Paper>
           <GeoMap
             allEntIndex={allEntIndex}
             center={center}
             coloringMethod={coloringMethod}
-            key={key}
+            key={`geo-map-${zoom}-${geoCenter}`}
             layerTableName={layerTableName}
             setCenterAndZoom={this.setCenterAndZoom.bind(this)}
             setRegion={this.setRegion.bind(this)}

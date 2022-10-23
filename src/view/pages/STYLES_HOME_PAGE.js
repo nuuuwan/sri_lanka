@@ -13,3 +13,13 @@ export const STYLE_FOOTER = {
   right: 0,
   height: FOOTER_HEIGHT,
 };
+
+export const STYLE_BODY_REGION_DETAILS = {
+  position: "fixed",
+  top: "12%",
+  left: "1%",
+  zIndex: 10000,
+  background: "rgba(255,255,255,0.8)",
+  padding: 1,
+  borderRadius: 3,
+};
