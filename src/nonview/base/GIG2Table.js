@@ -1,8 +1,8 @@
-import GIG2TableRow from "./GIG2TableRow";
+import GIG2TableRow from "../../nonview/base/GIG2TableRow";
 import GIG2TableStyle, {
   DEFAULT_COLOR,
   DEFAULT_OPACITY,
-} from "./GIG2TableStyle";
+} from "../../nonview/base/GIG2TableStyle";
 const ID_FIELD_KEY = "entity_id";
 
 export default class GIG2Table {
