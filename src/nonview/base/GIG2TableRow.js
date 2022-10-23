@@ -1,3 +1,5 @@
+import MathX from "../../nonview/base/MathX";
+
 export default class GIG2TableRow {
   static isValueKey(k) {
     return !(
@@ -23,6 +25,10 @@ export default class GIG2TableRow {
       },
       [{}, 0]
     );
+  }
+
+  get total() {
+    return MathX.sum(Object.values(this.d));
   }
 
   getValue(k) {
