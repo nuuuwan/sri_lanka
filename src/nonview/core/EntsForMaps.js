@@ -1,8 +1,8 @@
 import { ENT_TYPES } from "../../nonview/base/EntTypes";
 import GIG2TableMetadata from "../../nonview/base/GIG2TableMetadata";
 
-const MAX_DISPLAY_REGIONS = 32;
-const K_MAX_DISTANCE = 1000;
+const MAX_DISPLAY_REGIONS = 200;
+const K_MAX_DISTANCE = 2000;
 
 export default class EntsForMaps {
   static getDistance([latCenter, lngCenter], { centroid }) {
@@ -54,6 +54,7 @@ export default class EntsForMaps {
         });
 
       const nDisplayEnts = displayEnts.length;
+
       if (nDisplayEnts < MAX_DISPLAY_REGIONS) {
         const displayRegionIDs = displayEnts
           .slice(0, MAX_DISPLAY_REGIONS)
