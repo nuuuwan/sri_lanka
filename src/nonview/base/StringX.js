@@ -1,5 +1,6 @@
-const MAX_SIG_DIGITS = 2;
+import MathX from "../../nonview/base/MathX";
 
+const MAX_SIG_DIGITS = 2;
 const STRING_REPLACE_LIST = [
   [" Of ", " of "],
   ["Election Presidential", "Presidential Election"],
@@ -45,8 +46,10 @@ export default class StringX {
       multPart = "";
     }
 
+    const fontSize =
+      MathX.forceRange(10, 100, parseInt(logBase1000 * 60)) + "%";
     const style = {
-      fontSize: parseInt(logBase1000 * 60) + "%",
+      fontSize,
     };
 
     return (
