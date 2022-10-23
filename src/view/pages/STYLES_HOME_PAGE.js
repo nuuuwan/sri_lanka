@@ -48,3 +48,15 @@ export const STYLE_BODY_LAYERS = {
   padding: 1,
   borderRadius: 5,
 };
+
+export const STYLE_BODY_REGION_TYPES = {
+  position: "fixed",
+  top: PADDING * 9 + TITLE_HEIGHT,
+  right: PADDING,
+  zIndex: 10000,
+  maxWidth: "67%",
+  maxHeight: "67vh",
+  background: "rgba(255,255,255,0.8)",
+  padding: 1,
+  borderRadius: 5,
+};
