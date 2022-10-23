@@ -15,7 +15,7 @@ import LayersIcon from "@mui/icons-material/Layers";
 import BarChartIcon from "@mui/icons-material/BarChart";
 
 import {
-  STYLE_FLOATING_BOX,
+  STYLE_TITLE_BOX,
   STYLE_BODY,
   STYLE_FOOTER,
   STYLE_BODY_REGION_DETAILS,
@@ -74,7 +74,7 @@ export default class HomePage extends HomePageState {
     return (
       <Box>
         <Paper sx={STYLE_BODY}>
-          <Box sx={STYLE_FLOATING_BOX}>
+          <Box sx={STYLE_TITLE_BOX}>
             <LayerTableTitleView tableName={layerTableName} />
           </Box>
           <Paper sx={STYLE_BODY_REGION_DETAILS}>
