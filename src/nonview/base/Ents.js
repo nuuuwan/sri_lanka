@@ -28,16 +28,6 @@ export const ENT_TYPE_TO_LONG_NAME = {
   [ENT.LG]: "Local Authority Area",
 };
 
-export const PARENT_TO_CHILD = {
-  [ENT.COUNTRY]: ENT.PROVINCE,
-  [ENT.PROVINCE]: ENT.DISTRICT,
-  [ENT.DISTRICT]: ENT.DSD,
-  [ENT.DSD]: ENT.GND,
-  [ENT.GND]: undefined,
-  [ENT.PD]: undefined,
-  [ENT.ED]: [ENT.PD],
-};
-
 const URL_BASE = "https://raw.githubusercontent.com/nuuuwan/gig2/data";
 
 export default class Ents {
@@ -122,11 +112,6 @@ export default class Ents {
       ent["centroid"] = JSON.parse(ent["centroid"]);
     }
     return ent;
-  }
-
-  static async getParentToChildMap() {
-    const url = `data/ents/parent_to_child_map.json`;
-    return await WWW.json(url);
   }
 
   static async getChildIDs(parentID, childRegionType) {
