@@ -12,7 +12,6 @@ export default class HomePageState extends Component {
       allEntIndex: null,
       center: DEFAULT_CENTER,
       coloringMethod: "majority",
-      drawerTabValue: "none",
       geoCenter: DEFAULT_CENTER,
       layerTableName: DEFAULT_LAYER_TABLE_NAME,
       regionID: "LK",
@@ -38,10 +37,6 @@ export default class HomePageState extends Component {
     this.setState({ coloringMethod });
   }
 
-  setDrawerTabValue(drawerTabValue) {
-    this.setState({ drawerTabValue });
-  }
-
   async setLayerTableName(layerTableName) {
     const layerTable = await GIG2.getTable(layerTableName);
     const coloringMethod = "majority";
@@ -53,7 +48,6 @@ export default class HomePageState extends Component {
   }
 
   setRegion(regionID) {
-    const drawerTabValue = "regions";
-    this.setState({ regionID, drawerTabValue });
+    this.setState({ regionID });
   }
 }

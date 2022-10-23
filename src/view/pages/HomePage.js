@@ -6,12 +6,13 @@ import GeoLocation from "../../nonview/base/GeoLocation";
 
 import LayerListView from "../../view/molecules/LayerListView";
 import CustomBottomNavigation from "../../view/molecules/CustomBottomNavigation";
-import LayerInfoPanel from "../../view/molecules/LayerInfoPanel";
-import CustomDrawer from "../../view/organisms/CustomDrawer";
 import GeoMap from "../organisms/GeoMap";
 import RegionDrawerInner from "../../view/organisms/RegionDrawerInner";
 import HomePageState from "./HomePageState";
+import TableTitleView from "../../view/molecules/TableTitleView";
+
 import {
+  STYLE_FLOATING_BOX,
   STYLE_BODY,
   STYLE_FOOTER,
   STYLE_BODY_REGION_DETAILS,
@@ -38,20 +39,12 @@ export default class HomePage extends HomePageState {
     const center = geoCenter ? geoCenter : DEFAULT_CENTER;
     this.setState({ center, geoCenter, zoom: DEFAULT_ZOOM });
   }
-  onClickCloseDrawer() {
-    this.setState({ drawerTabValue: "none" });
-  }
-
-  onClickOpenLayerDrawer() {
-    this.setState({ drawerTabValue: "layers" });
-  }
 
   render() {
     const {
       allEntIndex,
       center,
       coloringMethod,
-      drawerTabValue,
       geoCenter,
       layerTableName,
       regionID,
@@ -62,7 +55,9 @@ export default class HomePage extends HomePageState {
     return (
       <Box>
         <Paper sx={STYLE_BODY}>
-          <LayerInfoPanel layerTableName={layerTableName} />
+          <Box sx={STYLE_FLOATING_BOX}>
+            <TableTitleView tableName={layerTableName} />
+          </Box>
           <Paper sx={STYLE_BODY_REGION_DETAILS}>
             <RegionDrawerInner
               key={`region-details-${regionID}`}
@@ -90,20 +85,9 @@ export default class HomePage extends HomePageState {
             layerTable={layerTable}
             zoom={zoom}
           />
-          <CustomDrawer
-            coloringMethod={coloringMethod}
-            drawerTabValue={drawerTabValue}
-            layerTableName={layerTableName}
-            onClickCloseDrawer={this.onClickCloseDrawer.bind(this)}
-            regionID={regionID}
-            setColoringMethod={this.setColoringMethod.bind(this)}
-            setDrawerTabValue={this.setDrawerTabValue.bind(this)}
-            setLayerTableName={this.setLayerTableName.bind(this)}
-          />
         </Paper>
         <Paper sx={STYLE_FOOTER}>
           <CustomBottomNavigation
-            onClickOpenLayerDrawer={this.onClickOpenLayerDrawer.bind(this)}
             onClickCenterOnCurrentLocation={this.onClickCenterOnCurrentLocation.bind(
               this
             )}
