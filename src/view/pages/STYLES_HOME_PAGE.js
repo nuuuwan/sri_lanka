@@ -23,3 +23,12 @@ export const STYLE_BODY_REGION_DETAILS = {
   padding: 1,
   borderRadius: 3,
 };
+export const STYLE_BODY_LAYERS = {
+  position: "fixed",
+  top: "1%",
+  right: "1%",
+  zIndex: 10000,
+  background: "rgba(255,255,255,0.8)",
+  padding: 1,
+  borderRadius: 3,
+};

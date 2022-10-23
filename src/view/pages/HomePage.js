@@ -4,6 +4,7 @@ import Paper from "@mui/material/Paper";
 import { DEFAULT_ZOOM, DEFAULT_CENTER } from "../../nonview/base/GeoData";
 import GeoLocation from "../../nonview/base/GeoLocation";
 
+import LayerListView from "../../view/molecules/LayerListView";
 import CustomBottomNavigation from "../../view/molecules/CustomBottomNavigation";
 import LayerInfoPanel from "../../view/molecules/LayerInfoPanel";
 import CustomDrawer from "../../view/organisms/CustomDrawer";
@@ -14,6 +15,7 @@ import {
   STYLE_BODY,
   STYLE_FOOTER,
   STYLE_BODY_REGION_DETAILS,
+  STYLE_BODY_LAYERS,
 } from "../../view/pages/STYLES_HOME_PAGE";
 
 export default class HomePage extends HomePageState {
@@ -68,6 +70,13 @@ export default class HomePage extends HomePageState {
               layerTableName={layerTableName}
               setColoringMethod={this.setColoringMethod.bind(this)}
               coloringMethod={coloringMethod}
+            />
+          </Paper>
+          <Paper sx={STYLE_BODY_LAYERS}>
+            <LayerListView
+              key={`layer-details-${layerTableName}`}
+              layerTableName={layerTableName}
+              setLayerTableName={this.setLayerTableName.bind(this)}
             />
           </Paper>
           <GeoMap
