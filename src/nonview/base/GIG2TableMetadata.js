@@ -2,6 +2,9 @@ import StringX from "../../nonview/base/StringX";
 
 const FILE_BASE = "/public/data/gig2";
 export default class GIG2TableMetadata {
+  static fromMET(measurement, entity, time) {
+    return new GIG2TableMetadata([measurement, entity, time].join("."));
+  }
   constructor(tableName) {
     this.tableName = tableName;
   }
