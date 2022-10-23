@@ -90,7 +90,6 @@ export default class GIG2Table {
       }
       return 1;
     }
-    console.debug(pToRankP);
 
     return displayRegionIDs.reduce(
       function (idToStyle, id) {
