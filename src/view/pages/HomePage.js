@@ -101,7 +101,6 @@ export default class HomePage extends HomePageState {
               onHide={this.onClickHideLayerListView.bind(this)}
             >
               <LayerListView
-                key={`layer-details-${layerTableName}`}
                 layerTableName={layerTableName}
                 setLayerTableName={this.setLayerTableName.bind(this)}
               />
