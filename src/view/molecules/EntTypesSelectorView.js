@@ -8,7 +8,7 @@ import EntsForMaps from "../../nonview/core/EntsForMaps";
 
 const STYLE_BOX = {
   height: 100,
-  width: 100,
+  width: 80,
   p: 0,
   m: 1,
 };
@@ -51,7 +51,7 @@ export default function EntTypesSelectorView({
             WebkitAppearance: "slider-vertical",
           },
           "& span": {
-            fontSize: "50%",
+            fontSize: "75%",
           },
         }}
         orientation="vertical"
