@@ -42,7 +42,7 @@ export default class GIG2Table {
         function (id) {
           const tableRow = this.getRowByID(id);
           const pValue = tableRow.getPValue(valueKey);
-          const totalValue = 1;
+          const totalValue = tableRow.total;
           return { pValue, totalValue };
         }.bind(this)
       )
