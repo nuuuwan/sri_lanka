@@ -21,10 +21,10 @@ export default class EntView extends Component {
   render() {
     const { entID, top, bottom } = this.props;
     const { ent } = this.state;
-    const entType = Ents.getEntType(entID);
     if (!ent) {
-      return <Box>{entID}</Box>;
+      return null;
     }
+    const entType = Ents.getEntType(entID);
     return (
       <Box>
         {top ? (
