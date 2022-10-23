@@ -3,7 +3,6 @@ import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 
 export default function CustomBottomNavigation({
-  onClickOpenLayerDrawer,
   onClickCenterOnCurrentLocation,
 }) {
   return (
