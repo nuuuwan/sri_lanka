@@ -41,15 +41,15 @@ export default function RegionTableRowCellView({
         <Grid item xs={1}>
           <Typography sx={styleBulletCustom}> </Typography>
         </Grid>
-        <Grid item xs={4}>
+        <Grid item xs={5.5}>
           <Typography variant="caption">
             {StringX.toTitleCase(valueKey)}
           </Typography>
         </Grid>
-        <Grid item xs={3}>
+        <Grid item xs={2.5}>
           <Typography align="right">{StringX.formatInt(value)}</Typography>
         </Grid>
-        <Grid item xs={3}>
+        <Grid item xs={2.5}>
           <Typography align="right">
             {StringX.formatPercent(value, totalValue)}
           </Typography>
