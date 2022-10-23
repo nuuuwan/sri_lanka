@@ -26,8 +26,6 @@ export const ENT_TYPE_TO_SHORT_NAME = {
   [ENT_TYPES.Country]: "Country",
   [ENT_TYPES.PROVINCE]: "Province",
   [ENT_TYPES.DISTRICT]: "District",
-  [ENT_TYPES.PD]: "Polling Division",
-  [ENT_TYPES.ED]: "Electoral District",
 };
 
 export default class EntTypes {
