@@ -60,7 +60,7 @@ export default class HomePage extends HomePageState {
             <TableTitleView tableName={layerTableName} />
           </Box>
           <Paper sx={STYLE_BODY_REGION_DETAILS}>
-            <ShowHide title="Region Details">
+            <ShowHide title="Details">
               <RegionDetailsView
                 key={`region-details-${regionID}`}
                 regionID={regionID}
@@ -71,11 +71,13 @@ export default class HomePage extends HomePageState {
             </ShowHide>
           </Paper>
           <Paper sx={STYLE_BODY_LAYERS}>
-            <LayerListView
-              key={`layer-details-${layerTableName}`}
-              layerTableName={layerTableName}
-              setLayerTableName={this.setLayerTableName.bind(this)}
-            />
+            <ShowHide title="Layers">
+              <LayerListView
+                key={`layer-details-${layerTableName}`}
+                layerTableName={layerTableName}
+                setLayerTableName={this.setLayerTableName.bind(this)}
+              />
+            </ShowHide>
           </Paper>
           <GeoMap
             allEntIndex={allEntIndex}
