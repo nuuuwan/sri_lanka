@@ -1,4 +1,5 @@
 export const FOOTER_HEIGHT = 60;
+const PADDING = 4;
 export const STYLE_BODY = {
   position: "fixed",
   bottom: FOOTER_HEIGHT,
@@ -16,29 +17,29 @@ export const STYLE_FOOTER = {
 
 export const STYLE_FLOATING_BOX = {
   position: "fixed",
-  top: "1%",
-  left: "1%",
+  bottom: FOOTER_HEIGHT + PADDING,
+  right: PADDING,
   zIndex: 10000,
-  background: "rgba(255,255,255,0.8)",
+  background: "rgba(255,255,255,1)",
   padding: 1,
-  borderRadius: 3,
+  borderRadius: 5,
 };
 
 export const STYLE_BODY_REGION_DETAILS = {
   position: "fixed",
-  top: "12%",
-  left: "1%",
+  top: PADDING,
+  left: PADDING,
   zIndex: 10000,
   background: "rgba(255,255,255,0.8)",
   padding: 1,
-  borderRadius: 3,
+  borderRadius: 5,
 };
 export const STYLE_BODY_LAYERS = {
   position: "fixed",
-  top: "1%",
-  right: "1%",
+  top: PADDING,
+  right: PADDING,
   zIndex: 10000,
   background: "rgba(255,255,255,0.8)",
   padding: 1,
-  borderRadius: 3,
+  borderRadius: 5,
 };
