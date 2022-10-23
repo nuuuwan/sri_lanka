@@ -3,6 +3,7 @@ import Paper from "@mui/material/Paper";
 import LayersIcon from "@mui/icons-material/Layers";
 import BarChartIcon from "@mui/icons-material/BarChart";
 import MapIcon from "@mui/icons-material/Map";
+import AccessTimeIcon from "@mui/icons-material/AccessTime";
 
 import CustomBottomNavigation from "../../view/molecules/CustomBottomNavigation";
 import LayerListView from "../../view/molecules/LayerListView";
@@ -12,12 +13,14 @@ import GeoMap from "../../view/organisms/GeoMap";
 import RegionDetailsView from "../../view/organisms/RegionDetailsView";
 import HomePageState from "../../view/pages/HomePageState";
 import EntTypesSelectorView from "../../view/molecules/EntTypesSelectorView";
+import TimeSelectorView from "../../view/molecules/TimeSelectorView";
 
 import {
   STYLE_BODY,
   STYLE_TITLE_BOX,
   STYLE_BODY_LAYERS,
   STYLE_BODY_REGION_TYPES,
+  STYLE_BODY_TIME_SELECTOR,
   STYLE_BODY_REGION_DETAILS,
   STYLE_FOOTER,
 } from "../../view/pages/STYLES_HOME_PAGE";
@@ -50,6 +53,7 @@ export default class HomePage extends HomePageState {
       showEntTypesSelectorView,
       showLayerListView,
       showRegionDetailsView,
+      showTimeSelectorView,
       zoom,
     } = this.state;
 
@@ -84,6 +88,20 @@ export default class HomePage extends HomePageState {
                 layerTableName={layerTableName}
                 regionEntType={regionEntType}
                 setRegionEntType={this.setRegionEntType.bind(this)}
+              />
+            </ShowHide>
+          </Paper>
+
+          <Paper sx={STYLE_BODY_TIME_SELECTOR}>
+            <ShowHide
+              ShowIcon={AccessTimeIcon}
+              show={showTimeSelectorView}
+              onShow={this.onClickShowTimeSelectorView.bind(this)}
+              onHide={this.onClickHideTimeSelectorView.bind(this)}
+            >
+              <TimeSelectorView
+                layerTableName={layerTableName}
+                setLayerTableName={this.setLayerTableName.bind(this)}
               />
             </ShowHide>
           </Paper>

@@ -60,3 +60,15 @@ export const STYLE_BODY_REGION_TYPES = {
   padding: 1,
   borderRadius: 5,
 };
+
+export const STYLE_BODY_TIME_SELECTOR = {
+  position: "fixed",
+  top: PADDING * 15 + TITLE_HEIGHT,
+  right: PADDING,
+  zIndex: 10000,
+  maxWidth: "67%",
+  maxHeight: "67vh",
+  background: "rgba(255,255,255,0.8)",
+  padding: 1,
+  borderRadius: 5,
+};

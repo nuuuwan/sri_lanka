@@ -24,6 +24,7 @@ export default class HomePageState extends Component {
       showEntTypesSelectorView: false,
       showLayerListView: false,
       showRegionDetailsView: false,
+      showTimeSelectorView: false,
       zoom: DEFAULT_ZOOM,
     };
   }
@@ -86,5 +87,12 @@ export default class HomePageState extends Component {
   }
   onClickHideEntTypesSelectorView() {
     this.setState({ showEntTypesSelectorView: false });
+  }
+
+  onClickShowTimeSelectorView() {
+    this.setState({ showTimeSelectorView: true });
+  }
+  onClickHideTimeSelectorView() {
+    this.setState({ showTimeSelectorView: false });
   }
 }
