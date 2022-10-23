@@ -8,8 +8,9 @@ import EntView from "../../view/atoms/EntView";
 import RegionTableRowView from "../../view/molecules/RegionTableRowView";
 
 const STYLE_BOX = {
-  m: 1,
-  p: 1,
+  marginLeft: 1,
+  marginRight: 1,
+  marginBottom: 1,
 };
 
 export default class RegionDetailsView extends Component {
