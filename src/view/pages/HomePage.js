@@ -64,7 +64,7 @@ export default class HomePage extends HomePageState {
           <Paper sx={STYLE_BODY_REGION_DETAILS}>
             <ShowHide ShowIcon={BarChartIcon}>
               <RegionDetailsView
-                key={`region-details-${regionID}`}
+                key={`region-details-${regionID}-${layerTableName}`}
                 regionID={regionID}
                 layerTableName={layerTableName}
                 setColoringMethod={this.setColoringMethod.bind(this)}
