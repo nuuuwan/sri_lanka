@@ -5,6 +5,9 @@ import GIG2, { DEFAULT_LAYER_TABLE_NAME } from "../../nonview/base/GIG2";
 import { DEFAULT_ZOOM, DEFAULT_CENTER } from "../../nonview/base/GeoData";
 import GeoLocation from "../../nonview/base/GeoLocation";
 
+const DEFAULT_REGION_ID = "LK";
+const DEFAULT_COLORING_METHOD = "majority";
+
 export default class HomePageState extends Component {
   constructor(props) {
     super(props);
@@ -15,7 +18,7 @@ export default class HomePageState extends Component {
       geoCenter: DEFAULT_CENTER,
       layerTable: null,
       layerTableName: DEFAULT_LAYER_TABLE_NAME,
-      regionID: "LK",
+      regionID: DEFAULT_REGION_ID,
       showLayerListView: false,
       showRegionDetailsView: false,
       zoom: DEFAULT_ZOOM,
@@ -40,12 +43,11 @@ export default class HomePageState extends Component {
   }
 
   async setLayerTableName(layerTableName) {
-    const layerTable = await GIG2.getTable(layerTableName);
-    const coloringMethod = "majority";
     this.setState({
-      layerTable,
       layerTableName,
-      coloringMethod,
+      layerTable: await GIG2.getTable(layerTableName),
+      coloringMethod: DEFAULT_COLORING_METHOD,
+      regionID: DEFAULT_REGION_ID,
     });
   }
 
