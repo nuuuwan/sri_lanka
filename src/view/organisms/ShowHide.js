@@ -2,7 +2,6 @@ import { Component } from "react";
 
 import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
-import Typography from "@mui/material/Typography";
 
 const STYLE_BUTTON = {
   fontSize: "50%",
