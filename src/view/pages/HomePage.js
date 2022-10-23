@@ -3,9 +3,6 @@ import Paper from "@mui/material/Paper";
 import LayersIcon from "@mui/icons-material/Layers";
 import BarChartIcon from "@mui/icons-material/BarChart";
 
-import { DEFAULT_ZOOM, DEFAULT_CENTER } from "../../nonview/base/GeoData";
-import GeoLocation from "../../nonview/base/GeoLocation";
-
 import CustomBottomNavigation from "../../view/molecules/CustomBottomNavigation";
 import LayerListView from "../../view/molecules/LayerListView";
 import LayerTableTitleView from "../../view/molecules/LayerTableTitleView";
@@ -35,26 +32,6 @@ export default class HomePage extends HomePageState {
 
     this.loadState();
     this.didMount = true;
-  }
-
-  async onClickCenterOnCurrentLocation() {
-    const geoCenter = await GeoLocation.getLatLng();
-    const center = geoCenter ? geoCenter : DEFAULT_CENTER;
-    this.setState({ center, geoCenter, zoom: DEFAULT_ZOOM });
-  }
-
-  onClickShowRegionDetailsView() {
-    this.setState({ showRegionDetailsView: true });
-  }
-  onClickHideRegionDetailsView() {
-    this.setState({ showRegionDetailsView: false });
-  }
-
-  onClickShowLayerListView() {
-    this.setState({ showLayerListView: true });
-  }
-  onClickHideLayerListView() {
-    this.setState({ showLayerListView: false });
   }
 
   render() {

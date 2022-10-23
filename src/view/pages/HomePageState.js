@@ -53,4 +53,24 @@ export default class HomePageState extends Component {
   setRegion(regionID) {
     this.setState({ regionID, showRegionDetailsView: true });
   }
+
+  async onClickCenterOnCurrentLocation() {
+    const geoCenter = await GeoLocation.getLatLng();
+    const center = geoCenter ? geoCenter : DEFAULT_CENTER;
+    this.setState({ center, geoCenter, zoom: DEFAULT_ZOOM });
+  }
+
+  onClickShowRegionDetailsView() {
+    this.setState({ showRegionDetailsView: true });
+  }
+  onClickHideRegionDetailsView() {
+    this.setState({ showRegionDetailsView: false });
+  }
+
+  onClickShowLayerListView() {
+    this.setState({ showLayerListView: true });
+  }
+  onClickHideLayerListView() {
+    this.setState({ showLayerListView: false });
+  }
 }
