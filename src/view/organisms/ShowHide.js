@@ -1,7 +1,7 @@
 import { Component } from "react";
 
+import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
-import Stack from "@mui/material/Stack";
 import CloseIcon from "@mui/icons-material/Close";
 
 export default class ShowHide extends Component {
@@ -28,9 +28,11 @@ export default class ShowHide extends Component {
     }.bind(this);
     return (
       <>
-        <IconButton onClick={onClick}>
-          <CloseIcon />
-        </IconButton>
+        <Box display="flex" justifyContent="flex-end">
+          <IconButton onClick={onClick} size="small" align="right">
+            <CloseIcon fontSize="small" />
+          </IconButton>
+        </Box>
         {this.props.children}
       </>
     );
@@ -38,9 +40,9 @@ export default class ShowHide extends Component {
 
   render() {
     return (
-      <Stack direction="row" alignItems="right">
+      <Box>
         {this.state.show ? this.renderWhenShow() : this.renderWhenHide()}
-      </Stack>
+      </Box>
     );
   }
 }
