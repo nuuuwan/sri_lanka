@@ -41,11 +41,15 @@ export default class GIG2Table {
       .map(
         function (id) {
           const tableRow = this.getRowByID(id);
+          if (!tableRow) {
+            return null;
+          }
           const pValue = tableRow.getPValue(valueKey);
           const totalValue = tableRow.total;
           return { pValue, totalValue };
         }.bind(this)
       )
+      .filter((x) => x !== null)
       .sort(function (a, b) {
         return a.pValue - b.pValue;
       });
@@ -95,11 +99,13 @@ export default class GIG2Table {
         let color = DEFAULT_COLOR,
           opacity = DEFAULT_OPACITY;
 
-        /* eslint-disable no-unused-vars */
-        const [maxValueKey, maxValue] = tableRow.getMaxValueKeyAndValue();
-        color = GIG2TableStyle.getValueKeyColor(maxValueKey);
-        const maxPValue = tableRow.getPValue(maxValueKey);
-        opacity = GIG2TableStyle.getOpacityFromP(maxPValue);
+        if (tableRow) {
+          /* eslint-disable no-unused-vars */
+          const [maxValueKey, maxValue] = tableRow.getMaxValueKeyAndValue();
+          color = GIG2TableStyle.getValueKeyColor(maxValueKey);
+          const maxPValue = tableRow.getPValue(maxValueKey);
+          opacity = GIG2TableStyle.getOpacityFromP(maxPValue);
+        }
 
         idToStyle[id] = {
           color,
