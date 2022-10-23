@@ -24,7 +24,6 @@ function getTableIcon(tableMetadata) {
   if (Icon) {
     return Icon;
   }
-  console.debug(tableMetadata.measurement);
   return DEFAULT_ICON;
 }
 
