@@ -49,6 +49,7 @@ export default class RegionDetailsView extends Component {
           coloringMethod={coloringMethod}
           tableRow={tableRow}
           onClickMajority={onClickMajority}
+          regionID={regionID}
           setColoringMethod={setColoringMethod}
         />
         <EntView entID={regionID} bottom key={`ent-bottom-${regionID}`} />

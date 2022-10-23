@@ -8,6 +8,7 @@ export default function RegionTableRowView({
   coloringMethod,
   onClickMajority,
   setColoringMethod,
+  regionID,
   tableRow,
 }) {
   if (!tableRow) {
@@ -37,7 +38,7 @@ export default function RegionTableRowView({
         return (
           <RegionTableRowCellView
             coloringMethod={coloringMethod}
-            key={`region-table-row-cell-${valueKey}`}
+            key={`region-table-row-cell-${regionID}-${valueKey}`}
             setColoringMethod={setColoringMethod}
             totalValue={totalValue}
             value={value}

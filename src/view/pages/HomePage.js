@@ -85,7 +85,7 @@ export default class HomePage extends HomePageState {
               onHide={this.onClickHideRegionDetailsView.bind(this)}
             >
               <RegionDetailsView
-                key={`region-details-${layerTableName}`}
+                key={`region-details-${regionID}-${layerTableName}`}
                 regionID={regionID}
                 layerTableName={layerTableName}
                 setColoringMethod={this.setColoringMethod.bind(this)}
