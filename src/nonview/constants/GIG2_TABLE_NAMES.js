@@ -12,7 +12,6 @@ const GIG2_TABLE_NAMES = [
   "population-gender.regions.2012",
   "population-marital_status.regions.2012",
   "population-religion.regions.2012",
-  "population-total.regions.2012",
   "social-household-communication_items.regions.2012",
   "social-household-cooking_fuel.regions.2012",
   "social-household-drinking_water.2012",
