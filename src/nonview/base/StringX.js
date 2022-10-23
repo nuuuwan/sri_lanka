@@ -6,6 +6,11 @@ const STRING_REPLACE_LIST = [
   ["Election Presidential", "Presidential Election"],
 ];
 
+const FONT_SIZE = {
+  PCT_MIN: 10,
+  PCT_MAX: 100,
+};
+
 export default class StringX {
   static toTitleCase(str) {
     if (!str) {
@@ -47,7 +52,11 @@ export default class StringX {
     }
 
     const fontSize =
-      MathX.forceRange(10, 100, parseInt(logBase1000 * 60)) + "%";
+      MathX.forceRange(
+        FONT_SIZE.PCT_MIN,
+        FONT_SIZE.PCT_MAX,
+        parseInt(logBase1000 * 60)
+      ) + "%";
     const style = {
       fontSize,
     };
@@ -62,26 +71,26 @@ export default class StringX {
 
   static formatPercent(numerator, denominator) {
     const p = numerator / denominator;
-    const pFontSize = Math.pow(p, 0.01);
+    const logBase1000 = Math.log(p * 100) / Math.log(2);
 
     let numPart = Number(p).toLocaleString(undefined, {
       style: "percent",
       maximumSignificantDigits: MAX_SIG_DIGITS,
     });
 
-    let color;
-    if (p > 0.1) {
-      color = "#000";
-    } else if (p > 0.01) {
-      color = "#555";
-    } else {
-      color = "#aaa";
+    if (p < 0.01) {
       numPart = "<1%";
     }
 
+    const fontSize =
+      MathX.forceRange(
+        FONT_SIZE.PCT_MIN,
+        FONT_SIZE.PCT_MAX,
+        parseInt(logBase1000 * 20)
+      ) + "%";
+
     const style = {
-      fontSize: parseInt(pFontSize * 100) + "%",
-      color: color,
+      fontSize,
     };
 
     return <span style={style}>{numPart}</span>;
