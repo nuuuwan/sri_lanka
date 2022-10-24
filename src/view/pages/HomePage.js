@@ -118,7 +118,7 @@ export default class HomePage extends HomePageState {
           />
         </Paper>
 
-        <Paper sx={STYLE_BODY_REGION_DETAILS}>
+        <Box sx={STYLE_BODY_REGION_DETAILS}>
           <ShowHide
             ShowIcon={BarChartIcon}
             show={showRegionDetailsView}
@@ -133,7 +133,7 @@ export default class HomePage extends HomePageState {
               coloringMethod={coloringMethod}
             />
           </ShowHide>
-        </Paper>
+        </Box>
 
         <Paper sx={STYLE_FOOTER}>
           <CustomBottomNavigation
