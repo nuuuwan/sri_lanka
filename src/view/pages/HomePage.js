@@ -1,4 +1,5 @@
 import Box from "@mui/material/Box";
+import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import LayersIcon from "@mui/icons-material/Layers";
 import BarChartIcon from "@mui/icons-material/BarChart";
@@ -18,9 +19,7 @@ import TimeSelectorView from "../../view/molecules/TimeSelectorView";
 import {
   STYLE_BODY,
   STYLE_TITLE_BOX,
-  STYLE_BODY_LAYERS,
-  STYLE_BODY_REGION_TYPES,
-  STYLE_BODY_TIME_SELECTOR,
+  STYLE_BODY_RIGHT_PANEL,
   STYLE_BODY_REGION_DETAILS,
   STYLE_FOOTER,
 } from "../../view/pages/STYLES_HOME_PAGE";
@@ -60,10 +59,13 @@ export default class HomePage extends HomePageState {
     return (
       <Box>
         <Paper sx={STYLE_BODY}>
-          <Box sx={STYLE_TITLE_BOX}>
-            <LayerTableTitleView tableName={layerTableName} />
-          </Box>
-          <Paper sx={STYLE_BODY_LAYERS}>
+          <Box sx={STYLE_BODY_RIGHT_PANEL}>
+            <Grid container justifyContent="flex-end">
+              <Paper sx={STYLE_TITLE_BOX}>
+                <LayerTableTitleView tableName={layerTableName} />
+              </Paper>
+            </Grid>
+
             <ShowHide
               ShowIcon={LayersIcon}
               show={showLayerListView}
@@ -75,9 +77,7 @@ export default class HomePage extends HomePageState {
                 setLayerTableName={this.setLayerTableName.bind(this)}
               />
             </ShowHide>
-          </Paper>
 
-          <Paper sx={STYLE_BODY_REGION_TYPES}>
             <ShowHide
               ShowIcon={MapIcon}
               show={showEntTypesSelectorView}
@@ -90,9 +90,7 @@ export default class HomePage extends HomePageState {
                 setRegionEntType={this.setRegionEntType.bind(this)}
               />
             </ShowHide>
-          </Paper>
 
-          <Paper sx={STYLE_BODY_TIME_SELECTOR}>
             <ShowHide
               ShowIcon={AccessTimeIcon}
               show={showTimeSelectorView}
@@ -104,7 +102,7 @@ export default class HomePage extends HomePageState {
                 setLayerTableName={this.setLayerTableName.bind(this)}
               />
             </ShowHide>
-          </Paper>
+          </Box>
 
           <GeoMap
             allEntIndex={allEntIndex}
