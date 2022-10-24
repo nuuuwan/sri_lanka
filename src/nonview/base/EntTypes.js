@@ -11,7 +11,7 @@ export const ENT_TYPES = {
 };
 
 export const ENT_TYPE_TO_LONG_NAME = {
-  [ENT_TYPES.Country]: "Country",
+  [ENT_TYPES.COUNTRY]: "Country",
   [ENT_TYPES.PROVINCE]: "Province",
   [ENT_TYPES.DISTRICT]: "District",
   [ENT_TYPES.DSD]: "Divisional Secretariat Division",
@@ -23,7 +23,7 @@ export const ENT_TYPE_TO_LONG_NAME = {
 };
 
 export const ENT_TYPE_TO_SHORT_NAME = {
-  [ENT_TYPES.Country]: "Country",
+  [ENT_TYPES.COUNTRY]: "Country",
   [ENT_TYPES.PROVINCE]: "Province",
   [ENT_TYPES.DISTRICT]: "District",
 };
