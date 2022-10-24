@@ -22,6 +22,10 @@ export default class HomePageState extends Component {
           layerTableName,
           regionEntType,
           regionID,
+          showEntTypesSelectorView,
+          showLayerListView,
+          showRegionDetailsView,
+          showTimeSelectorView,
           zoom,
         } = this.state;
         const context = {
@@ -30,6 +34,10 @@ export default class HomePageState extends Component {
           layerTableName,
           regionEntType,
           regionID,
+          showEntTypesSelectorView,
+          showLayerListView,
+          showRegionDetailsView,
+          showTimeSelectorView,
           zoom,
         };
         console.debug(context);
@@ -79,6 +87,11 @@ export default class HomePageState extends Component {
     if (context.zoom) {
       initState.zoom = context.zoom;
     }
+
+    initState.showEntTypesSelectorView = context.showEntTypesSelectorView;
+    initState.showLayerListView = context.showLayerListView;
+    initState.showRegionDetailsView = context.showRegionDetailsView;
+    initState.showTimeSelectorView = context.showTimeSelectorView;
 
     this.state = initState;
   }
