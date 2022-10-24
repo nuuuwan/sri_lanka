@@ -35,10 +35,8 @@ export default class GIG2Table {
     );
   }
 
-  getGetRankPFromP(valueKey) {
-    const sortedPAndTotalList = this.ids
-      .filter((id) => EntTypes.getEntType(id) === ENT_TYPES.PROVINCE)
-      .map(
+  getGetRankPFromP(ids, valueKey) {
+    const sortedPAndTotalList = ids.map(
         function (id) {
           const tableRow = this.getRowByID(id);
           if (!tableRow) {
@@ -74,7 +72,7 @@ export default class GIG2Table {
       const n = sortedPAndRankedPValueList.length;
       for (let i = 1; i < n; i++) {
         const { pValue, rankedPValue } = sortedPAndRankedPValueList[i];
-        if (p < pValue) {
+        if (p <= pValue) {
           const { pValue: pValuePrev, rankedPValue: rankedPValuePrev } =
             sortedPAndRankedPValueList[i - 1];
           const q = (p - pValuePrev) / (pValue - pValuePrev);
@@ -119,7 +117,7 @@ export default class GIG2Table {
   }
 
   getIDToStyleForKey(displayRegionIDs, coloringKey) {
-    const getRankPFromP = this.getGetRankPFromP(coloringKey);
+    const getRankPFromP = this.getGetRankPFromP(displayRegionIDs, coloringKey);
 
     return displayRegionIDs.reduce(
       function (idToStyle, id) {
