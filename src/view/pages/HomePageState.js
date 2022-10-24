@@ -10,6 +10,7 @@ import URLContext from "../../nonview/base/URLContext";
 const DEFAULT_REGION_ID = "LK-1";
 const DEFAULT_COLORING_METHOD = "majority";
 const DEFAULT_REGION_ENT_TYPE = ENT_TYPES.PROVINCE;
+
 export default class HomePageState extends Component {
   setStateAndURLContext(state) {
     this.setState(
@@ -37,9 +38,8 @@ export default class HomePageState extends Component {
     );
   }
 
-  constructor(props) {
-    super(props);
-    this.state = {
+  getDefaultInitState() {
+    return {
       allEntIndex: null,
       center: DEFAULT_CENTER,
       coloringMethod: DEFAULT_COLORING_METHOD,
@@ -54,6 +54,33 @@ export default class HomePageState extends Component {
       showTimeSelectorView: false,
       zoom: DEFAULT_ZOOM,
     };
+  }
+
+  constructor(props) {
+    super(props);
+    const context = URLContext.getContext();
+    let initState = this.getDefaultInitState();
+
+    if (context.center) {
+      initState.center = context.center;
+    }
+    if (context.coloringMethod) {
+      initState.coloringMethod = context.coloringMethod;
+    }
+    if (context.layerTableName) {
+      initState.layerTableName = context.layerTableName;
+    }
+    if (context.regionEntType) {
+      initState.regionEntType = context.regionEntType;
+    }
+    if (context.regionID) {
+      initState.regionID = context.regionID;
+    }
+    if (context.zoom) {
+      initState.zoom = context.zoom;
+    }
+
+    this.state = initState;
   }
 
   async loadState() {
