@@ -75,21 +75,33 @@ export default class HomePageState extends Component {
   }
 
   onClickShowLayerListView() {
-    this.setState({ showLayerListView: true });
+    this.setState({
+      showEntTypesSelectorView: false,
+      showLayerListView: true,
+      showTimeSelectorView: false,
+    });
   }
   onClickHideLayerListView() {
     this.setState({ showLayerListView: false });
   }
 
   onClickShowEntTypesSelectorView() {
-    this.setState({ showEntTypesSelectorView: true });
+    this.setState({
+      showEntTypesSelectorView: true,
+      showLayerListView: false,
+      showTimeSelectorView: false,
+    });
   }
   onClickHideEntTypesSelectorView() {
     this.setState({ showEntTypesSelectorView: false });
   }
 
   onClickShowTimeSelectorView() {
-    this.setState({ showTimeSelectorView: true });
+    this.setState({
+      showEntTypesSelectorView: false,
+      showLayerListView: false,
+      showTimeSelectorView: true,
+    });
   }
   onClickHideTimeSelectorView() {
     this.setState({ showTimeSelectorView: false });
