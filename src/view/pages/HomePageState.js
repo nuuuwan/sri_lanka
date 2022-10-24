@@ -5,11 +5,38 @@ import Ents from "../../nonview/base/Ents";
 import GIG2, { DEFAULT_LAYER_TABLE_NAME } from "../../nonview/base/GIG2";
 import { DEFAULT_ZOOM, DEFAULT_CENTER } from "../../nonview/base/GeoData";
 import GeoLocation from "../../nonview/base/GeoLocation";
+import URLContext from "../../nonview/base/URLContext";
 
 const DEFAULT_REGION_ID = "LK-1";
 const DEFAULT_COLORING_METHOD = "majority";
 const DEFAULT_REGION_ENT_TYPE = ENT_TYPES.PROVINCE;
 export default class HomePageState extends Component {
+  setStateAndURLContext(state) {
+    this.setState(
+      state,
+      function () {
+        const {
+          center,
+          coloringMethod,
+          layerTableName,
+          regionEntType,
+          regionID,
+          zoom,
+        } = this.state;
+        const context = {
+          center,
+          coloringMethod,
+          layerTableName,
+          regionEntType,
+          regionID,
+          zoom,
+        };
+        console.debug(context);
+        URLContext.setContext(context);
+      }.bind(this)
+    );
+  }
+
   constructor(props) {
     super(props);
     this.state = {
@@ -35,75 +62,75 @@ export default class HomePageState extends Component {
     const { layerTableName } = this.state;
     const allEntIndex = await Ents.getAllEntIndex();
     const layerTable = await GIG2.getTable(layerTableName);
-    this.setState({ allEntIndex, layerTable, center, geoCenter });
+    this.setStateAndURLContext({ allEntIndex, layerTable, center, geoCenter });
   }
 
   setCenterAndZoom(center, zoom) {
-    this.setState({ center, zoom });
+    this.setStateAndURLContext({ center, zoom });
   }
 
   setColoringMethod(coloringMethod) {
-    this.setState({ coloringMethod });
+    this.setStateAndURLContext({ coloringMethod });
   }
 
   async setLayerTableName(layerTableName) {
-    this.setState({
+    this.setStateAndURLContext({
       layerTableName,
       layerTable: await GIG2.getTable(layerTableName),
     });
   }
 
   setRegion(regionID) {
-    this.setState({ regionID, showRegionDetailsView: true });
+    this.setStateAndURLContext({ regionID, showRegionDetailsView: true });
   }
 
   setRegionEntType(regionEntType) {
-    this.setState({ regionEntType });
+    this.setStateAndURLContext({ regionEntType });
   }
 
   async onClickCenterOnCurrentLocation() {
     const geoCenter = await GeoLocation.getLatLng();
     const center = geoCenter ? geoCenter : DEFAULT_CENTER;
-    this.setState({ center, geoCenter, zoom: DEFAULT_ZOOM });
+    this.setStateAndURLContext({ center, geoCenter, zoom: DEFAULT_ZOOM });
   }
 
   onClickShowRegionDetailsView() {
-    this.setState({ showRegionDetailsView: true });
+    this.setStateAndURLContext({ showRegionDetailsView: true });
   }
   onClickHideRegionDetailsView() {
-    this.setState({ showRegionDetailsView: false });
+    this.setStateAndURLContext({ showRegionDetailsView: false });
   }
 
   onClickShowLayerListView() {
-    this.setState({
+    this.setStateAndURLContext({
       showEntTypesSelectorView: false,
       showLayerListView: true,
       showTimeSelectorView: false,
     });
   }
   onClickHideLayerListView() {
-    this.setState({ showLayerListView: false });
+    this.setStateAndURLContext({ showLayerListView: false });
   }
 
   onClickShowEntTypesSelectorView() {
-    this.setState({
+    this.setStateAndURLContext({
       showEntTypesSelectorView: true,
       showLayerListView: false,
       showTimeSelectorView: false,
     });
   }
   onClickHideEntTypesSelectorView() {
-    this.setState({ showEntTypesSelectorView: false });
+    this.setStateAndURLContext({ showEntTypesSelectorView: false });
   }
 
   onClickShowTimeSelectorView() {
-    this.setState({
+    this.setStateAndURLContext({
       showEntTypesSelectorView: false,
       showLayerListView: false,
       showTimeSelectorView: true,
     });
   }
   onClickHideTimeSelectorView() {
-    this.setState({ showTimeSelectorView: false });
+    this.setStateAndURLContext({ showTimeSelectorView: false });
   }
 }
