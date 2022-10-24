@@ -57,8 +57,8 @@ export default class HomePageState extends Component {
   }
 
   async loadState() {
-    const geoCenter = await GeoLocation.getLatLng();
-    const center = geoCenter ? geoCenter : DEFAULT_CENTER;
+    const center = DEFAULT_CENTER;
+    const geoCenter = DEFAULT_CENTER;
     const { layerTableName } = this.state;
     const allEntIndex = await Ents.getAllEntIndex();
     const layerTable = await GIG2.getTable(layerTableName);
