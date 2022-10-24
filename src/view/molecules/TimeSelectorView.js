@@ -5,7 +5,7 @@ import GIG2TableMetadata from "../../nonview/base/GIG2TableMetadata";
 import GIG2_TABLE_NAMES from "../../nonview/constants/GIG2_TABLE_NAMES.js";
 
 const STYLE_BOX = {
-  height: 100,
+  height: 200,
   width: 80,
   p: 0,
   m: 1,
