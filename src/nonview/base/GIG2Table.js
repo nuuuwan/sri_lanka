@@ -128,7 +128,7 @@ export default class GIG2Table {
         color = GIG2TableStyle.getValueKeyColor(coloringKey);
         const p = tableRow.getPValue(coloringKey);
         const rankP = getRankPFromP(p);
-        opacity = GIG2TableStyle.getOpacityFromP(rankP);
+        color = GIG2TableStyle.getColorFromP(rankP);
         idToStyle[id] = {
           color,
           opacity,
