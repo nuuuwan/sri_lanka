@@ -1,1 +1,2 @@
-const DICTIONARY = {}
+const DICTIONARY = {};
+export default DICTIONARY;
