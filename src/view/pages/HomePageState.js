@@ -131,7 +131,7 @@ export default class HomePageState extends Component {
   async onClickCenterOnCurrentLocation() {
     const geoCenter = await GeoLocation.getLatLng();
     const center = geoCenter ? geoCenter : DEFAULT_CENTER;
-    this.setStateAndURLContext({ center, geoCenter, zoom: DEFAULT_ZOOM });
+    this.setStateAndURLContext({ center, geoCenter});
   }
 
   onClickShowRegionDetailsView() {
