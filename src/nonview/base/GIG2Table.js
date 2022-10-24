@@ -1,5 +1,4 @@
 import MathX from "../../nonview/base/MathX";
-import EntTypes, { ENT_TYPES } from "../../nonview/base/EntTypes";
 import GIG2TableRow from "../../nonview/base/GIG2TableRow";
 import GIG2TableStyle, {
   DEFAULT_COLOR,
@@ -36,7 +35,8 @@ export default class GIG2Table {
   }
 
   getGetRankPFromP(ids, valueKey) {
-    const sortedPAndTotalList = ids.map(
+    const sortedPAndTotalList = ids
+      .map(
         function (id) {
           const tableRow = this.getRowByID(id);
           if (!tableRow) {
