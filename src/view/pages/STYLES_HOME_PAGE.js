@@ -34,8 +34,4 @@ export const STYLE_BODY_REGION_DETAILS = {
   bottom: FOOTER_HEIGHT + PADDING,
   left: PADDING,
   zIndex: 10000,
-  background: "rgba(255,255,255,0.8)",
-  padding: 1,
-  borderRadius: 5,
-  maxWidth: 240,
 };
