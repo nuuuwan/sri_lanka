@@ -21,4 +21,12 @@ export default class GIG2TableStyle {
     const [MIN_OPACITY, MAX_OPACITY] = [0.1, 0.9];
     return MIN_OPACITY + p * (MAX_OPACITY - MIN_OPACITY);
   }
+
+  static getColorFromP(p) {
+    const h = parseInt(p * 240);
+    const s = 100;
+    const l = 50;
+    const a = 1;
+    return Color.hsla(h, s, l, a);
+  }
 }
