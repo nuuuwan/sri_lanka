@@ -5,6 +5,7 @@ import LayersIcon from "@mui/icons-material/Layers";
 import BarChartIcon from "@mui/icons-material/BarChart";
 import MapIcon from "@mui/icons-material/Map";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
+import TableRowsIcon from "@mui/icons-material/TableRows";
 
 import CustomBottomNavigation from "../../view/molecules/CustomBottomNavigation";
 import LayerListView from "../../view/molecules/LayerListView";
@@ -15,13 +16,13 @@ import RegionDetailsView from "../../view/organisms/RegionDetailsView";
 import HomePageState from "../../view/pages/HomePageState";
 import EntTypesSelectorView from "../../view/molecules/EntTypesSelectorView";
 import TimeSelectorView from "../../view/molecules/TimeSelectorView";
+import AllDetailsView from "../../view/organisms/AllDetailsView";
 
 import {
   STYLE_BODY,
   STYLE_TITLE_BOX,
   STYLE_BODY_TOP_RIGHT_PANEL,
   STYLE_BODY_BOTTOM_LEFT_PANEL,
-  STYLE_BODY_REGION_DETAILS,
   STYLE_FOOTER,
 } from "../../view/pages/STYLES_HOME_PAGE";
 
@@ -50,6 +51,7 @@ export default class HomePage extends HomePageState {
       layerTableName,
       regionEntType,
       regionID,
+      showAllDetailsView,
       showEntTypesSelectorView,
       showLayerListView,
       showRegionDetailsView,
@@ -72,6 +74,7 @@ export default class HomePage extends HomePageState {
               show={showLayerListView}
               onShow={this.onClickShowLayerListView.bind(this)}
               onHide={this.onClickHideLayerListView.bind(this)}
+              alignRight
             >
               <LayerListView
                 layerTableName={layerTableName}
@@ -84,6 +87,7 @@ export default class HomePage extends HomePageState {
               show={showEntTypesSelectorView}
               onShow={this.onClickShowEntTypesSelectorView.bind(this)}
               onHide={this.onClickHideEntTypesSelectorView.bind(this)}
+              alignRight
             >
               <EntTypesSelectorView
                 layerTableName={layerTableName}
@@ -97,6 +101,7 @@ export default class HomePage extends HomePageState {
               show={showTimeSelectorView}
               onShow={this.onClickShowTimeSelectorView.bind(this)}
               onHide={this.onClickHideTimeSelectorView.bind(this)}
+              alignRight
             >
               <TimeSelectorView
                 layerTableName={layerTableName}
@@ -127,6 +132,20 @@ export default class HomePage extends HomePageState {
             onHide={this.onClickHideRegionDetailsView.bind(this)}
           >
             <RegionDetailsView
+              key={`region-details-${regionID}-${layerTableName}`}
+              regionID={regionID}
+              layerTableName={layerTableName}
+              setColoringMethod={this.setColoringMethod.bind(this)}
+              coloringMethod={coloringMethod}
+            />
+          </ShowHide>
+          <ShowHide
+            ShowIcon={TableRowsIcon}
+            show={showAllDetailsView}
+            onShow={this.onClickShowAllDetailsView.bind(this)}
+            onHide={this.onClickHideAllDetailsView.bind(this)}
+          >
+            <AllDetailsView
               key={`region-details-${regionID}-${layerTableName}`}
               regionID={regionID}
               layerTableName={layerTableName}
