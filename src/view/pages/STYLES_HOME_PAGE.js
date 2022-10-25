@@ -29,9 +29,10 @@ export const STYLE_TITLE_BOX = {
   borderRadius: 5,
 };
 
-export const STYLE_BODY_REGION_DETAILS = {
+export const STYLE_BODY_BOTTOM_LEFT_PANEL = {
   position: "fixed",
-  bottom: FOOTER_HEIGHT + PADDING,
+  top: PADDING,
+  bottom: PADDING,
   left: PADDING,
   zIndex: 10000,
 };

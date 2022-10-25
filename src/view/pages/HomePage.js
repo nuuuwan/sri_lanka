@@ -20,6 +20,7 @@ import {
   STYLE_BODY,
   STYLE_TITLE_BOX,
   STYLE_BODY_TOP_RIGHT_PANEL,
+  STYLE_BODY_BOTTOM_LEFT_PANEL,
   STYLE_BODY_REGION_DETAILS,
   STYLE_FOOTER,
 } from "../../view/pages/STYLES_HOME_PAGE";
@@ -118,7 +119,7 @@ export default class HomePage extends HomePageState {
           />
         </Paper>
 
-        <Box sx={STYLE_BODY_REGION_DETAILS}>
+        <Box sx={STYLE_BODY_BOTTOM_LEFT_PANEL}>
           <ShowHide
             ShowIcon={BarChartIcon}
             show={showRegionDetailsView}
