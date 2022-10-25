@@ -16,7 +16,7 @@ import GeoMap from "../../view/organisms/GeoMap";
 import HomePageState from "../../view/pages/HomePageState";
 import EntTypesSelectorView from "../../view/molecules/EntTypesSelectorView";
 import TimeSelectorView from "../../view/molecules/TimeSelectorView";
-import AllDetailsView from "../../view/organisms/AllDetailsView";
+import AllDetailsView from "../../view/molecules/AllDetailsView";
 
 import {
   STYLE_BODY,
