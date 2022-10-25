@@ -23,7 +23,7 @@ export default class HomePageState extends Component {
           layerTableName,
           regionEntType,
           regionID,
-          showAllDetailsView,
+          showRegionsDetailsView,
           showEntTypesSelectorView,
           showLayerListView,
           showRegionDetailsView,
@@ -36,7 +36,7 @@ export default class HomePageState extends Component {
           layerTableName,
           regionEntType,
           regionID,
-          showAllDetailsView,
+          showRegionsDetailsView,
           showEntTypesSelectorView,
           showLayerListView,
           showRegionDetailsView,
@@ -58,7 +58,7 @@ export default class HomePageState extends Component {
       layerTableName: DEFAULT_LAYER_TABLE_NAME,
       regionEntType: DEFAULT_REGION_ENT_TYPE,
       regionID: DEFAULT_REGION_ID,
-      showAllDetailsView: false,
+      showRegionsDetailsView: false,
       showEntTypesSelectorView: false,
       showLayerListView: false,
       showRegionDetailsView: false,
@@ -178,11 +178,11 @@ export default class HomePageState extends Component {
     this.setStateAndURLContext({ showRegionDetailsView: false });
   }
 
-  onClickShowAllDetailsView() {
-    this.setStateAndURLContext({ showAllDetailsView: true });
+  onClickShowRegionsDetailsView() {
+    this.setStateAndURLContext({ showRegionsDetailsView: true });
   }
-  onClickHideAllDetailsView() {
-    this.setStateAndURLContext({ showAllDetailsView: false });
+  onClickHideRegionsDetailsView() {
+    this.setStateAndURLContext({ showRegionsDetailsView: false });
   }
 
   onClickShowLayerListView() {
