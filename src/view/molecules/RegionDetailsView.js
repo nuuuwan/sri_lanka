@@ -5,7 +5,7 @@ import RegionTableRowView from "../../view/molecules/RegionTableRowView";
 
 const STYLE_BOX = {
   width: 200,
-  height: 200,
+  maxHeight: 300,
   overflow: "scroll",
 };
 
