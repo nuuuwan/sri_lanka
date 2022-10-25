@@ -3,9 +3,6 @@ import Box from "@mui/material/Box";
 import RegionsTableView from "../../view/molecules/RegionsTableView";
 
 const STYLE_BOX = {
-  marginLeft: 1,
-  marginRight: 1,
-  marginBottom: 1,
   width: 200,
   height: 200,
   overflow: "scroll",
