@@ -34,13 +34,7 @@ export default class EntsForMaps {
     return [ENT_TYPES.PROVINCE];
   }
 
-  static getDisplayRegionIDs(
-    allEntIndex,
-    center,
-    zoom,
-    layerTableName,
-    regionEntType
-  ) {
+  static getDisplayRegionIDs(allEntIndex, center, zoom, regionEntType) {
     const entIndex = allEntIndex[regionEntType];
     const displayEnts = Object.values(entIndex).sort(function (entA, entB) {
       return (
@@ -54,9 +48,5 @@ export default class EntsForMaps {
       .map((ent) => ent.id)
       .filter((id) => id.substring(6) !== "P");
     return displayRegionIDs;
-  }
-
-  static getDisplayRegionIDsHACK(allEntIndex, center, zoom, layerTableName) {
-    return ["LK-11"];
   }
 }

@@ -110,7 +110,6 @@ export default class HomePageState extends Component {
           allEntIndex,
           center,
           zoom,
-          layerTableName,
           regionEntType
         )
       : null;
@@ -126,13 +125,12 @@ export default class HomePageState extends Component {
   }
 
   setCenterAndZoom(center, zoom) {
-    const { allEntIndex, layerTableName, regionEntType } = this.state;
+    const { allEntIndex, regionEntType } = this.state;
     const displayRegionIDs = allEntIndex
       ? EntsForMaps.getDisplayRegionIDs(
           allEntIndex,
           center,
           zoom,
-          layerTableName,
           regionEntType
         )
       : null;
@@ -155,13 +153,12 @@ export default class HomePageState extends Component {
   }
 
   setRegionEntType(regionEntType) {
-    const { allEntIndex, layerTableName, center, zoom } = this.state;
+    const { allEntIndex, center, zoom } = this.state;
     const displayRegionIDs = allEntIndex
       ? EntsForMaps.getDisplayRegionIDs(
           allEntIndex,
           center,
           zoom,
-          layerTableName,
           regionEntType
         )
       : null;
