@@ -15,7 +15,7 @@ export const STYLE_FOOTER = {
   height: FOOTER_HEIGHT,
 };
 
-export const STYLE_BODY_RIGHT_PANEL = {
+export const STYLE_BODY_TOP_RIGHT_PANEL = {
   position: "fixed",
   top: PADDING,
   bottom: PADDING,

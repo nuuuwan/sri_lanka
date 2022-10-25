@@ -19,7 +19,7 @@ import TimeSelectorView from "../../view/molecules/TimeSelectorView";
 import {
   STYLE_BODY,
   STYLE_TITLE_BOX,
-  STYLE_BODY_RIGHT_PANEL,
+  STYLE_BODY_TOP_RIGHT_PANEL,
   STYLE_BODY_REGION_DETAILS,
   STYLE_FOOTER,
 } from "../../view/pages/STYLES_HOME_PAGE";
@@ -59,7 +59,7 @@ export default class HomePage extends HomePageState {
     return (
       <Box>
         <Paper sx={STYLE_BODY}>
-          <Box sx={STYLE_BODY_RIGHT_PANEL}>
+          <Box sx={STYLE_BODY_TOP_RIGHT_PANEL}>
             <Grid container justifyContent="flex-end">
               <Paper sx={STYLE_TITLE_BOX}>
                 <LayerTableTitleView tableName={layerTableName} />
