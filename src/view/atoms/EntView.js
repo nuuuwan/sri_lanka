@@ -24,7 +24,7 @@ export default class EntView extends Component {
   }
 
   render() {
-    const { entID, top, bottom } = this.props;
+    const { entID, minimal, top, bottom } = this.props;
     const { ent } = this.state;
     if (!ent) {
       return null;
@@ -32,6 +32,8 @@ export default class EntView extends Component {
     const entType = EntTypes.getEntType(entID);
     return (
       <Box>
+        {minimal ? <Typography variant="caption">{ent.name}</Typography> : null}
+
         {top ? (
           <>
             <Typography variant="body1" display="inline">
