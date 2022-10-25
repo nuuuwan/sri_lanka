@@ -151,7 +151,9 @@ export default class HomePage extends HomePageState {
             <RegionsDetailsView
               key={`region-details-${regionID}-${layerTableName}`}
               regionID={regionID}
+              displayRegionIDs={displayRegionIDs}
               layerTableName={layerTableName}
+              layerTable={layerTable}
               setColoringMethod={this.setColoringMethod.bind(this)}
               coloringMethod={coloringMethod}
             />
