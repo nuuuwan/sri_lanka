@@ -34,6 +34,10 @@ export default class EntsForMaps {
     return [ENT_TYPES.PROVINCE];
   }
 
+  static isPostalVote(id) {
+    return id.substring(0, 3) === "EC-" && id.substring(5, 6) === "P";
+  }
+
   static getDisplayRegionIDs(allEntIndex, center, zoom, regionEntType) {
     const entIndex = allEntIndex[regionEntType];
     const displayEnts = Object.values(entIndex).sort(function (entA, entB) {
@@ -46,7 +50,7 @@ export default class EntsForMaps {
     const displayRegionIDs = displayEnts
       .slice(0, MAX_DISPLAY_REGIONS)
       .map((ent) => ent.id)
-      .filter((id) => id.substring(6) !== "P");
+      .filter((id) => !EntsForMaps.isPostalVote(id));
     return displayRegionIDs;
   }
 }
