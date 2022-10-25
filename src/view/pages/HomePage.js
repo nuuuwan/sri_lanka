@@ -46,6 +46,7 @@ export default class HomePage extends HomePageState {
       allEntIndex,
       center,
       coloringMethod,
+      displayRegionIDs,
       geoCenter,
       layerTable,
       layerTableName,
@@ -114,12 +115,13 @@ export default class HomePage extends HomePageState {
             allEntIndex={allEntIndex}
             center={center}
             coloringMethod={coloringMethod}
+            displayRegionIDs={displayRegionIDs}
             key={`geo-map-${zoom}-${geoCenter}`}
+            layerTable={layerTable}
             layerTableName={layerTableName}
             regionEntType={regionEntType}
             setCenterAndZoom={this.setCenterAndZoom.bind(this)}
             setRegion={this.setRegion.bind(this)}
-            layerTable={layerTable}
             zoom={zoom}
           />
         </Paper>

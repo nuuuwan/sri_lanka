@@ -6,6 +6,7 @@ import GIG2, { DEFAULT_LAYER_TABLE_NAME } from "../../nonview/base/GIG2";
 import { DEFAULT_ZOOM, DEFAULT_CENTER } from "../../nonview/base/GeoData";
 import GeoLocation from "../../nonview/base/GeoLocation";
 import URLContext from "../../nonview/base/URLContext";
+import EntsForMaps from "../../nonview/core/EntsForMaps";
 
 const DEFAULT_REGION_ID = "LK-1";
 const DEFAULT_COLORING_METHOD = "majority";
@@ -42,7 +43,6 @@ export default class HomePageState extends Component {
           showTimeSelectorView,
           zoom,
         };
-        console.debug(context);
         URLContext.setContext(context);
       }.bind(this)
     );
@@ -100,16 +100,43 @@ export default class HomePageState extends Component {
   }
 
   async loadState() {
-    const center = DEFAULT_CENTER;
-    const geoCenter = DEFAULT_CENTER;
-    const { layerTableName } = this.state;
+    const { center, geoCenter, zoom, layerTableName, regionEntType } =
+      this.state;
     const allEntIndex = await Ents.getAllEntIndex();
     const layerTable = await GIG2.getTable(layerTableName);
-    this.setStateAndURLContext({ allEntIndex, layerTable, center, geoCenter });
+
+    const displayRegionIDs = allEntIndex
+      ? EntsForMaps.getDisplayRegionIDs(
+          allEntIndex,
+          center,
+          zoom,
+          layerTableName,
+          regionEntType
+        )
+      : null;
+
+    this.setStateAndURLContext({
+      allEntIndex,
+      layerTable,
+      center,
+      geoCenter,
+      zoom,
+      displayRegionIDs,
+    });
   }
 
   setCenterAndZoom(center, zoom) {
-    this.setStateAndURLContext({ center, zoom });
+    const { allEntIndex, layerTableName, regionEntType } = this.state;
+    const displayRegionIDs = allEntIndex
+      ? EntsForMaps.getDisplayRegionIDs(
+          allEntIndex,
+          center,
+          zoom,
+          layerTableName,
+          regionEntType
+        )
+      : null;
+    this.setStateAndURLContext({ center, zoom, displayRegionIDs });
   }
 
   setColoringMethod(coloringMethod) {
@@ -128,7 +155,17 @@ export default class HomePageState extends Component {
   }
 
   setRegionEntType(regionEntType) {
-    this.setStateAndURLContext({ regionEntType });
+    const { allEntIndex, layerTableName, center, zoom } = this.state;
+    const displayRegionIDs = allEntIndex
+      ? EntsForMaps.getDisplayRegionIDs(
+          allEntIndex,
+          center,
+          zoom,
+          layerTableName,
+          regionEntType
+        )
+      : null;
+    this.setStateAndURLContext({ regionEntType, displayRegionIDs });
   }
 
   async onClickCenterOnCurrentLocation() {
