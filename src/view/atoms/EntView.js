@@ -32,7 +32,11 @@ export default class EntView extends Component {
     const entType = EntTypes.getEntType(entID);
     return (
       <Box>
-        {minimal ? <Typography variant="caption">{ent.name}</Typography> : null}
+        {minimal ? (
+          <Typography variant="caption" sx={{ fontSize: "50%" }}>
+            {ent.name}
+          </Typography>
+        ) : null}
 
         {top ? (
           <>
