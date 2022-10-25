@@ -11,8 +11,8 @@ import CustomBottomNavigation from "../../view/molecules/CustomBottomNavigation"
 import LayerListView from "../../view/molecules/LayerListView";
 import LayerTableTitleView from "../../view/molecules/LayerTableTitleView";
 import ShowHide from "../../view/molecules/ShowHide";
+import RegionDetailsView from "../../view/molecules/RegionDetailsView";
 import GeoMap from "../../view/organisms/GeoMap";
-import RegionDetailsView from "../../view/organisms/RegionDetailsView";
 import HomePageState from "../../view/pages/HomePageState";
 import EntTypesSelectorView from "../../view/molecules/EntTypesSelectorView";
 import TimeSelectorView from "../../view/molecules/TimeSelectorView";
@@ -136,6 +136,7 @@ export default class HomePage extends HomePageState {
             <RegionDetailsView
               key={`region-details-${regionID}-${layerTableName}`}
               regionID={regionID}
+              layerTable={layerTable}
               layerTableName={layerTableName}
               setColoringMethod={this.setColoringMethod.bind(this)}
               coloringMethod={coloringMethod}
