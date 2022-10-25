@@ -18,9 +18,17 @@ export const STYLE_BOX_INNER = {
   margin: 1,
 };
 
-export default function ShowHide({ show, ShowIcon, onShow, onHide, children }) {
+export default function ShowHide({
+  show,
+  ShowIcon,
+  onShow,
+  onHide,
+  children,
+  alignRight,
+}) {
+  const justifyContent = alignRight ? "flex-end" : "";
   return (
-    <Grid container justifyContent="flex-end">
+    <Grid container justifyContent={justifyContent}>
       <Paper sx={STYLE_PAPER}>
         {show ? (
           <Box sx={STYLE_BOX_INNER}>
