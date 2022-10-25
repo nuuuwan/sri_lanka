@@ -28,6 +28,7 @@ export default function RegionTableRowCellView({
   regionID,
   regionIDInner,
   getRankPFromP,
+  setRegion,
 }) {
   const tableRow = layerTable.getRowByID(regionIDInner);
   let label = "",
@@ -57,8 +58,16 @@ export default function RegionTableRowCellView({
     ...{ background: color, opacity },
   };
 
+  const onClick = function (e) {
+    setRegion(regionIDInner);
+  };
+
   return (
-    <ListItemButton sx={STYLE_LIST_ITEM} selected={regionID === regionIDInner}>
+    <ListItemButton
+      sx={STYLE_LIST_ITEM}
+      selected={regionID === regionIDInner}
+      onClick={onClick}
+    >
       <Grid container alignItems="center" spacing={2}>
         <Grid item xs={1}>
           <Typography sx={styleBulletCustom}> </Typography>

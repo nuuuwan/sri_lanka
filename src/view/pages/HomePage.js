@@ -156,6 +156,7 @@ export default class HomePage extends HomePageState {
               layerTable={layerTable}
               setColoringMethod={this.setColoringMethod.bind(this)}
               coloringMethod={coloringMethod}
+              setRegion={this.setRegion.bind(this)}
             />
           </ShowHide>
         </Box>

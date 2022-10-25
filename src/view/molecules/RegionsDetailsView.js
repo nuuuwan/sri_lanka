@@ -18,6 +18,7 @@ export default function RegionsDetailsView({
   setColoringMethod,
   coloringMethod,
   regionID,
+  setRegion,
 }) {
   if (!layerTable) {
     return null;
@@ -45,6 +46,7 @@ export default function RegionsDetailsView({
         layerTableName={layerTableName}
         displayRegionIDs={displayRegionIDs}
         setColoringMethod={setColoringMethod}
+        setRegion={setRegion}
       />
     </Box>
   );

@@ -10,6 +10,7 @@ export default function RegionsTableView({
   layerTableName,
   displayRegionIDs,
   regionID,
+  setRegion,
 }) {
   if (!layerTable) {
     return null;
@@ -43,6 +44,7 @@ export default function RegionsTableView({
             regionID={regionID}
             regionIDInner={regionIDInner}
             getRankPFromP={getRankPFromP}
+            setRegion={setRegion}
           />
         );
       })}
