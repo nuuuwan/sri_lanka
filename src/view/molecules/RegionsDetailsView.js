@@ -1,4 +1,7 @@
 import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+
+import StringX from "../../nonview/base/StringX";
 
 import RegionsTableView from "../../view/molecules/RegionsTableView";
 
@@ -23,8 +26,16 @@ export default function RegionsDetailsView({
     setColoringMethod("majority");
   };
 
+  let title;
+  if (coloringMethod === "majority") {
+    title = "Color by Most Common";
+  } else {
+    title = StringX.toTitleCase(coloringMethod);
+  }
+
   return (
     <Box sx={STYLE_BOX}>
+      <Typography variante="body1">{title}</Typography>
       <RegionsTableView
         key={`regions-table-${layerTableName}`}
         coloringMethod={coloringMethod}
