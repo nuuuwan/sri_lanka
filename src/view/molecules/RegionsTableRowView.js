@@ -37,7 +37,7 @@ export default function RegionTableRowCellView({
 
   if (coloringMethod === "majority") {
     const [maxValueKey, maxValue] = tableRow.getMaxValueKeyAndValue();
-    label = StringX.toTitleCase(maxValueKey)
+    label = StringX.toTitleCase(maxValueKey);
     label2 = StringX.formatPercent(maxValue, tableRow.total);
 
     color = GIG2TableStyle.getValueKeyColor(maxValueKey);
@@ -63,13 +63,11 @@ export default function RegionTableRowCellView({
         <Grid item xs={1}>
           <Typography sx={styleBulletCustom}> </Typography>
         </Grid>
-        <Grid item xs={6}>
-          <Typography variant="caption">
-            <EntView entID={regionIDInner} minimal />
-          </Typography>
+        <Grid item xs={4}>
+          <EntView entID={regionIDInner} minimal />
         </Grid>
-        <Grid item xs={3}>
-          <Typography variant="caption" sx={{ fontSize: "67%" }}>
+        <Grid item xs={4}>
+          <Typography variant="caption" sx={{ fontSize: "40%" }}>
             {label}
           </Typography>
         </Grid>
