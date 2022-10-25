@@ -37,7 +37,7 @@ export default function RegionTableRowCellView({
 
   if (coloringMethod === "majority") {
     const [maxValueKey, maxValue] = tableRow.getMaxValueKeyAndValue();
-    label = maxValueKey;
+    label = StringX.toTitleCase(maxValueKey)
     label2 = StringX.formatPercent(maxValue, tableRow.total);
 
     color = GIG2TableStyle.getValueKeyColor(maxValueKey);
