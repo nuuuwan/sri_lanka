@@ -1,7 +1,5 @@
 import Box from "@mui/material/Box";
-import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
-import LayersIcon from "@mui/icons-material/Layers";
 import BarChartIcon from "@mui/icons-material/BarChart";
 import MapIcon from "@mui/icons-material/Map";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
@@ -20,9 +18,8 @@ import RegionsDetailsView from "../../view/molecules/RegionsDetailsView";
 
 import {
   STYLE_BODY,
-  STYLE_TITLE_BOX,
   STYLE_BODY_TOP_RIGHT_PANEL,
-  STYLE_BODY_BOTTOM_LEFT_PANEL,
+  STYLE_BODY_BOTTOM_RIGHT_PANEL,
   STYLE_FOOTER,
 } from "../../view/pages/STYLES_HOME_PAGE";
 
@@ -64,18 +61,11 @@ export default class HomePage extends HomePageState {
       <Box>
         <Paper sx={STYLE_BODY}>
           <Box sx={STYLE_BODY_TOP_RIGHT_PANEL}>
-            <Grid container justifyContent="flex-end">
-              <Paper sx={STYLE_TITLE_BOX}>
-                <LayerTableTitleView tableName={layerTableName} />
-              </Paper>
-            </Grid>
-
             <ShowHide
-              ShowIcon={LayersIcon}
               show={showLayerListView}
               onShow={this.onClickShowLayerListView.bind(this)}
               onHide={this.onClickHideLayerListView.bind(this)}
-              alignRight
+              hideContent={<LayerTableTitleView tableName={layerTableName} />}
             >
               <LayerListView
                 layerTableName={layerTableName}
@@ -88,7 +78,6 @@ export default class HomePage extends HomePageState {
               show={showEntTypesSelectorView}
               onShow={this.onClickShowEntTypesSelectorView.bind(this)}
               onHide={this.onClickHideEntTypesSelectorView.bind(this)}
-              alignRight
             >
               <EntTypesSelectorView
                 layerTableName={layerTableName}
@@ -102,7 +91,6 @@ export default class HomePage extends HomePageState {
               show={showTimeSelectorView}
               onShow={this.onClickShowTimeSelectorView.bind(this)}
               onHide={this.onClickHideTimeSelectorView.bind(this)}
-              alignRight
             >
               <TimeSelectorView
                 layerTableName={layerTableName}
@@ -126,7 +114,7 @@ export default class HomePage extends HomePageState {
           />
         </Paper>
 
-        <Box sx={STYLE_BODY_BOTTOM_LEFT_PANEL}>
+        <Box sx={STYLE_BODY_BOTTOM_RIGHT_PANEL}>
           <ShowHide
             ShowIcon={BarChartIcon}
             show={showRegionDetailsView}
@@ -160,7 +148,6 @@ export default class HomePage extends HomePageState {
             />
           </ShowHide>
         </Box>
-
         <Paper sx={STYLE_FOOTER}>
           <CustomBottomNavigation
             onClickCenterOnCurrentLocation={this.onClickCenterOnCurrentLocation.bind(

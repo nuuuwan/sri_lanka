@@ -18,29 +18,40 @@ export const STYLE_BOX_INNER = {
   margin: 1,
 };
 
+const STYLE_HIDE_CONTENT = {
+  margin: 1,
+  padding: 0,
+  borderRadius: 5,
+};
+
 export default function ShowHide({
   show,
   ShowIcon,
   onShow,
   onHide,
   children,
-  alignRight,
+  alignLeft,
+  hideContent,
 }) {
-  const justifyContent = alignRight ? "flex-end" : "";
+  const justifyContent = alignLeft ? "" : "flex-end";
   return (
     <Grid container justifyContent={justifyContent}>
       <Paper sx={STYLE_PAPER}>
         {show ? (
           <Box sx={STYLE_BOX_INNER}>
             <Box display="flex" justifyContent="flex-end">
-              <IconButton onClick={onHide} size="small" align="right">
+              <IconButton onClick={onHide} size="small">
                 <CloseIcon fontSize="small" />
               </IconButton>
             </Box>
             {children}
           </Box>
+        ) : hideContent ? (
+          <Box sx={STYLE_HIDE_CONTENT} onClick={onShow}>
+            {hideContent}
+          </Box>
         ) : (
-          <IconButton onClick={onShow}>
+          <IconButton onClick={onShow} size="small">
             <ShowIcon />
           </IconButton>
         )}

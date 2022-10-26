@@ -23,16 +23,9 @@ export const STYLE_BODY_TOP_RIGHT_PANEL = {
   zIndex: 10000,
 };
 
-export const STYLE_TITLE_BOX = {
-  background: "rgba(255,255,255,0.8)",
-  padding: 1,
-  borderRadius: 5,
-};
-
-export const STYLE_BODY_BOTTOM_LEFT_PANEL = {
+export const STYLE_BODY_BOTTOM_RIGHT_PANEL = {
   position: "fixed",
-  top: PADDING,
-  bottom: PADDING,
-  left: PADDING,
+  bottom: PADDING + FOOTER_HEIGHT,
+  right: PADDING,
   zIndex: 10000,
 };
