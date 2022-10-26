@@ -5,6 +5,7 @@ import MapIcon from "@mui/icons-material/Map";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import TableRowsIcon from "@mui/icons-material/TableRows";
 
+import GIG2TableMetadata from "../../nonview/base/GIG2TableMetadata";
 import CustomBottomNavigation from "../../view/molecules/CustomBottomNavigation";
 import LayerListView from "../../view/molecules/LayerListView";
 import LayerTableTitleView from "../../view/molecules/LayerTableTitleView";
@@ -57,6 +58,10 @@ export default class HomePage extends HomePageState {
       zoom,
     } = this.state;
 
+    const currentTableMetadata = new GIG2TableMetadata(layerTableName);
+    const times = currentTableMetadata.getTimes();
+    const noOptionsForTimeSelectorView = times.length <= 1;
+
     return (
       <Box>
         <Paper sx={STYLE_BODY}>
@@ -86,17 +91,21 @@ export default class HomePage extends HomePageState {
               />
             </ShowHide>
 
-            <ShowHide
-              ShowIcon={AccessTimeIcon}
-              show={showTimeSelectorView}
-              onShow={this.onClickShowTimeSelectorView.bind(this)}
-              onHide={this.onClickHideTimeSelectorView.bind(this)}
-            >
-              <TimeSelectorView
-                layerTableName={layerTableName}
-                setLayerTableName={this.setLayerTableName.bind(this)}
-              />
-            </ShowHide>
+            {noOptionsForTimeSelectorView ? null : (
+              <ShowHide
+                ShowIcon={AccessTimeIcon}
+                show={showTimeSelectorView}
+                onShow={this.onClickShowTimeSelectorView.bind(this)}
+                onHide={this.onClickHideTimeSelectorView.bind(this)}
+              >
+                <TimeSelectorView
+                  layerTableName={layerTableName}
+                  setLayerTableName={this.setLayerTableName.bind(this)}
+                  times={times}
+                  currentTableMetadata={currentTableMetadata}
+                />
+              </ShowHide>
+            )}
           </Box>
 
           <GeoMap

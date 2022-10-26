@@ -2,7 +2,6 @@ import Box from "@mui/material/Box";
 import Slider from "@mui/material/Slider";
 
 import GIG2TableMetadata from "../../nonview/base/GIG2TableMetadata";
-import GIG2_TABLE_NAMES from "../../nonview/constants/GIG2_TABLE_NAMES.js";
 
 const STYLE_BOX = {
   height: 200,
@@ -11,23 +10,12 @@ const STYLE_BOX = {
   m: 1,
 };
 
-function getTimes(currentTableMetadata) {
-  return GIG2_TABLE_NAMES.map((tableName) => new GIG2TableMetadata(tableName))
-    .filter(function (tableMetadata) {
-      return (
-        tableMetadata.measurement === currentTableMetadata.measurement &&
-        tableMetadata.entity === currentTableMetadata.entity
-      );
-    })
-    .map((tableMetadata) => tableMetadata.time);
-}
-
 export default function TimeSelectorView({
   layerTableName,
   setLayerTableName,
+  times,
+  currentTableMetadata,
 }) {
-  const currentTableMetadata = new GIG2TableMetadata(layerTableName);
-  const times = getTimes(currentTableMetadata);
   const nTimes = times.length;
   const currentTime = currentTableMetadata.time;
   const iCurrentTime = times.reduce(function (iCurrentTime, time, iTime) {
