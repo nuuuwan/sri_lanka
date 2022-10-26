@@ -76,12 +76,12 @@ export default function RegionTableRowCellView({
           <EntView entID={regionIDInner} minimal />
         </Grid>
         <Grid item xs={4}>
-          <Typography variant="caption" sx={{ color }}>
+          <Typography align="right">
             {label}
           </Typography>
         </Grid>
         <Grid item xs={2}>
-          <Typography variant="caption">{label2}</Typography>
+          <Typography align="right">{label2}</Typography>
         </Grid>
       </Grid>
     </ListItemButton>
