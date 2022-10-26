@@ -1,4 +1,5 @@
 import StringX from "../../nonview/base/StringX";
+import GIG2_TABLE_NAMES from "../constants/GIG2_TABLE_NAMES.js";
 
 const FILE_BASE = "/public/data/gig2";
 export default class GIG2TableMetadata {
@@ -55,5 +56,18 @@ export default class GIG2TableMetadata {
     }
 
     return "unknown";
+  }
+
+  getTimes() {
+    return GIG2_TABLE_NAMES.map((tableName) => new GIG2TableMetadata(tableName))
+      .filter(
+        function (tableMetadata) {
+          return (
+            tableMetadata.measurement === this.measurement &&
+            tableMetadata.entity === this.entity
+          );
+        }.bind(this)
+      )
+      .map((tableMetadata) => tableMetadata.time);
   }
 }
