@@ -34,12 +34,12 @@ export default class StringX {
     let logBase1000 = Math.log(x) / Math.log(1000);
 
     let numPart, multPart;
-    if (x >= 1_000_000) {
+    if (x >= 995_000) {
       numPart = Number(x / 1_000_000).toLocaleString(undefined, {
         maximumSignificantDigits: MAX_SIG_DIGITS,
       });
       multPart = "M";
-    } else if (x >= 1_000) {
+    } else if (x >= 995) {
       numPart = Number(x / 1_000).toLocaleString(undefined, {
         maximumSignificantDigits: MAX_SIG_DIGITS,
       });
