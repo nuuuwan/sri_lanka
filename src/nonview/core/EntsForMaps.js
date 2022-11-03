@@ -24,6 +24,10 @@ export default class EntsForMaps {
         ENT_TYPES.DSD,
         ENT_TYPES.DISTRICT,
         ENT_TYPES.PROVINCE,
+        ENT_TYPES.PD,
+        ENT_TYPES.ED,
+        ENT_TYPES.MOH,
+        ENT_TYPES.LG,
       ];
     }
 
