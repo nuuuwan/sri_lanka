@@ -6,6 +6,9 @@ import GIG2_TABLE_NAMES from "../constants/GIG2_TABLE_NAMES.js";
 export const DEFAULT_LAYER_TABLE_NAME =
   "government-elections-presidential.regions-ec.2019";
 
+const URL_BASE =
+  'https://raw.githubusercontent.com/nuuuwan/gig-data/master/gig2'
+
 export default class GIG2 {
   static getGroupFromTableName(tableName) {
     return tableName.split(".")[0].split("-")[0];
@@ -24,7 +27,7 @@ export default class GIG2 {
   }
 
   static async getTable(tableName) {
-    const url = `/sri_lanka/data/gig2/${tableName}.tsv`;
+    const url = `${URL_BASE}/${tableName}.tsv`;
     const dList = await WWW.tsv(url);
     return new GIG2Table(dList);
   }
