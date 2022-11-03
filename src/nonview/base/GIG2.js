@@ -4,7 +4,7 @@ import WWW from "./WWW.js";
 import GIG2_TABLE_NAMES from "../constants/GIG2_TABLE_NAMES.js";
 
 export const DEFAULT_LAYER_TABLE_NAME =
-  "government-elections-presidential.regions-ec.2019";
+  "government-elections-parliamentary.regions-ec.2020";
 
 const URL_BASE =
   'https://raw.githubusercontent.com/nuuuwan/gig-data/master/gig2'
