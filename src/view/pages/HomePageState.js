@@ -3,7 +3,7 @@ import { Component } from "react";
 import { ENT_TYPES } from "../../nonview/base/EntTypes";
 import Ents from "../../nonview/base/Ents";
 import GIG2, { DEFAULT_LAYER_TABLE_NAME } from "../../nonview/base/GIG2";
-import { DEFAULT_ZOOM, DEFAULT_CENTER } from "../../nonview/base/GeoData";
+import { DEFAULT_ZOOM, DEFAULT_ZOOM_GEO, DEFAULT_CENTER } from "../../nonview/base/GeoData";
 import GeoLocation from "../../nonview/base/GeoLocation";
 import URLContext from "../../nonview/base/URLContext";
 import EntsForMaps from "../../nonview/core/EntsForMaps";
@@ -168,7 +168,7 @@ export default class HomePageState extends Component {
   async onClickCenterOnCurrentLocation() {
     const geoCenter = await GeoLocation.getLatLng();
     const center = geoCenter ? geoCenter : DEFAULT_CENTER;
-    this.setStateAndURLContext({ center, geoCenter });
+    this.setStateAndURLContext({ center, geoCenter, zoom: DEFAULT_ZOOM_GEO });
   }
 
   onClickShowRegionDetailsView() {
