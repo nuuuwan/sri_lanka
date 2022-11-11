@@ -26,8 +26,8 @@ export default function RegionsTableView({
     displayRegionIDsSorted = displayRegionIDs.sort(function (idA, idB) {
       const tableRowA = layerTable.getRowByID(idA);
       const tableRowB = layerTable.getRowByID(idB);
-      const pA = tableRowA.getPValue(coloringKey);
-      const pB = tableRowB.getPValue(coloringKey);
+      const pA = tableRowA ? tableRowA.getPValue(coloringKey) : 0;
+      const pB = tableRowB ? tableRowB.getPValue(coloringKey) : 0;
       return pB - pA;
     });
   }
