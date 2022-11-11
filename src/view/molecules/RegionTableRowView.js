@@ -18,7 +18,7 @@ export default function RegionTableRowView({
   const sortedKeysAndValues = Object.entries(tableRow.d).sort(function (a, b) {
     return b[1] - a[1];
   });
-  const MAX_NON_OTHER = 4;
+  const MAX_NON_OTHER = 7;
   const otherValue = sortedKeysAndValues
     .slice(MAX_NON_OTHER)
     .reduce(function (otherValue, [k, v]) {
