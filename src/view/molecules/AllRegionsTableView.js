@@ -1,8 +1,8 @@
 import List from "@mui/material/List";
 
-import RegionsTableRowView from "../../view/molecules/RegionsTableRowView";
+import AllRegionsTableRowView from "../../view/molecules/AllRegionsTableRowView";
 
-export default function RegionsTableView({
+export default function AllRegionsTableView({
   coloringMethod,
   onClickMajority,
   setColoringMethod,
@@ -36,7 +36,7 @@ export default function RegionsTableView({
     <List>
       {displayRegionIDsSorted.map(function (regionIDInner) {
         return (
-          <RegionsTableRowView
+          <AllRegionsTableRowView
             key={`regions-table-row-${layerTableName}-${regionIDInner}`}
             coloringMethod={coloringMethod}
             setColoringMethod={setColoringMethod}

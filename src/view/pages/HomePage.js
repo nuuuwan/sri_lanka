@@ -15,7 +15,7 @@ import GeoMap from "../../view/organisms/GeoMap";
 import HomePageState from "../../view/pages/HomePageState";
 import EntTypesSelectorView from "../../view/molecules/EntTypesSelectorView";
 import TimeSelectorView from "../../view/molecules/TimeSelectorView";
-import RegionsDetailsView from "../../view/molecules/RegionsDetailsView";
+import AllRegionsDetailsView from "../../view/molecules/AllRegionsDetailsView";
 
 import {
   STYLE_BODY,
@@ -50,7 +50,7 @@ export default class HomePage extends HomePageState {
       layerTableName,
       regionEntType,
       regionID,
-      showRegionsDetailsView,
+      showAllRegionsDetailsView,
       showEntTypesSelectorView,
       showLayerListView,
       showRegionDetailsView,
@@ -141,11 +141,11 @@ export default class HomePage extends HomePageState {
           </ShowHide>
           <ShowHide
             ShowIcon={TableRowsIcon}
-            show={showRegionsDetailsView}
-            onShow={this.onClickShowRegionsDetailsView.bind(this)}
-            onHide={this.onClickHideRegionsDetailsView.bind(this)}
+            show={showAllRegionsDetailsView}
+            onShow={this.onClickShowAllRegionsDetailsView.bind(this)}
+            onHide={this.onClickHideAllRegionsDetailsView.bind(this)}
           >
-            <RegionsDetailsView
+            <AllRegionsDetailsView
               key={`region-details-${regionID}-${layerTableName}`}
               regionID={regionID}
               displayRegionIDs={displayRegionIDs}

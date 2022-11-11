@@ -3,7 +3,7 @@ import Typography from "@mui/material/Typography";
 
 import StringX from "../../nonview/base/StringX";
 
-import RegionsTableView from "../../view/molecules/RegionsTableView";
+import AllRegionsTableView from "../../view/molecules/AllRegionsTableView";
 
 const STYLE_BOX = {
   width: 200,
@@ -11,7 +11,7 @@ const STYLE_BOX = {
   overflow: "scroll",
 };
 
-export default function RegionsDetailsView({
+export default function AllRegionsDetailsView({
   layerTable,
   layerTableName,
   displayRegionIDs,
@@ -37,7 +37,7 @@ export default function RegionsDetailsView({
   return (
     <Box sx={STYLE_BOX}>
       <Typography variante="body1">{title}</Typography>
-      <RegionsTableView
+      <AllRegionsTableView
         key={`regions-table-${layerTableName}`}
         coloringMethod={coloringMethod}
         onClickMajority={onClickMajority}
