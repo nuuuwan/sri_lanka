@@ -6,6 +6,11 @@ const FIELD_NAME_TO_COLOR_INNER = {
   other: "ghostwhite",
   others: "ghostwhite",
 
+  // economic-activity
+  employed: "green",
+  economically_not_active: "blue",
+  unemployed: "red",
+
   // gender_of_population
   female: "pink",
   male: "lightblue",
