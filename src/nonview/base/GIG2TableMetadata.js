@@ -27,11 +27,11 @@ export default class GIG2TableMetadata {
   }
 
   get measurementLowest() {
-    return StringX.toTitleCase(this.measurementTokens.slice(-1)[0]);
+    return StringX.toTitleCase(this.measurementTokens.slice(1).join(" "));
   }
 
   get measurement2ndLowest() {
-    return StringX.toTitleCase(this.measurementTokens.slice(-2)[0]);
+    return StringX.toTitleCase(this.measurementTokens[0]);
   }
 
   get group() {
