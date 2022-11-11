@@ -1,7 +1,11 @@
 import { Component } from "react";
-import { GeoJSON } from "react-leaflet";
+import { GeoJSON, Circle } from "react-leaflet";
 
+import BBox from "../../nonview/base/BBox";
 import GeoData from "../../nonview/base/GeoData.js";
+import LngLat from "../../nonview/base/LngLat";
+
+const RADIUS_PER_PERSON_SQRT = 5;
 
 const DEFAULT_STYLE_GEOJSON = {
   color: "white",
@@ -12,6 +16,10 @@ const DEFAULT_STYLE_GEOJSON = {
 
 function dumbCopy(x) {
   return JSON.parse(JSON.stringify(x));
+}
+
+function getRadiusFromPopulation(population) {
+  return Math.sqrt(population) * RADIUS_PER_PERSON_SQRT;
 }
 
 export default class RegionGeo extends Component {
@@ -33,7 +41,7 @@ export default class RegionGeo extends Component {
     this.isComponentMounted = false;
   }
 
-  render() {
+  renderPolygons() {
     const { geoData } = this.state;
 
     if (!geoData) {
@@ -70,5 +78,53 @@ export default class RegionGeo extends Component {
         }}
       />
     );
+  }
+
+  renderDorling() {
+    const { geoData } = this.state;
+
+    if (!geoData) {
+      return "...";
+    }
+    const lngLatList = LngLat.fromPolygonListList(geoData);
+    const centroid = BBox.getCentroid(lngLatList);
+
+    const { allEntIndex, regionEntType, regionID, setRegion } = this.props;
+    const ent = allEntIndex[regionEntType][regionID];
+    const radius = getRadiusFromPopulation(ent.population);
+
+    const geoJsonData = {
+      type: "MultiPolygon",
+      coordinates: geoData,
+    };
+
+    let style = dumbCopy(DEFAULT_STYLE_GEOJSON);
+    if (this.props.color) {
+      style.fillColor = this.props.color;
+    }
+    if (this.props.opacity) {
+      style.fillOpacity = this.props.opacity;
+    }
+
+    function onClickRegionInner() {
+      setRegion(regionID);
+    }
+
+    return (
+      <Circle
+        center={centroid}
+        radius={radius}
+        key={`geojson-${regionID}`}
+        data={geoJsonData}
+        pathOptions={style}
+        eventHandlers={{
+          click: onClickRegionInner,
+        }}
+      />
+    );
+  }
+
+  render() {
+    return this.renderDorling();
   }
 }

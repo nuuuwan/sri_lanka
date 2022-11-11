@@ -7,6 +7,7 @@ export default class RegionGeoCollection extends Component {
     const {
       allEntIndex,
       coloringMethod,
+      regionEntType,
       displayRegionIDs,
       layerTable,
       layerTableName,
@@ -25,6 +26,8 @@ export default class RegionGeoCollection extends Component {
       return (
         <RegionGeo
           key={key}
+          allEntIndex={allEntIndex}
+          regionEntType={regionEntType}
           regionID={regionID}
           setRegion={setRegion}
           color={color}

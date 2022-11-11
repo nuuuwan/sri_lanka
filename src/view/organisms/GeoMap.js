@@ -24,6 +24,7 @@ export default class GeoMap extends Component {
       allEntIndex,
       center,
       coloringMethod,
+      regionEntType,
       displayRegionIDs,
       layerTable,
       layerTableName,
@@ -38,6 +39,7 @@ export default class GeoMap extends Component {
         <TileLayer url={URL_FORMAT} />
         <RegionGeoCollection
           allEntIndex={allEntIndex}
+          regionEntType={regionEntType}
           coloringMethod={coloringMethod}
           displayRegionIDs={displayRegionIDs}
           layerTable={layerTable}
