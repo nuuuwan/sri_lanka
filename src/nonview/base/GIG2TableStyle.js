@@ -18,7 +18,7 @@ export default class GIG2TableStyle {
   }
 
   static getOpacityFromP(p) {
-    const [MIN_OPACITY, MAX_OPACITY] = [0.1, 0.9];
+    const [MIN_OPACITY, MAX_OPACITY] = [0.4, 0.9];
     return MIN_OPACITY + p * (MAX_OPACITY - MIN_OPACITY);
   }
 
