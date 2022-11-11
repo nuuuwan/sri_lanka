@@ -31,6 +31,9 @@ export default function RegionTableRowCellView({
   setRegion,
 }) {
   const tableRow = layerTable.getRowByID(regionIDInner);
+  if (!tableRow) {
+    return null;
+  }
   let label = "",
     label2 = "";
   let color = DEFAULT_COLOR,
