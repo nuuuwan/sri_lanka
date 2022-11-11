@@ -5,7 +5,7 @@ import BBox from "../../nonview/base/BBox";
 import GeoData from "../../nonview/base/GeoData.js";
 import LngLat from "../../nonview/base/LngLat";
 
-const RADIUS_PER_PERSON_SQRT = 5;
+const RADIUS_PER_PERSON_SQRT = 10;
 
 const DEFAULT_STYLE_GEOJSON = {
   color: "white",
