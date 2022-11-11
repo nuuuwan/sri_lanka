@@ -1,4 +1,6 @@
 const GIG2_TABLE_NAMES = [
+  "economy-economic-activity.regions.2012",
+  "education.regions.2012",
   "government-elections-parliamentary.regions-ec.1989",
   "government-elections-parliamentary.regions-ec.1994",
   "government-elections-parliamentary.regions-ec.2000",
