@@ -122,12 +122,14 @@ export default class GIG2Table {
     return displayRegionIDs.reduce(
       function (idToStyle, id) {
         const tableRow = this.getRowByID(id);
+
         let color = DEFAULT_COLOR,
           opacity = DEFAULT_OPACITY;
-
-        const p = tableRow.getPValue(coloringKey);
-        const rankP = getRankPFromP(p);
-        color = GIG2TableStyle.getColorFromP(rankP);
+        if (tableRow) {
+          const p = tableRow.getPValue(coloringKey);
+          const rankP = getRankPFromP(p);
+          color = GIG2TableStyle.getColorFromP(rankP);
+        }
         idToStyle[id] = {
           color,
           opacity,
