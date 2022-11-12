@@ -3,12 +3,7 @@ import { Component } from "react";
 import { ENT_TYPES } from "../../nonview/base/EntTypes";
 import Ents from "../../nonview/base/Ents";
 import GIG2, { DEFAULT_LAYER_TABLE_NAME } from "../../nonview/base/GIG2";
-import {
-  DEFAULT_ZOOM,
-  DEFAULT_ZOOM_GEO,
-  DEFAULT_CENTER,
-} from "../../nonview/base/GeoData";
-import GeoLocation from "../../nonview/base/GeoLocation";
+import { DEFAULT_ZOOM, DEFAULT_CENTER } from "../../nonview/base/GeoData";
 import URLContext from "../../nonview/base/URLContext";
 import EntsForMaps from "../../nonview/core/EntsForMaps";
 
@@ -17,7 +12,7 @@ const DEFAULT_COLORING_METHOD = "majority";
 const DEFAULT_REGION_ENT_TYPE = ENT_TYPES.PROVINCE;
 const DEFAULT_MAP_MODE = "geo";
 
-export default class HomePageState extends Component {
+export default class HomePageStateBase extends Component {
   setStateAndURLContext(state) {
     this.setState(
       state,
@@ -133,103 +128,5 @@ export default class HomePageState extends Component {
       zoom,
       displayRegionIDs,
     });
-  }
-
-  setCenterAndZoom(center, zoom) {
-    const { allEntIndex, regionEntType } = this.state;
-    const displayRegionIDs = allEntIndex
-      ? EntsForMaps.getDisplayRegionIDs(
-          allEntIndex,
-          center,
-          zoom,
-          regionEntType
-        )
-      : null;
-    this.setStateAndURLContext({ center, zoom, displayRegionIDs });
-  }
-
-  setColoringMethod(coloringMethod) {
-    this.setStateAndURLContext({ coloringMethod });
-  }
-
-  async setLayerTableName(layerTableName) {
-    this.setStateAndURLContext({
-      layerTableName,
-      layerTable: await GIG2.getTable(layerTableName),
-    });
-  }
-
-  setRegion(regionID) {
-    this.setStateAndURLContext({ regionID, showRegionDetailsView: true });
-  }
-
-  setRegionEntType(regionEntType) {
-    const { allEntIndex, center, zoom } = this.state;
-    const displayRegionIDs = allEntIndex
-      ? EntsForMaps.getDisplayRegionIDs(
-          allEntIndex,
-          center,
-          zoom,
-          regionEntType
-        )
-      : null;
-    this.setStateAndURLContext({ regionEntType, displayRegionIDs });
-  }
-
-  setMapMode(mapMode) {
-    this.setStateAndURLContext({ mapMode });
-  }
-
-  async onClickCenterOnCurrentLocation() {
-    const geoCenter = await GeoLocation.getLatLng();
-    const center = geoCenter ? geoCenter : DEFAULT_CENTER;
-    this.setStateAndURLContext({ center, geoCenter, zoom: DEFAULT_ZOOM_GEO });
-  }
-
-  onClickShowRegionDetailsView() {
-    this.setStateAndURLContext({ showRegionDetailsView: true });
-  }
-  onClickHideRegionDetailsView() {
-    this.setStateAndURLContext({ showRegionDetailsView: false });
-  }
-
-  onClickShowAllRegionsDetailsView() {
-    this.setStateAndURLContext({ showAllRegionsDetailsView: true });
-  }
-  onClickHideAllRegionsDetailsView() {
-    this.setStateAndURLContext({ showAllRegionsDetailsView: false });
-  }
-
-  onClickShowLayerListView() {
-    this.setStateAndURLContext({
-      showEntTypesSelectorView: false,
-      showLayerListView: true,
-      showTimeSelectorView: false,
-    });
-  }
-  onClickHideLayerListView() {
-    this.setStateAndURLContext({ showLayerListView: false });
-  }
-
-  onClickShowEntTypesSelectorView() {
-    this.setStateAndURLContext({
-      showEntTypesSelectorView: true,
-      showLayerListView: false,
-      showTimeSelectorView: false,
-    });
-  }
-  onClickHideEntTypesSelectorView() {
-    this.setStateAndURLContext({ showEntTypesSelectorView: false });
-  }
-
-  onClickShowTimeSelectorView() {
-    this.setStateAndURLContext({
-      showEntTypesSelectorView: false,
-      showLayerListView: false,
-      showTimeSelectorView: true,
-    });
-  }
-  onClickHideTimeSelectorView() {
-    this.setStateAndURLContext({ showTimeSelectorView: false });
   }
 }

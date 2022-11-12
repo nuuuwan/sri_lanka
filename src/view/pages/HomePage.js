@@ -12,7 +12,7 @@ import LayerTableTitleView from "../../view/molecules/LayerTableTitleView";
 import ShowHide from "../../view/molecules/ShowHide";
 import RegionDetailsView from "../../view/molecules/RegionDetailsView";
 import GeoMap from "../../view/organisms/GeoMap";
-import HomePageState from "../../view/pages/HomePageState";
+import HomePageStateHandlers from "../../view/pages/HomePageStateHandlers";
 import EntTypesSelectorView from "../../view/molecules/EntTypesSelectorView";
 import TimeSelectorView from "../../view/molecules/TimeSelectorView";
 import AllRegionsDetailsView from "../../view/molecules/AllRegionsDetailsView";
@@ -25,7 +25,7 @@ import {
   STYLE_FOOTER,
 } from "../../view/pages/STYLES_HOME_PAGE";
 
-export default class HomePage extends HomePageState {
+export default class HomePage extends HomePageStateHandlers {
   constructor(props) {
     super(props);
     this.didMount = false;
