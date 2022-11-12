@@ -13,26 +13,29 @@ const STYLE_BOX = {
 };
 
 export default function LayerListView({ layerTableName, setLayerTableName }) {
-  const groupToTableNames = GIG2.getGroupToTableNames();
+  const groupToMeasurementToTableNames =
+    GIG2.getGroupToMeasurementToTableNames();
 
   return (
     <Box sx={STYLE_BOX}>
-      {Object.entries(groupToTableNames).map(function ([
+      {Object.entries(groupToMeasurementToTableNames).map(function ([
         groupName,
-        tableNames,
+        measurementToTableNames,
       ]) {
         const key = `table-group-${groupName}`;
         return (
           <Box key={key}>
             <Typography variant="subtitle1">{groupName}</Typography>
             <List>
-              {tableNames.map(function (tableName) {
-                const key = "table-" + tableName;
+              {Object.entries(measurementToTableNames).map(function ([
+                measurement,
+                tableNames,
+              ]) {
+                const key = "table-" + measurement;
                 return (
                   <LayerView
                     key={key}
-                    tableName={tableName}
-                    layerTableName={layerTableName}
+                    tableNames={tableNames}
                     setLayerTableName={setLayerTableName}
                   />
                 );
