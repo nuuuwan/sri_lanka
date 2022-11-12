@@ -1,5 +1,10 @@
 import RegionGeoDorling from "../../view/molecules/RegionGeoDorling";
 
+const RADIUS_PER_PERSON_SQRT = 10;
+function getRadiusFromPopulation(population) {
+  return Math.sqrt(population) * RADIUS_PER_PERSON_SQRT;
+}
+
 export default function AllRegionGeos({
   allEntIndex,
   coloringMethod,
@@ -15,18 +20,22 @@ export default function AllRegionGeos({
 
   const idToStyle = layerTable.getIDToStyle(displayRegionIDs, coloringMethod);
 
-  return displayRegionIDs.map(function (regionID) {
-    const key = `region-geo-${layerTableName}-${regionID}`;
-    const { color, opacity } = idToStyle[regionID];
-
-    const RADIUS_PER_PERSON_SQRT = 10;
-    function getRadiusFromPopulation(population) {
-      return Math.sqrt(population) * RADIUS_PER_PERSON_SQRT;
-    }
-
+  const positionInfoList = displayRegionIDs.map(function (regionID) {
     const ent = allEntIndex[regionEntType][regionID];
     const radius = getRadiusFromPopulation(ent.population);
     const centroid = JSON.parse(ent.centroid);
+
+    return {
+      regionID,
+      centroid,
+      radius,
+    };
+  });
+
+  return positionInfoList.map(function (positionInfo) {
+    const { regionID, centroid, radius } = positionInfo;
+    const key = `region-geo-${layerTableName}-${regionID}`;
+    const { color, opacity } = idToStyle[regionID];
 
     return (
       <RegionGeoDorling
