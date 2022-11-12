@@ -7,6 +7,9 @@ import { DEFAULT_ZOOM, DEFAULT_CENTER } from "../../nonview/base/GeoData";
 import URLContext from "../../nonview/base/URLContext";
 import EntsForMaps from "../../nonview/core/EntsForMaps";
 
+import HomePageStateHandlers from "../../view/pages/HomePageStateHandlers";
+import HomePageStateSetters from "../../view/pages/HomePageStateSetters";
+
 const DEFAULT_REGION_ID = "LK-1";
 const DEFAULT_COLORING_METHOD = "majority";
 const DEFAULT_REGION_ENT_TYPE = ENT_TYPES.PROVINCE;
@@ -130,3 +133,6 @@ export default class HomePageStateBase extends Component {
     });
   }
 }
+
+Object.assign(HomePageStateBase.prototype, HomePageStateSetters);
+Object.assign(HomePageStateBase.prototype, HomePageStateHandlers);
