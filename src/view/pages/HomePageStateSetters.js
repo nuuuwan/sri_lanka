@@ -23,10 +23,11 @@ const HomePageStateSetters = {
 
   async setLayerTableName(layerTableName) {
     const coloringMethod = DEFAULT_COLORING_METHOD;
+    const layerTable = await GIG2.getTable(layerTableName);
     this.setStateAndURLContext({
       coloringMethod,
       layerTableName,
-      layerTable: await GIG2.getTable(layerTableName),
+      layerTable,
     });
   },
 
