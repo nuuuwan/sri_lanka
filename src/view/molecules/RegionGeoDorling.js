@@ -1,7 +1,5 @@
 import { Circle } from "react-leaflet";
 
-const RADIUS_PER_PERSON_SQRT = 10;
-
 const DEFAULT_STYLE_GEOJSON = {
   color: "white",
   fillColor: "red",
@@ -13,10 +11,6 @@ function dumbCopy(x) {
   return JSON.parse(JSON.stringify(x));
 }
 
-function getRadiusFromPopulation(population) {
-  return Math.sqrt(population) * RADIUS_PER_PERSON_SQRT;
-}
-
 export default function RegionGeoDorling({
   allEntIndex,
   regionEntType,
@@ -24,11 +18,10 @@ export default function RegionGeoDorling({
   setRegion,
   color,
   opacity,
-}) {
-  const ent = allEntIndex[regionEntType][regionID];
-  const radius = getRadiusFromPopulation(ent.population);
-  const centroid = JSON.parse(ent.centroid);
+  centroid,
+  radius,
 
+}) {
   let style = dumbCopy(DEFAULT_STYLE_GEOJSON);
   style.fillColor = color ? color : style.fillColor;
   style.fillOpacity = opacity ? opacity : style.fillOpacity;
