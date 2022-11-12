@@ -2,7 +2,7 @@ import { Component } from "react";
 
 import RegionGeo from "../../view/organisms/RegionGeo";
 
-export default class RegionGeoCollection extends Component {
+export default class AllRegionGeos extends Component {
   render() {
     const {
       allEntIndex,

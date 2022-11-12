@@ -1,6 +1,6 @@
 import { Component } from "react";
 import { MapContainer, TileLayer, useMapEvents } from "react-leaflet";
-import RegionGeoCollection from "../../view/organisms/RegionGeoCollection";
+import AllRegionGeos from "../../view/organisms/AllRegionGeos";
 
 import "./GeoMap.css";
 
@@ -38,7 +38,7 @@ export default class GeoMap extends Component {
           setCenterAndZoom={this.props.setCenterAndZoom.bind(this)}
         />
         <TileLayer url={URL_FORMAT} />
-        <RegionGeoCollection
+        <AllRegionGeos
           allEntIndex={allEntIndex}
           regionEntType={regionEntType}
           coloringMethod={coloringMethod}
