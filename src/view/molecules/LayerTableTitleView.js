@@ -6,6 +6,7 @@ import Typography from "@mui/material/Typography";
 import HowToVoteIcon from "@mui/icons-material/HowToVote";
 import LayersIcon from "@mui/icons-material/Layers";
 
+import EntTypes from "../../nonview/base/EntTypes";
 import GIG2TableMetadata from "../../nonview/base/GIG2TableMetadata";
 import MEASUREMENT_TO_ICON from "../../nonview/constants/MEASUREMENT_TO_ICON";
 
@@ -27,7 +28,11 @@ function getTableIcon(tableMetadata) {
   return DEFAULT_ICON;
 }
 
-export default function LayerTableTitleView({ tableName }) {
+export default function LayerTableTitleView({
+  tableName,
+  regionEntType,
+  coloringMethod,
+}) {
   const tableMetadata = new GIG2TableMetadata(tableName);
 
   let Icon = getTableIcon(tableMetadata);
@@ -45,6 +50,17 @@ export default function LayerTableTitleView({ tableName }) {
         <Typography variant="caption">
           {tableMetadata.measurementLowest}
         </Typography>
+        {regionEntType ? (
+          <>
+            <Typography variant="body1" sx={STYLE_BODY1}>
+              {"By " + EntTypes.getEntTypeLongName(regionEntType)}
+            </Typography>
+            <Typography variant="body1" sx={STYLE_BODY1}>
+              <span>{"Colored by "}</span>
+              <span>{coloringMethod}</span>
+            </Typography>
+          </>
+        ) : null}
       </Box>
     </Stack>
   );

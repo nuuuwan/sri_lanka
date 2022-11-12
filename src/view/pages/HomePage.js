@@ -78,7 +78,13 @@ export default class HomePage extends HomePageStateBase {
               show={showLayerListView}
               onShow={this.onClickShowLayerListView.bind(this)}
               onHide={this.onClickHideLayerListView.bind(this)}
-              hideContent={<LayerTableTitleView tableName={layerTableName} />}
+              hideContent={
+                <LayerTableTitleView
+                  tableName={layerTableName}
+                  regionEntType={regionEntType}
+                  coloringMethod={coloringMethod}
+                />
+              }
             >
               <LayerListView
                 layerTableName={layerTableName}
