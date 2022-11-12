@@ -41,7 +41,7 @@ export default class RegionGeo extends Component {
     this.isComponentMounted = false;
   }
 
-  renderPolygons() {
+  renderGeo() {
     const { geoData } = this.state;
 
     if (!geoData) {
@@ -125,6 +125,12 @@ export default class RegionGeo extends Component {
   }
 
   render() {
-    return this.renderDorling();
+    const { mapMode } = this.props;
+    switch (mapMode) {
+      case "dorling":
+        return this.renderDorling();
+      default:
+        return this.renderGeo();
+    }
   }
 }
