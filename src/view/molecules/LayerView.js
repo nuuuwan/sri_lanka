@@ -1,20 +1,19 @@
 import ListItemButton from "@mui/material/ListItemButton";
 
-import LayerTableTitleView from "../../view/molecules/LayerTableTitleView";
+import MeasurementView from "../../view/molecules/MeasurementView";
 
 export default function LayerView({
-  tableName,
+  tableNames,
   layerTableName,
   setLayerTableName,
 }) {
-  const selected = layerTableName === tableName;
   function onClick() {
-    setLayerTableName(tableName);
+    setLayerTableName(tableNames[0]);
   }
 
   return (
-    <ListItemButton selected={selected} onClick={onClick}>
-      <LayerTableTitleView tableName={tableName} />
+    <ListItemButton onClick={onClick}>
+      <MeasurementView tableNames={tableNames} />
     </ListItemButton>
   );
 }
