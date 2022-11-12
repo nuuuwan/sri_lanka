@@ -108,7 +108,7 @@ export default class HomePageStateBase extends Component {
     this.state = initState;
   }
 
-  async loadState() {
+  async loadStateOnComponentMount() {
     const { center, geoCenter, zoom, layerTableName, regionEntType } =
       this.state;
     const allEntIndex = await Ents.getAllEntIndex();
