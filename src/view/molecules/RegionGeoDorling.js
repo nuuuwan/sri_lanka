@@ -1,10 +1,10 @@
 import { Circle } from "react-leaflet";
 
 const DEFAULT_STYLE_GEOJSON = {
-  color: "white",
-  fillColor: "red",
+  color: "black",
+  fillColor: "white",
   fillOpacity: 0.4,
-  weight: 1.5,
+  weight: 1,
 };
 
 function dumbCopy(x) {
