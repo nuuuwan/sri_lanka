@@ -52,8 +52,9 @@ export default function RegionTableRowCellView({
     const coloringKey = coloringMethod;
     const p = tableRow.getPValue(coloringKey);
     const rankP = getRankPFromP(p);
-    color = GIG2TableStyle.getColorFromP(rankP);
+    color = GIG2TableStyle.getValueKeyColor(coloringKey);
     label = StringX.formatPercent(p, 1);
+    opacity = GIG2TableStyle.getOpacityFromP(rankP);
   }
 
   const styleBulletCustom = {
