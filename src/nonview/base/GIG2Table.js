@@ -102,8 +102,7 @@ export default class GIG2Table {
           const [maxValueKey, maxValue] = tableRow.getMaxValueKeyAndValue();
           color = GIG2TableStyle.getValueKeyColor(maxValueKey);
           const maxPValue = tableRow.getPValue(maxValueKey);
-          const q = Math.max(0, (maxPValue - 0.5) * 2);
-          opacity = GIG2TableStyle.getOpacityFromP(q);
+          opacity = GIG2TableStyle.getOpacityFromP(maxPValue);
         }
 
         idToStyle[id] = {
@@ -128,13 +127,65 @@ export default class GIG2Table {
         if (tableRow) {
           const p = tableRow.getPValue(coloringKey);
           const rankP = getRankPFromP(p);
-          color = GIG2TableStyle.getColorFromP(rankP);
+          color = GIG2TableStyle.getValueKeyColor(coloringKey);
+          opacity = GIG2TableStyle.getOpacityFromP(rankP);
         }
         idToStyle[id] = {
           color,
           opacity,
         };
         return idToStyle;
+      }.bind(this),
+      {}
+    );
+  }
+
+  getIDToPopulation(displayRegionIDs, coloringMethod) {
+    if (coloringMethod === "majority") {
+      return this.getIDToPopulationMajority(displayRegionIDs);
+    }
+    return this.getIDToPopulationForKey(displayRegionIDs, coloringMethod);
+  }
+
+  getIDToPopulationMajority(displayRegionIDs) {
+    return displayRegionIDs.reduce(
+      function (idToPopulation, regionID) {
+        const tableRow = this.getRowByID(regionID);
+        idToPopulation[regionID] = tableRow ? tableRow.total : 0;
+        return idToPopulation;
+      }.bind(this),
+      {}
+    );
+  }
+
+  getIDToPopulationForKey(displayRegionIDs, coloringKey) {
+    const totalForKey = displayRegionIDs.reduce(
+      function (totalForKey, regionID) {
+        const tableRow = this.getRowByID(regionID);
+        const pop = tableRow ? tableRow.getValue(coloringKey) : 0;
+        return totalForKey + pop;
+      }.bind(this),
+      0
+    );
+
+    const totalAll = displayRegionIDs.reduce(
+      function (totalAll, regionID) {
+        const tableRow = this.getRowByID(regionID);
+        const pop = tableRow ? tableRow.total : 0;
+        return totalAll + pop;
+      }.bind(this),
+      0
+    );
+
+    const k = totalAll / totalForKey;
+
+    return displayRegionIDs.reduce(
+      function (idToPopulation, regionID) {
+        const tableRow = this.getRowByID(regionID);
+        idToPopulation[regionID] = tableRow
+          ? tableRow.getValue(coloringKey) * k
+          : 0;
+        return idToPopulation;
       }.bind(this),
       {}
     );

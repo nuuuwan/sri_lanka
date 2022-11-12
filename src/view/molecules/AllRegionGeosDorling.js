@@ -21,11 +21,15 @@ export default function AllRegionGeos({
   }
 
   const idToStyle = layerTable.getIDToStyle(displayRegionIDs, coloringMethod);
+  const idToPopulation = layerTable.getIDToPopulation(
+    displayRegionIDs,
+    coloringMethod
+  );
 
   const positionInfoList = displayRegionIDs
     .map(function (regionID) {
       const ent = allEntIndex[regionEntType][regionID];
-      const radius = getRadiusFromPopulation(ent.population);
+      const radius = getRadiusFromPopulation(idToPopulation[regionID]);
       const centroid = JSON.parse(ent.centroid);
 
       return new PositionInfo(regionID, centroid, radius);
