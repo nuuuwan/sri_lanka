@@ -20,7 +20,6 @@ export default function RegionGeoDorling({
   opacity,
   centroid,
   radius,
-
 }) {
   let style = dumbCopy(DEFAULT_STYLE_GEOJSON);
   style.fillColor = color ? color : style.fillColor;

@@ -1,6 +1,7 @@
 import { Component } from "react";
 import { MapContainer, TileLayer, useMapEvents } from "react-leaflet";
-import AllRegionGeos from "../../view/organisms/AllRegionGeos";
+import AllRegionGeosGeo from "../../view/molecules/AllRegionGeosGeo";
+import AllRegionGeosDorling from "../../view/molecules/AllRegionGeosDorling";
 
 import "./GeoMap.css";
 
@@ -19,35 +20,51 @@ function EventComponent({ setCenterAndZoom }) {
 }
 
 export default class GeoMap extends Component {
-  render() {
+  renderInner() {
     const {
       allEntIndex,
-      center,
       coloringMethod,
       regionEntType,
       displayRegionIDs,
       layerTable,
       layerTableName,
       setRegion,
-      zoom,
       mapMode,
     } = this.props;
+    switch (mapMode) {
+      case "dorling":
+        return (
+          <AllRegionGeosDorling
+            allEntIndex={allEntIndex}
+            regionEntType={regionEntType}
+            coloringMethod={coloringMethod}
+            displayRegionIDs={displayRegionIDs}
+            layerTable={layerTable}
+            layerTableName={layerTableName}
+            setRegion={setRegion}
+          />
+        );
+      default:
+        return (
+          <AllRegionGeosGeo
+            allEntIndex={allEntIndex}
+            regionEntType={regionEntType}
+            coloringMethod={coloringMethod}
+            displayRegionIDs={displayRegionIDs}
+            layerTable={layerTable}
+            layerTableName={layerTableName}
+            setRegion={setRegion}
+          />
+        );
+    }
+  }
+  render() {
+    const { center, zoom, setCenterAndZoom } = this.props;
     return (
       <MapContainer center={center} zoom={zoom} zoomControl={false}>
-        <EventComponent
-          setCenterAndZoom={this.props.setCenterAndZoom.bind(this)}
-        />
+        <EventComponent setCenterAndZoom={setCenterAndZoom} />
         <TileLayer url={URL_FORMAT} />
-        <AllRegionGeos
-          allEntIndex={allEntIndex}
-          regionEntType={regionEntType}
-          coloringMethod={coloringMethod}
-          displayRegionIDs={displayRegionIDs}
-          layerTable={layerTable}
-          layerTableName={layerTableName}
-          setRegion={setRegion}
-          mapMode={mapMode}
-        />
+        {this.renderInner()}
       </MapContainer>
     );
   }
