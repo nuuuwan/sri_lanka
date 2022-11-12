@@ -7,7 +7,6 @@ export default class TimeX {
     return Math.floor(Date.now());
   }
 
-
   static getDate() {
     return new Date().toISOString().slice(0, 10);
   }
