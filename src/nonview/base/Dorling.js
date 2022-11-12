@@ -2,7 +2,7 @@ import MathX from "../../nonview/base/MathX";
 
 const R_FACTOR = 115_000;
 const MAX_GENERATIONS = 100;
-const SPEED = 0.00000007;
+const SPEED = 0.00000003;
 export class PositionInfo {
   constructor(regionID, centroid, radius) {
     this.regionID = regionID;
@@ -53,12 +53,13 @@ export default class Dorling {
           const geoDistance = PositionInfo.getGeoDistance([dlat, dlng]);
           const radiusDistance = posInfo1.getRadiusDistance(posInfo2);
           const isOverlapping = geoDistance * R_FACTOR < radiusDistance;
-
           if (isOverlapping) {
             hasSomeOverlap = true;
             const force = radiusDistance / geoDistance ** 2;
             [slat, slng] = [dlat, dlng].map((x) => x * force * SPEED);
           }
+
+
         }
 
         let newPosInfo1 = new PositionInfo(

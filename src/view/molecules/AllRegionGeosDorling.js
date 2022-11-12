@@ -2,7 +2,7 @@ import Dorling, { PositionInfo } from "../../nonview/base/Dorling";
 
 import RegionGeoDorling from "../../view/molecules/RegionGeoDorling";
 
-const RADIUS_PER_PERSON_SQRT = 15;
+const RADIUS_PER_PERSON_SQRT = 20;
 function getRadiusFromPopulation(population) {
   return Math.sqrt(population) * RADIUS_PER_PERSON_SQRT;
 }
