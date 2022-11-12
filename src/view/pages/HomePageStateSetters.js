@@ -1,6 +1,8 @@
 import GIG2 from "../../nonview/base/GIG2";
 import EntsForMaps from "../../nonview/core/EntsForMaps";
 
+import { DEFAULT_COLORING_METHOD } from "../../view/pages/HomePageStateBase";
+
 const HomePageStateSetters = {
   setCenterAndZoom(center, zoom) {
     const { allEntIndex, regionEntType } = this.state;
@@ -20,7 +22,9 @@ const HomePageStateSetters = {
   },
 
   async setLayerTableName(layerTableName) {
+    const coloringMethod = DEFAULT_COLORING_METHOD;
     this.setStateAndURLContext({
+      coloringMethod,
       layerTableName,
       layerTable: await GIG2.getTable(layerTableName),
     });
