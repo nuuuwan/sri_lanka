@@ -1,5 +1,5 @@
 import RegionGeoDorling from "../../view/molecules/RegionGeoDorling";
-
+import Dorling from "../../nonview/base/Dorling";
 const RADIUS_PER_PERSON_SQRT = 10;
 function getRadiusFromPopulation(population) {
   return Math.sqrt(population) * RADIUS_PER_PERSON_SQRT;
@@ -31,8 +31,9 @@ export default function AllRegionGeos({
       radius,
     };
   });
+  const repositionedPolitionInfoList = Dorling.reposition(positionInfoList);
 
-  return positionInfoList.map(function (positionInfo) {
+  return repositionedPolitionInfoList.map(function (positionInfo) {
     const { regionID, centroid, radius } = positionInfo;
     const key = `region-geo-${layerTableName}-${regionID}`;
     const { color, opacity } = idToStyle[regionID];
