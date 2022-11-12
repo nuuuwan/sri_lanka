@@ -1,6 +1,8 @@
+import Dorling, { PositionInfo } from "../../nonview/base/Dorling";
+
 import RegionGeoDorling from "../../view/molecules/RegionGeoDorling";
-import Dorling from "../../nonview/base/Dorling";
-const RADIUS_PER_PERSON_SQRT = 10;
+
+const RADIUS_PER_PERSON_SQRT = 15;
 function getRadiusFromPopulation(population) {
   return Math.sqrt(population) * RADIUS_PER_PERSON_SQRT;
 }
@@ -20,17 +22,15 @@ export default function AllRegionGeos({
 
   const idToStyle = layerTable.getIDToStyle(displayRegionIDs, coloringMethod);
 
-  const positionInfoList = displayRegionIDs.map(function (regionID) {
-    const ent = allEntIndex[regionEntType][regionID];
-    const radius = getRadiusFromPopulation(ent.population);
-    const centroid = JSON.parse(ent.centroid);
+  const positionInfoList = displayRegionIDs
+    .map(function (regionID) {
+      const ent = allEntIndex[regionEntType][regionID];
+      const radius = getRadiusFromPopulation(ent.population);
+      const centroid = JSON.parse(ent.centroid);
 
-    return {
-      regionID,
-      centroid,
-      radius,
-    };
-  });
+      return new PositionInfo(regionID, centroid, radius);
+    })
+    .sort((a, b) => a.regionID.localeCompare(b.regionID));
   const repositionedPolitionInfoList = Dorling.reposition(positionInfoList);
 
   return repositionedPolitionInfoList.map(function (positionInfo) {
