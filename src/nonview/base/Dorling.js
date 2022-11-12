@@ -58,8 +58,6 @@ export default class Dorling {
             const force = radiusDistance / geoDistance ** 2;
             [slat, slng] = [dlat, dlng].map((x) => x * force * SPEED);
           }
-
-
         }
 
         let newPosInfo1 = new PositionInfo(
