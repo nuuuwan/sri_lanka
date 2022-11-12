@@ -26,6 +26,23 @@ export default class GIG2 {
     }, {});
   }
 
+  static getGroupToMeasurementToTableNames() {
+    return GIG2_TABLE_NAMES.reduce(function (idx, tableName) {
+      const tableMetadata = new GIG2TableMetadata(tableName);
+      const group = tableMetadata.group;
+      const measurement = tableMetadata.measurement;
+      if (!idx[group]) {
+        idx[group] = {};
+      }
+      if (!idx[group][measurement]) {
+        idx[group][measurement] = [];
+      }
+
+      idx[group][measurement].push(tableName);
+      return idx;
+    }, {});
+  }
+
   static async getTable(tableName) {
     const url = `${URL_BASE}/${tableName}.tsv`;
     const dList = await WWW.tsv(url);
