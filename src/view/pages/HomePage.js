@@ -16,6 +16,7 @@ import HomePageState from "../../view/pages/HomePageState";
 import EntTypesSelectorView from "../../view/molecules/EntTypesSelectorView";
 import TimeSelectorView from "../../view/molecules/TimeSelectorView";
 import AllRegionsDetailsView from "../../view/molecules/AllRegionsDetailsView";
+import MapModeView from "../../view/atoms/MapModeView";
 
 import {
   STYLE_BODY,
@@ -56,6 +57,7 @@ export default class HomePage extends HomePageState {
       showRegionDetailsView,
       showTimeSelectorView,
       zoom,
+      mapMode,
     } = this.state;
 
     const currentTableMetadata = new GIG2TableMetadata(layerTableName);
@@ -66,6 +68,11 @@ export default class HomePage extends HomePageState {
       <Box>
         <Paper sx={STYLE_BODY}>
           <Box sx={STYLE_BODY_TOP_RIGHT_PANEL}>
+            <MapModeView
+              mapMode={mapMode}
+              setMapMode={this.setMapMode.bind(this)}
+            />
+
             <ShowHide
               show={showLayerListView}
               onShow={this.onClickShowLayerListView.bind(this)}
@@ -113,13 +120,14 @@ export default class HomePage extends HomePageState {
             center={center}
             coloringMethod={coloringMethod}
             displayRegionIDs={displayRegionIDs}
-            key={`geo-map-${zoom}-${geoCenter}`}
+            key={`geo-map-${zoom}-${geoCenter}-${mapMode}`}
             layerTable={layerTable}
             layerTableName={layerTableName}
             regionEntType={regionEntType}
             setCenterAndZoom={this.setCenterAndZoom.bind(this)}
             setRegion={this.setRegion.bind(this)}
             zoom={zoom}
+            mapMode={mapMode}
           />
         </Paper>
 

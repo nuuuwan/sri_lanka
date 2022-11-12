@@ -12,6 +12,7 @@ export default class RegionGeoCollection extends Component {
       layerTable,
       layerTableName,
       setRegion,
+      mapMode,
     } = this.props;
 
     if (!allEntIndex) {
@@ -32,6 +33,7 @@ export default class RegionGeoCollection extends Component {
           setRegion={setRegion}
           color={color}
           opacity={opacity}
+          mapMode={mapMode}
         />
       );
     });

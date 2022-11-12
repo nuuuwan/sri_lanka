@@ -30,6 +30,7 @@ export default class GeoMap extends Component {
       layerTableName,
       setRegion,
       zoom,
+      mapMode,
     } = this.props;
     return (
       <MapContainer center={center} zoom={zoom} zoomControl={false}>
@@ -45,6 +46,7 @@ export default class GeoMap extends Component {
           layerTable={layerTable}
           layerTableName={layerTableName}
           setRegion={setRegion}
+          mapMode={mapMode}
         />
       </MapContainer>
     );

@@ -3,7 +3,11 @@ import { Component } from "react";
 import { ENT_TYPES } from "../../nonview/base/EntTypes";
 import Ents from "../../nonview/base/Ents";
 import GIG2, { DEFAULT_LAYER_TABLE_NAME } from "../../nonview/base/GIG2";
-import { DEFAULT_ZOOM, DEFAULT_ZOOM_GEO, DEFAULT_CENTER } from "../../nonview/base/GeoData";
+import {
+  DEFAULT_ZOOM,
+  DEFAULT_ZOOM_GEO,
+  DEFAULT_CENTER,
+} from "../../nonview/base/GeoData";
 import GeoLocation from "../../nonview/base/GeoLocation";
 import URLContext from "../../nonview/base/URLContext";
 import EntsForMaps from "../../nonview/core/EntsForMaps";
@@ -11,6 +15,7 @@ import EntsForMaps from "../../nonview/core/EntsForMaps";
 const DEFAULT_REGION_ID = "LK-1";
 const DEFAULT_COLORING_METHOD = "majority";
 const DEFAULT_REGION_ENT_TYPE = ENT_TYPES.PROVINCE;
+const DEFAULT_MAP_MODE = "geo";
 
 export default class HomePageState extends Component {
   setStateAndURLContext(state) {
@@ -29,6 +34,7 @@ export default class HomePageState extends Component {
           showRegionDetailsView,
           showTimeSelectorView,
           zoom,
+          mapMode,
         } = this.state;
         const context = {
           center,
@@ -42,6 +48,7 @@ export default class HomePageState extends Component {
           showRegionDetailsView,
           showTimeSelectorView,
           zoom,
+          mapMode,
         };
         URLContext.setContext(context);
       }.bind(this)
@@ -64,6 +71,7 @@ export default class HomePageState extends Component {
       showRegionDetailsView: false,
       showTimeSelectorView: false,
       zoom: DEFAULT_ZOOM,
+      mapMode: DEFAULT_MAP_MODE,
     };
   }
 
@@ -89,6 +97,9 @@ export default class HomePageState extends Component {
     }
     if (context.zoom) {
       initState.zoom = context.zoom;
+    }
+    if (context.mapMode) {
+      initState.mapMode = context.mapMode;
     }
 
     initState.showEntTypesSelectorView = context.showEntTypesSelectorView;
@@ -163,6 +174,10 @@ export default class HomePageState extends Component {
         )
       : null;
     this.setStateAndURLContext({ regionEntType, displayRegionIDs });
+  }
+
+  setMapMode(mapMode) {
+    this.setStateAndURLContext({ mapMode });
   }
 
   async onClickCenterOnCurrentLocation() {
