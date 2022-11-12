@@ -11,7 +11,7 @@ import HomePageStateHandlers from "../../view/pages/HomePageStateHandlers";
 import HomePageStateSetters from "../../view/pages/HomePageStateSetters";
 
 const DEFAULT_REGION_ID = "LK-1";
-const DEFAULT_COLORING_METHOD = "majority";
+export const DEFAULT_COLORING_METHOD = "majority";
 const DEFAULT_REGION_ENT_TYPE = ENT_TYPES.PROVINCE;
 const DEFAULT_MAP_MODE = "geo";
 
