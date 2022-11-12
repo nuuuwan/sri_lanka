@@ -32,7 +32,7 @@ export default function TimeSelectorView({
     };
   });
 
-  const onChange = function (_, iTime) {
+  const onChangeCommitted = function (_, iTime) {
     const newTableMetadata = GIG2TableMetadata.fromMET(
       currentTableMetadata.measurement,
       currentTableMetadata.entity,
@@ -44,6 +44,7 @@ export default function TimeSelectorView({
   return (
     <Box sx={STYLE_BOX}>
       <Slider
+        key={"slider-" + iCurrentTime}
         sx={{
           '& input[type="range"]': {
             WebkitAppearance: "slider-vertical",
@@ -53,11 +54,11 @@ export default function TimeSelectorView({
           },
         }}
         orientation="vertical"
-        value={iCurrentTime}
+        defaultValue={iCurrentTime}
         marks={marks}
         max={nTimes - 1}
         min={0}
-        onChange={onChange}
+        onChangeCommitted={onChangeCommitted}
         step={1}
       />
     </Box>

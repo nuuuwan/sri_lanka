@@ -39,13 +39,14 @@ export default function EntTypesSelectorView({
   },
   undefined);
 
-  const onChange = function (_, iEntType) {
+  const onChangeCommitted = function (_, iEntType) {
     setRegionEntType(entTypes[iEntType]);
   };
 
   return (
     <Box sx={STYLE_BOX}>
       <Slider
+        key={"slider-" + selectedValue}
         sx={{
           '& input[type="range"]': {
             WebkitAppearance: "slider-vertical",
@@ -55,11 +56,11 @@ export default function EntTypesSelectorView({
           },
         }}
         orientation="vertical"
-        value={selectedValue}
+        defaultValue={selectedValue}
         marks={marks}
         max={nEntTypes - 1}
         min={0}
-        onChange={onChange}
+        onChangeCommitted={onChangeCommitted}
         step={1}
       />
     </Box>
