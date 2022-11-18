@@ -50,7 +50,22 @@ export default function AllRegionsTableView({
 
   return (
     <List>
-      {displayRegionIDsSortedFiltered.map(function (regionIDInner) {
+      {displayRegionIDsSortedFiltered.map(function (regionIDInner, i) {
+        const pctl =100 - 100 * i / (MAX_IDS_TO_DISPLAY - 1);
+        let note = '';
+        if (pctl === 100) {
+          note = 'highest';
+        } else if (pctl === 0) {
+          note = "lowest";
+        } else if (pctl === 50) {
+          note = "median";
+        } else if (pctl === 90) {
+          note = "90 pctl.";
+        }else if (pctl === 10) {
+          note = "10 pctl. ";
+        }
+
+
         return (
           <AllRegionsTableRowView
             key={`regions-table-row-${layerTableName}-${regionIDInner}`}
@@ -61,6 +76,7 @@ export default function AllRegionsTableView({
             regionIDInner={regionIDInner}
             getRankPFromP={getRankPFromP}
             setRegion={setRegion}
+            note={note}
           />
         );
       })}

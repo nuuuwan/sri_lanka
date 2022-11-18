@@ -29,6 +29,7 @@ export default function RegionTableRowCellView({
   regionIDInner,
   getRankPFromP,
   setRegion,
+  note,
 }) {
   const tableRow = layerTable.getRowByID(regionIDInner);
   if (!tableRow) {
@@ -76,14 +77,17 @@ export default function RegionTableRowCellView({
         <Grid item xs={1}>
           <Typography sx={styleBulletCustom}> </Typography>
         </Grid>
-        <Grid item xs={4}>
+        <Grid item xs={3}>
           <EntView entID={regionIDInner} minimal />
         </Grid>
-        <Grid item xs={4}>
+        <Grid item xs={3}>
           <Typography align="right">{label}</Typography>
         </Grid>
         <Grid item xs={2}>
           <Typography align="right">{label2}</Typography>
+        </Grid>
+        <Grid item xs={2}>
+          <Typography align="right" sx={{fontSize: "50%"}}>{note}</Typography>
         </Grid>
       </Grid>
     </ListItemButton>
