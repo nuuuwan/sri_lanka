@@ -67,7 +67,7 @@ export default class HomePage extends HomePageStateBase {
 
     return (
       <Box>
-        <Paper sx={STYLE_BODY}>
+        <Box sx={STYLE_BODY}>
           <Box sx={STYLE_BODY_TOP_RIGHT_PANEL}>
             <MapModeView
               mapMode={mapMode}
@@ -136,7 +136,7 @@ export default class HomePage extends HomePageStateBase {
             zoom={zoom}
             mapMode={mapMode}
           />
-        </Paper>
+        </Box>
 
         <Box sx={STYLE_BODY_BOTTOM_RIGHT_PANEL}>
           <ShowHide
