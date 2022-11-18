@@ -32,9 +32,25 @@ export default function AllRegionsTableView({
     });
   }
 
+  const MAX_IDS_TO_DISPLAY = 11;
+  const n = displayRegionIDsSorted.length;
+  let displayRegionIDsSortedFiltered;
+  if (n <= MAX_IDS_TO_DISPLAY) {
+    displayRegionIDsSortedFiltered = displayRegionIDsSorted;
+  } else {
+    displayRegionIDsSortedFiltered = [];
+    displayRegionIDsSortedFiltered.push(displayRegionIDsSorted[0]);
+    for (let i = 0; i < MAX_IDS_TO_DISPLAY - 2; i++) {
+      const j = parseInt(n * (i + 1) / (MAX_IDS_TO_DISPLAY - 1));
+      displayRegionIDsSortedFiltered.push(displayRegionIDsSorted[j]);
+    }
+    displayRegionIDsSortedFiltered.push(displayRegionIDsSorted[n - 1]);
+  }
+
+
   return (
     <List>
-      {displayRegionIDsSorted.map(function (regionIDInner) {
+      {displayRegionIDsSortedFiltered.map(function (regionIDInner) {
         return (
           <AllRegionsTableRowView
             key={`regions-table-row-${layerTableName}-${regionIDInner}`}
