@@ -8,7 +8,7 @@ export default function LayerView({
   setLayerTableName,
 }) {
   function onClick() {
-    setLayerTableName(tableNames[0]);
+    setLayerTableName(tableNames[tableNames.length - 1]);
   }
 
   return (
