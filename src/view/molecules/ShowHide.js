@@ -6,6 +6,7 @@ import CloseIcon from "@mui/icons-material/Close";
 
 export const STYLE_PAPER = {
   width: "fit-content",
+  height: "fit-content",
   maxHeight: 600,
   background: "rgba(255,255,255,0.8)",
   margin: 1,

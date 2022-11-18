@@ -21,6 +21,8 @@ export const STYLE_BODY_TOP_RIGHT_PANEL = {
   bottom: PADDING,
   right: PADDING,
   zIndex: 10000,
+  width: "fit-content",
+  height: "fit-content",
 };
 
 export const STYLE_BODY_BOTTOM_RIGHT_PANEL = {
@@ -28,4 +30,6 @@ export const STYLE_BODY_BOTTOM_RIGHT_PANEL = {
   bottom: PADDING + FOOTER_HEIGHT,
   right: PADDING,
   zIndex: 10000,
+  width: "fit-content",
+  height: "fit-content",
 };
