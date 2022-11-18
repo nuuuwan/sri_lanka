@@ -69,10 +69,6 @@ export default class HomePage extends HomePageStateBase {
       <Box>
         <Box sx={STYLE_BODY}>
           <Box sx={STYLE_BODY_TOP_RIGHT_PANEL}>
-            <MapModeView
-              mapMode={mapMode}
-              setMapMode={this.setMapMode.bind(this)}
-            />
 
             <ShowHide
               show={showLayerListView}
@@ -91,6 +87,10 @@ export default class HomePage extends HomePageStateBase {
                 setLayerTableName={this.setLayerTableName.bind(this)}
               />
             </ShowHide>
+            <MapModeView
+              mapMode={mapMode}
+              setMapMode={this.setMapMode.bind(this)}
+            />
 
             <ShowHide
               ShowIcon={MapIcon}
