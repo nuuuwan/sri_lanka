@@ -2,7 +2,7 @@ import MathX from "../../nonview/base/MathX";
 
 const R_FACTOR = 115_000;
 const MAX_GENERATIONS = 100;
-const SPEED = 0.00000003;
+const SPEED = 0.00000006;
 export class PositionInfo {
   constructor(regionID, centroid, radius) {
     this.regionID = regionID;
