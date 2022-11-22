@@ -87,7 +87,9 @@ export default function RegionTableRowCellView({
           <Typography align="right">{label2}</Typography>
         </Grid>
         <Grid item xs={2}>
-          <Typography align="right" sx={{fontSize: "50%"}}>{note}</Typography>
+          <Typography align="right" sx={{ fontSize: "50%" }}>
+            {note}
+          </Typography>
         </Grid>
       </Grid>
     </ListItemButton>

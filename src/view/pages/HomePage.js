@@ -69,7 +69,6 @@ export default class HomePage extends HomePageStateBase {
       <Box>
         <Box sx={STYLE_BODY}>
           <Box sx={STYLE_BODY_TOP_RIGHT_PANEL}>
-
             <ShowHide
               show={showLayerListView}
               onShow={this.onClickShowLayerListView.bind(this)}
