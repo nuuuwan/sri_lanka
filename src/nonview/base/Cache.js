@@ -14,4 +14,20 @@ export default class Cache {
     }
     return coldItem;
   }
+
+  static getSync(cacheKey, fallback) {
+    const hotItem = localStorage.getItem(cacheKey);
+    if (hotItem) {
+      return JSON.parse(hotItem);
+    }
+
+    console.debug("⌛", "Cache.getSync", "cold", cacheKey);
+    const coldItem = fallback();
+    try {
+      localStorage.setItem(cacheKey, JSON.stringify(coldItem));
+    } catch (QuotaExceededError) {
+      localStorage.clear();
+    }
+    return coldItem;
+  }
 }
