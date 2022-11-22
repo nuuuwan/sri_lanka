@@ -1,3 +1,4 @@
+import Cache from "../../nonview/base/Cache";
 import MathX from "../../nonview/base/MathX";
 
 const R_FACTOR = 130_000;
@@ -30,7 +31,12 @@ export class PositionInfo {
 
 export default class Dorling {
   static reposition(posInfoList) {
-    console.debug("⌛", "Dorling.reposition", posInfoList.length);
+    return Cache.getSync(JSON.stringify(posInfoList), function () {
+      return Dorling.repositionNonCache(posInfoList);
+    });
+  }
+  static repositionNonCache(posInfoList) {
+    console.debug("⌛", "Dorling.repositionNonCache", posInfoList.length);
     const n = posInfoList.length;
     let iGeneration = 0;
     while (true) {
