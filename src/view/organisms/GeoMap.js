@@ -60,6 +60,7 @@ export default class GeoMap extends Component {
   }
   render() {
     const { center, zoom, setCenterAndZoom } = this.props;
+    console.debug("⌛", "GeoMap.render", center, zoom);        
     return (
       <MapContainer center={center} zoom={zoom} zoomControl={false}>
         <EventComponent setCenterAndZoom={setCenterAndZoom} />

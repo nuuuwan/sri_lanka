@@ -30,6 +30,7 @@ export class PositionInfo {
 
 export default class Dorling {
   static reposition(posInfoList) {
+    console.debug("⌛", "Dorling.reposition", posInfoList.length);
     const n = posInfoList.length;
     let iGeneration = 0;
     while (true) {
