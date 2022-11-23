@@ -126,7 +126,7 @@ export default class HomePage extends HomePageStateBase {
             center={center}
             coloringMethod={coloringMethod}
             displayRegionIDs={displayRegionIDs}
-            key={`geo-map-${zoom}-${geoCenter}-${mapMode}`}
+            key={`geo-map-${zoom}-${geoCenter}-${mapMode}-${layerTableName}`}
             layerTable={layerTable}
             layerTableName={layerTableName}
             regionEntType={regionEntType}
