@@ -35,6 +35,7 @@ export default class GeoMap extends Component {
       case "dorling":
         return (
           <AllRegionGeosDorling
+            key={"all-region-geos-dorling-" + coloringMethod + layerTableName}
             allEntIndex={allEntIndex}
             regionEntType={regionEntType}
             coloringMethod={coloringMethod}
@@ -47,6 +48,7 @@ export default class GeoMap extends Component {
       default:
         return (
           <AllRegionGeosGeo
+            key={"all-region-geos-geo-" + coloringMethod + layerTableName}
             allEntIndex={allEntIndex}
             regionEntType={regionEntType}
             coloringMethod={coloringMethod}
@@ -59,8 +61,8 @@ export default class GeoMap extends Component {
     }
   }
   render() {
-    const { center, zoom, setCenterAndZoom } = this.props;
-    console.debug("⌛", "GeoMap.render", center, zoom);
+    const { center, zoom, setCenterAndZoom , layerTableName, mapMode} = this.props;
+    console.debug("⌛", "GeoMap.render", [center, zoom, layerTableName, mapMode]);
     return (
       <MapContainer center={center} zoom={zoom} zoomControl={false}>
         <EventComponent setCenterAndZoom={setCenterAndZoom} />
