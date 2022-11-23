@@ -19,7 +19,7 @@ export default function AllRegionGeos({
   if (!allEntIndex) {
     return null;
   }
-
+  console.debug("⌛", "AllRegionGeos.render", layerTableName);
   const idToStyle = layerTable.getIDToStyle(displayRegionIDs, coloringMethod);
   const idToPopulation = layerTable.getIDToPopulation(
     displayRegionIDs,
