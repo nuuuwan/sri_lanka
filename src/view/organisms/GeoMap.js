@@ -61,7 +61,7 @@ export default class GeoMap extends Component {
     }
   }
   render() {
-    const { center, zoom, setCenterAndZoom , layerTableName, mapMode} = this.props;
+    const { center, zoom, setCenterAndZoom} = this.props;
     return (
       <MapContainer center={center} zoom={zoom} zoomControl={false}>
         <EventComponent setCenterAndZoom={setCenterAndZoom} />
