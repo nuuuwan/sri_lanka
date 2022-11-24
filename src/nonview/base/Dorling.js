@@ -1,9 +1,9 @@
 import Cache from "../../nonview/base/Cache";
 import MathX from "../../nonview/base/MathX";
 
-const R_FACTOR = 130_000;
+const R_FACTOR = 120_000;
 const MAX_GENERATIONS = 100;
-const SPEED = 0.00000003;
+const SPEED = 0.0000001;
 export class PositionInfo {
   constructor(regionID, centroid, radius) {
     this.regionID = regionID;
