@@ -37,7 +37,7 @@ export default class HomePage extends HomePageStateBase {
       return;
     }
 
-    this.loadStateOnComponentMount();
+    await this.loadStateOnComponentMount();
     this.didMount = true;
   }
 
