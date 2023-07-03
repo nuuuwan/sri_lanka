@@ -1,3 +1,4 @@
+const DELIM = "/?";
 export default class URLContext {
   static contextToStr(context) {
     return encodeURIComponent(btoa(JSON.stringify(context)));
@@ -10,7 +11,7 @@ export default class URLContext {
   static contextToURL(context) {
     const origin = window.location.origin;
     let urlBase = origin + process.env.PUBLIC_URL; // TODO: Is origin needed?
-    return urlBase + "#" + URLContext.contextToStr(context);
+    return urlBase + DELIM + URLContext.contextToStr(context);
   }
 
   static urlToContext(url) {
