@@ -17,6 +17,7 @@ const GIG2_TABLE_NAMES = [
   "government-elections-presidential.regions-ec.2010",
   "government-elections-presidential.regions-ec.2015",
   "government-elections-presidential.regions-ec.2019",
+  "government-elections-presidential.regions-ec.2024",
   "population-age_group.regions.2012",
   "population-ethnicity.regions.2012",
   "population-gender.regions.2012",
